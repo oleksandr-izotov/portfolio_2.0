@@ -27,7 +27,7 @@ export const projects: Project[] = [
   {
     title: 'Processing',
     category: 'Something new...',
-    year: '2024',
+    year: '2026',
     description: 'Minimalist kernel architecture for distributed systems. Focuses on low-latency inter-process communication and secure memory management for safety-critical industrial applications.',
     image: coreLogicImg,
     stack: ["Rust", "Wasm", "gRPC", "Redis", "Linux"],
@@ -36,7 +36,7 @@ export const projects: Project[] = [
   {
     title: 'Processing',
     category: 'Something new...',
-    year: '2024',
+    year: '2026',
     description: 'Distributed key-value store optimized for high-write workloads. Features automatic sharding, multi-region replication, and a custom query language for real-time telemetry processing.',
     image: nexusDbImg,
     stack: ["Go", "Kubernetes", "PostgreSQL", "Kafka", "AWS"],
