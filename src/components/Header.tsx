@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Github, Linkedin } from 'lucide-react';
 
 export const Header = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [time, setTime] = useState('');
 
   useEffect(() => {
@@ -15,6 +16,7 @@ export const Header = () => {
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
+    setIsMobileMenuOpen(false); // Close mobile menu on click
     const element = document.getElementById(id);
     if (element) {
       const headerOffset = 80;
@@ -33,7 +35,7 @@ export const Header = () => {
       <div className="max-w-[1800px] mx-auto h-14 flex items-center justify-between px-6 relative">
         
         {/* Left: Identity */}
-        <div className="flex items-center z-10">
+        <div className="flex items-center z-50">
           <div className="flex items-center gap-3 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
             <span className="text-blue-400 font-bold text-[10px]">//</span>
             <span className="text-[11px] font-bold tracking-[0.3em] text-white uppercase">
@@ -42,7 +44,7 @@ export const Header = () => {
           </div>
         </div>
 
-        {/* Center: Clean Navigation (Perfectly centered) */}
+        {/* Center: Desktop Navigation */}
         <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-12">
           {[
             { name: 'About', id: 'about' },
@@ -61,8 +63,8 @@ export const Header = () => {
           ))}
         </nav>
 
-        {/* Right: Metadata & Socials */}
-        <div className="flex items-center gap-8 z-10">
+        {/* Right: Metadata & Socials (Desktop) */}
+        <div className="hidden md:flex items-center gap-8 z-10">
           <div className="hidden lg:flex items-center gap-3 text-[10px] font-mono text-zinc-600 uppercase tracking-widest">
             <span>Stuttgart</span>
             <span className="text-zinc-800">/</span>
@@ -78,6 +80,74 @@ export const Header = () => {
             </a>
           </div>
         </div>
+
+        {/* Mobile Menu Toggle */}
+        <button 
+          className="md:hidden z-50 p-2 text-white"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          <div className="w-5 h-4 flex flex-col justify-between">
+            <motion.span 
+              animate={isMobileMenuOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }} 
+              className="w-full h-0.5 bg-white origin-center transition-all"
+            />
+            <motion.span 
+              animate={isMobileMenuOpen ? { opacity: 0 } : { opacity: 1 }} 
+              className="w-full h-0.5 bg-white transition-all"
+            />
+            <motion.span 
+              animate={isMobileMenuOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }} 
+              className="w-full h-0.5 bg-white origin-center transition-all"
+            />
+          </div>
+        </button>
+
+        {/* Mobile Fullscreen Menu */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="fixed inset-0 z-[60] bg-[#0c0c0e]/98 backdrop-blur-xl flex flex-col items-center justify-center pt-20"
+            >
+               <nav className="flex flex-col items-center gap-8">
+                {[
+                  { name: 'About', id: 'about' },
+                  { name: 'Stack', id: 'stack' },
+                  { name: 'Works', id: 'projects' },
+                  { name: 'Contact', id: 'contact' }
+                ].map((item, i) => (
+                  <motion.a 
+                    key={item.id} 
+                    href={`#${item.id}`}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 + i * 0.1 }}
+                    onClick={(e) => scrollToSection(e, item.id)}
+                    className="text-2xl font-black uppercase tracking-tighter text-white hover:text-blue-500 transition-colors"
+                  >
+                    {item.name}
+                  </motion.a>
+                ))}
+              </nav>
+
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+                className="mt-12 flex gap-8"
+              >
+                <a href="https://github.com/oleksandr-izotov" target="_blank" rel="noopener noreferrer" className="p-4 bg-white/5 rounded-full text-white hover:bg-blue-600 transition-colors">
+                  <Github size={20} />
+                </a>
+                <a href="https://www.linkedin.com/in/oleksandr-izotov/" target="_blank" rel="noopener noreferrer" className="p-4 bg-white/5 rounded-full text-white hover:bg-blue-600 transition-colors">
+                  <Linkedin size={20} />
+                </a>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
       </div>
     </header>
