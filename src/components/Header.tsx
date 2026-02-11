@@ -62,16 +62,14 @@ export const Header = () => {
     }
   }, [isMobileMenuOpen]);
 
-  // Lock body scroll when menu is open (only touch overflow-y to not conflict with CSS overflow-x: hidden)
+  // Lock body scroll when menu is open — class-based for cross-browser reliability
   useEffect(() => {
     if (isMobileMenuOpen) {
-      document.body.style.overflowY = 'hidden';
+      document.body.classList.add('no-scroll');
     } else {
-      document.body.style.overflowY = '';
+      document.body.classList.remove('no-scroll');
     }
-    return () => {
-      document.body.style.overflowY = '';
-    };
+    return () => document.body.classList.remove('no-scroll');
   }, [isMobileMenuOpen]);
 
   return (
