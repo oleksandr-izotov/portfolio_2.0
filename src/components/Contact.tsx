@@ -34,7 +34,7 @@ export const Contact = () => {
           </div>
           
           {/* Engineering Metadata Block to fill space */}
-          <div className="flex gap-10">
+          <div className="hidden md:flex gap-10">
             <div className="flex flex-col">
               <span className="text-[8px] font-mono text-gray-400 uppercase tracking-widest mb-0.5">Location</span>
               <span className="text-[9px] font-bold dark:text-zinc-500 uppercase tracking-wider">48.7758° N, 9.1829° E</span>
@@ -71,7 +71,7 @@ export const Contact = () => {
               href="mailto:izotovoleksandr05@gmail.com" 
               className="group relative inline-block"
             >
-              <div className="text-3xl md:text-5xl font-bold dark:text-white group-hover:text-blue-600 transition-colors duration-300">
+              <div className="text-lg sm:text-3xl md:text-5xl font-bold dark:text-white group-hover:text-blue-600 transition-colors duration-300 break-all sm:break-normal">
                 izotovoleksandr05@gmail.com
               </div>
               <div className="absolute -bottom-2 left-0 w-full h-[2px] bg-gray-100 dark:bg-white/5 origin-left">

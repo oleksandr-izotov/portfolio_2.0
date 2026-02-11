@@ -32,7 +32,7 @@ export const ProjectCard = ({ project, index }: { project: Project, index: numbe
         <ImageWithFallback 
           src={project.image} 
           alt={project.title}
-          className={`w-full h-full object-cover grayscale dark:brightness-75 transition-all duration-1000 ease-out ${isLocked ? '' : 'group-hover:grayscale-0 group-hover:scale-105'}`}
+          className={`w-full h-full object-cover grayscale dark:brightness-75 transition-all duration-1000 ease-out ${isLocked ? '' : 'md:group-hover:grayscale-0 md:group-hover:scale-105'}`}
         />
 
         {/* Grid Overlay (Blueprint style) */}

@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const GrainTexture = () => (
-  <div className="fixed inset-0 pointer-events-none z-50 opacity-[0.03] dark:opacity-[0.05] mix-blend-overlay dark:mix-blend-soft-light">
+  <div className="hidden md:fixed md:inset-0 md:block pointer-events-none z-50 opacity-[0.03] dark:opacity-[0.05] mix-blend-overlay dark:mix-blend-soft-light">
     <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
       <filter id="noiseFilter">
         <feTurbulence 
