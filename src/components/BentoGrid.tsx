@@ -40,7 +40,7 @@ const TimelineItem = ({ title, subtitle, date, type, current = false }: { title:
 
 const ArchitectureBlueprint = () => {
   return (
-    <div className="relative h-full min-h-[300px] w-full bg-gray-50 dark:bg-[#0c0c0e] overflow-hidden p-5 md:p-8 font-mono">
+    <div className="relative h-full min-h-[300px] w-full bg-gray-50 dark:bg-[#0c0c0e] overflow-hidden p-5 md:p-8 font-mono hidden md:block">
       {/* Grid Overlay */}
       <div className="absolute inset-0 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:24px_24px] opacity-10 dark:opacity-20" />
       
@@ -89,9 +89,10 @@ const ArchitectureBlueprint = () => {
         </div>
       </div>
 
-      {/* "Scanning" Effect */}
-      <motion.div 
-        animate={{ translateY: ['0%', '1000%'] }}
+      {/* "Scanning" Effect — only animate when in view */}
+      <motion.div
+        whileInView={{ translateY: ['0%', '1000%'] }}
+        viewport={{ once: false }}
         transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
         className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-blue-500/20 to-transparent pointer-events-none"
       />

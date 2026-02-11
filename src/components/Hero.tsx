@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import React, { useRef, useState } from 'react';
+import { motion, AnimatePresence, useInView } from 'motion/react';
 import { ImageWithFallback } from './ui/ImageWithFallback';
 import { Sparkles, ArrowRight, FileDown } from 'lucide-react';
 import backgroundImage from '../assets/background.webp';
@@ -12,16 +12,20 @@ const MarqueeItem = ({ children }: { children: React.ReactNode }) => (
 );
 
 const Marquee = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { margin: "100px" });
+
   return (
-    <div className="relative w-full overflow-hidden py-6 bg-transparent border-t border-gray-100 dark:border-white/5">
-      <motion.div 
+    <div ref={ref} className="relative w-full overflow-hidden py-6 bg-transparent border-t border-gray-100 dark:border-white/5">
+      <motion.div
         className="flex whitespace-nowrap"
-        animate={{ x: [0, -1500] }}
-        transition={{ 
-          duration: 30, 
-          repeat: Infinity, 
-          ease: "linear" 
+        animate={isInView ? { x: [0, -1500] } : undefined}
+        transition={{
+          duration: 30,
+          repeat: Infinity,
+          ease: "linear"
         }}
+        style={{ willChange: 'transform' }}
       >
         {[1, 2, 3, 4, 5, 6].map((i) => (
           <div key={i} className="flex items-center">
