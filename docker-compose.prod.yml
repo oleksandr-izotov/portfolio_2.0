@@ -1,0 +1,9 @@
+services:
+  app:
+    build:
+      context: .
+      target: production
+    ports:
+      - "80:80"
+    restart: always 
+    container_name: portfolio-prod
