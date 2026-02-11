@@ -138,6 +138,10 @@ html {
   overflow-x: hidden;
 }
 
+body.no-scroll {
+  overflow: hidden !important;
+}
+
 /**
  * Base typography. This is not applied to elements which have an ancestor with a Tailwind text class.
  */
