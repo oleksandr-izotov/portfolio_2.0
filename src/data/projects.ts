@@ -15,18 +15,18 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    title: 'Blueprint Engine',
-    category: 'Infrastructure',
-    year: '2025',
-    description: 'A high-performance rendering engine built for architectural visualization. Implements custom shaders for real-time ray-tracing and complex geometric processing within the browser environment.',
+    title: 'Developer Portfolio',
+    category: 'Web Architecture',
+    year: '2026',
+    description: 'A high-performance, dark-themed personal platform built with modern web technologies. Features a custom Dockerized environment, CI/CD pipelines via Vercel, and a premium architectural aesthetic inspired by blueprints.',
     image: blueprintImg,
-    stack: ["React", "Three.js", "GLSL", "TypeScript", "Vite"],
+    stack: ["React 18", "TypeScript", "Tailwind v4", "Docker", "Vite"],
     status: 'active',
-    link: 'https://github.com/oleksandr-izotov'
+    link: 'https://izotov.dev'
   },
   {
-    title: 'Core Logic OS',
-    category: 'System Design',
+    title: 'Processing',
+    category: 'Something new...',
     year: '2024',
     description: 'Minimalist kernel architecture for distributed systems. Focuses on low-latency inter-process communication and secure memory management for safety-critical industrial applications.',
     image: coreLogicImg,
@@ -34,8 +34,8 @@ export const projects: Project[] = [
     status: 'development'
   },
   {
-    title: 'Nexus Database',
-    category: 'Big Data',
+    title: 'Processing',
+    category: 'Something new...',
     year: '2024',
     description: 'Distributed key-value store optimized for high-write workloads. Features automatic sharding, multi-region replication, and a custom query language for real-time telemetry processing.',
     image: nexusDbImg,
