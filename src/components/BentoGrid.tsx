@@ -7,10 +7,7 @@ import {
 
 const BentoBox = ({ children, className = '', delay = 0, noPadding = false }: { children: React.ReactNode, className?: string, delay?: number, noPadding?: boolean }) => (
   <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ delay, duration: 0.5 }}
+    initial={{ opacity: 1, y: 0 }}
     className={`bg-white dark:bg-[#161618] border border-gray-100 dark:border-white/5 ${noPadding ? '' : 'p-8'} hover:border-black dark:hover:border-blue-500/50 transition-all duration-500 group relative overflow-hidden rounded-sm ${className}`}
   >
     {children}
@@ -143,20 +140,14 @@ export const BentoGrid = () => {
               <TimelineItem 
                 title="Uni Stuttgart" 
                 subtitle="B.Sc. Software Engineering" 
-                date="2023 — Present" 
+                date="October 2025 — September 2029 (Expected)" 
                 type="edu" 
                 current 
               />
               <TimelineItem 
-                title="Tech Studio Stuttgart" 
-                subtitle="Full Stack Development Intern" 
-                date="Summer 2024" 
-                type="work" 
-              />
-              <TimelineItem 
-                title="Secondary Education" 
-                subtitle="Computer Science Focus" 
-                date="2018 — 2023" 
+                title="Evangelisches Schulzentrum Michelbach (Abitur)" 
+                subtitle="Advanced courses: Mathematics, Physics, English" 
+                date="2022 - 2025" 
                 type="edu" 
               />
             </div>
@@ -174,10 +165,10 @@ export const BentoGrid = () => {
               
               <div className="space-y-6 flex-1">
                 <p className="text-sm font-bold leading-relaxed uppercase tracking-tight italic opacity-90">
-                  "Engineering isn't just about solving problems; it's about building structures that endure."
+                  "MINDSET: GET SH*T DONE"
                 </p>
                 <p className="text-xs font-medium leading-relaxed opacity-80 uppercase tracking-wider">
-                  Based in Stuttgart, I approach software with an architect's mindset. My focus lies in creating robust systems where technical excellence meets intuitive design.
+                  I’m a Software Engineering student at the University of Stuttgart, obsessed with building high-performance, scalable systems. My code is clean, efficient, and built to last.
                 </p>
               </div>
 
