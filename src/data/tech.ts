@@ -8,18 +8,18 @@ export interface TechCategory {
 export const techStack: TechCategory[] = [
   {
     label: "Frontend Core",
-    items: ["React", "Next.js", "TypeScript", "Tailwind", "Motion", "Three.js", "Vite"],
+    items: ["React", "Tailwind", "Vue", "TypeScript", "JavaScript", "HTML", "CSS"],
     duration: 15
   },
   {
     label: "Logic & Engine",
-    items: ["Node.js", "Express", "Go", "Python", "GraphQL", "REST API", "FastAPI"],
+    items: ["Java", "Python", "Spring Boot", "Pandas", "NumPy", "SQL", "PostgreSQL"],
     duration: 22,
     reverse: true
   },
   {
     label: "Architecture",
-    items: ["Docker", "PostgreSQL", "Redis", "Git", "Linux", "Bash", "AWS", "Nginx"],
+    items: ["Git", "Docker", "Docker Compose", "GitHub Actions", "Linux", "Nginx", "Bash"],
     duration: 18
   }
 ];
