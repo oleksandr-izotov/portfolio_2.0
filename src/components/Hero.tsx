@@ -56,7 +56,7 @@ export const Hero = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <section className="relative h-screen w-full flex flex-col items-center justify-between bg-transparent overflow-hidden pt-32 pb-0 px-0">
+    <section className="relative min-h-[100dvh] w-full flex flex-col items-center justify-center md:justify-between bg-transparent overflow-hidden pt-24 pb-12 md:pt-32 md:pb-0 px-0">
       
       {/* Dynamic Background Element */}
       <motion.div 
@@ -90,7 +90,7 @@ export const Hero = () => {
 
         {/* The Name Component */}
         <div 
-          className="relative text-center cursor-default group py-12"
+          className="relative text-center cursor-default group py-6 md:py-12"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
@@ -100,7 +100,7 @@ export const Hero = () => {
             transition={{ duration: 1 }}
             className="flex flex-col items-center"
           >
-            <h1 className="text-[12vw] lg:text-[160px] font-black tracking-[-0.08em] leading-[0.8] mb-4 dark:text-white transition-all duration-700 group-hover:tracking-wider group-hover:opacity-10 group-hover:blur-sm">
+            <h1 className="text-[13vw] md:text-[12vw] lg:text-[160px] font-black tracking-[-0.08em] leading-[0.9] md:leading-[0.8] mb-4 dark:text-white transition-all duration-700 group-hover:tracking-wider group-hover:opacity-10 group-hover:blur-sm">
               OLEKSANDR<br />IZOTOV
             </h1>
 
@@ -139,7 +139,7 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1, duration: 1 }}
-          className="flex flex-col md:flex-row items-center justify-center gap-8 mt-12 mb-20"
+          className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 mt-8 md:mt-12 mb-12 md:mb-20 w-full max-w-sm md:max-w-none mx-auto"
         >
 
           {/* Primary Action: Start Collaboration */}
@@ -149,7 +149,7 @@ export const Hero = () => {
               e.preventDefault();
               document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
             }}
-            className="group relative flex items-center gap-6 px-10 py-4 bg-zinc-950 dark:bg-white rounded-full transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-blue-500/10 overflow-hidden"
+            className="group relative flex items-center justify-center w-full md:w-auto gap-6 px-10 py-4 bg-zinc-950 dark:bg-white rounded-full transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-blue-500/10 overflow-hidden"
           >
              {/* Hover Fill Effect */}
              <div className="absolute inset-0 bg-blue-600 translate-y-[101%] group-hover:translate-y-0 transition-transform duration-500 ease-[0.19,1,0.22,1]" />
@@ -168,7 +168,7 @@ export const Hero = () => {
           <a 
             href={cvFile}
             download="Oleksandr_Izotov_CV.pdf"
-            className="group relative flex items-center gap-6 px-10 py-4 bg-white/50 dark:bg-transparent border border-zinc-200 dark:border-white/10 rounded-full transition-all duration-500 hover:scale-[1.02] hover:border-blue-500/30 overflow-hidden backdrop-blur-sm"
+            className="group relative flex items-center justify-center w-full md:w-auto gap-6 px-10 py-4 bg-white/50 dark:bg-transparent border border-zinc-200 dark:border-white/10 rounded-full transition-all duration-500 hover:scale-[1.02] hover:border-blue-500/30 overflow-hidden backdrop-blur-sm"
           >
              {/* Hover Grid Reveal */}
              <div className="absolute inset-0 opacity-0 group-hover:opacity-10 pointer-events-none bg-[radial-gradient(#3b82f6_1px,transparent_1px)] bg-[size:10px_10px] transition-opacity duration-500" />
