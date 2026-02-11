@@ -127,15 +127,15 @@
   }
 
   body {
-    @apply bg-background text-foreground overflow-x-hidden min-h-[100dvh];
+    @apply bg-background text-foreground min-h-[100dvh];
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overscroll-behavior-y: none;
   }
 }
 
 html {
   overflow-x: hidden;
+  overscroll-behavior: none;
 }
 
 body.no-scroll {
