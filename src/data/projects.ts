@@ -25,13 +25,14 @@ export const projects: Project[] = [
     link: 'https://izotov.dev'
   },
   {
-    title: 'Processing',
-    category: 'Something new...',
+    title: 'Study Smart AI',
+    category: 'AI Architecture',
     year: '2026',
-    description: 'Minimalist kernel architecture for distributed systems. Focuses on low-latency inter-process communication and secure memory management for safety-critical industrial applications.',
+    description: 'Service-oriented architecture for AI-driven education. Orchestrates LLM inference for real-time content generation within a secure, containerized environment. Features a reactive HTMX frontend and asynchronous task processing for strict latency control.',
     image: coreLogicImg,
-    stack: ["Rust", "Wasm", "gRPC", "Redis", "Linux"],
-    status: 'development'
+    stack: ["Python", "Django", "HTMX", "Redis", "Docker", "PostgreSQL", "LLMs", "Stripe"],
+    status: 'active',
+    link: 'https://github.com/oleksandr-izotov/StudySmarterAi'
   },
   {
     title: 'Processing',

@@ -169,7 +169,7 @@ export const BentoGrid = () => {
                   "MINDSET: GET SH*T DONE"
                 </p>
                 <p className="text-[10px] md:text-xs font-medium leading-relaxed opacity-80 uppercase tracking-wider">
-                  Software Engineering student at Stuttgart. Obsessed with high-performance systems. Clean code, built to last.
+                  Stuttgart University Software Engineering student. Target on high-performance systems. Clean code, built to last.
                 </p>
               </div>
 
@@ -202,7 +202,7 @@ export const BentoGrid = () => {
         <div className="lg:col-span-6">
            <BentoBox className="flex flex-col justify-between min-h-[160px] md:min-h-[180px]">
               <div className="flex items-baseline gap-2 mb-4">
-                <span className="text-5xl md:text-6xl font-black text-blue-600 dark:text-blue-400 tracking-tighter">03+</span>
+                <span className="text-5xl md:text-6xl font-black text-blue-600 dark:text-blue-400 tracking-tighter">02+</span>
                 <span className="text-[10px] font-mono font-black text-blue-600 uppercase tracking-widest animate-pulse">Years</span>
               </div>
               <div>
