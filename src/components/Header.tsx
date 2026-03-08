@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Github, Linkedin } from 'lucide-react';
+import { Send, Linkedin } from 'lucide-react';
 
 export const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -91,8 +91,8 @@ export const Header = () => {
           <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-12">
             {[
               { name: 'About', id: 'about' },
-              { name: 'Stack', id: 'stack' },
-              { name: 'Works', id: 'projects' },
+              { name: 'Services', id: 'stack' },
+              { name: 'Cases', id: 'projects' },
               { name: 'Contact', id: 'contact' }
             ].map((item) => (
               <a
@@ -115,8 +115,8 @@ export const Header = () => {
             </div>
 
             <div className="flex items-center gap-5 border-l border-white/10 pl-8">
-              <a href="https://github.com/oleksandr-izotov" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                <Github size={14} />
+              <a href="https://t.me/YOUR_USERNAME" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                <Send size={14} />
               </a>
               <a href="https://www.linkedin.com/in/oleksandr-izotov/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-400 transition-colors">
                 <Linkedin size={14} />
@@ -175,8 +175,8 @@ export const Header = () => {
             <nav className="flex flex-col items-center gap-8">
               {[
                 { name: 'About', id: 'about' },
-                { name: 'Stack', id: 'stack' },
-                { name: 'Works', id: 'projects' },
+                { name: 'Services', id: 'stack' },
+                { name: 'Cases', id: 'projects' },
                 { name: 'Contact', id: 'contact' }
               ].map((item, i) => (
                 <motion.a
@@ -199,8 +199,8 @@ export const Header = () => {
               transition={{ delay: 0.3 }}
               className="mt-12 flex gap-8"
             >
-              <a href="https://github.com/oleksandr-izotov" target="_blank" rel="noopener noreferrer" className="p-4 bg-white/5 rounded-full text-white hover:bg-blue-600 transition-colors">
-                <Github size={20} />
+              <a href="https://t.me/YOUR_USERNAME" target="_blank" rel="noopener noreferrer" className="p-4 bg-white/5 rounded-full text-white hover:bg-blue-600 transition-colors">
+                <Send size={20} />
               </a>
               <a href="https://www.linkedin.com/in/oleksandr-izotov/" target="_blank" rel="noopener noreferrer" className="p-4 bg-white/5 rounded-full text-white hover:bg-blue-600 transition-colors">
                 <Linkedin size={20} />

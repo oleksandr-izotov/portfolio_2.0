@@ -96,7 +96,7 @@ export const TechStack = () => {
 
           <div className="flex items-center gap-3 mb-4 relative z-10">
             <div className="h-[1px] w-8 bg-blue-500" />
-            <span className="text-[10px] font-mono font-bold uppercase tracking-[0.4em] text-blue-500">Tech Core Specification</span>
+            <span className="text-[10px] font-mono font-bold uppercase tracking-[0.4em] text-blue-500">Strategic IT Implementation</span>
             <div className="h-[1px] w-8 bg-blue-500" />
           </div>
           <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter dark:text-white leading-none relative z-10">

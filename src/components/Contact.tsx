@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { ArrowUpRight, Github, Linkedin } from 'lucide-react';
+import { ArrowUpRight, Github, Linkedin, Send } from 'lucide-react';
 import { ImageWithFallback } from './ui/ImageWithFallback';
 import liquidBackground from "../assets/liquid-bg.webp";
 
@@ -62,7 +62,7 @@ export const Contact = () => {
               <span className="text-gray-300 dark:text-zinc-800">THE FUTURE</span>
             </h2>
             <p className="max-w-md text-sm text-gray-500 dark:text-zinc-400 font-medium leading-relaxed">
-              I'm always open to discussing technical challenges, innovative projects, or internship opportunities in Software Engineering.
+              Ready to elevate your business with scalable web architecture and tailored AI integrations? I'm always open to discussing complex technical challenges, consulting opportunities, or immediate B2B collaborations.
             </p>
           </div>
 
@@ -93,6 +93,9 @@ export const Contact = () => {
                 </a>
                 <a href="https://www.linkedin.com/in/oleksandr-izotov/" className="p-2 border border-gray-100 dark:border-white/5 hover:border-blue-500/50 hover:bg-blue-500/5 transition-colors rounded-lg group">
                   <Linkedin size={18} className="text-gray-400 group-hover:text-blue-600 transition-colors" />
+                </a>
+                <a href="https://t.me/YOUR_USERNAME" className="p-2 border border-gray-100 dark:border-white/5 hover:border-blue-500/50 hover:bg-blue-500/5 transition-colors rounded-lg group">
+                  <Send size={18} className="text-gray-400 group-hover:text-blue-600 transition-colors" />
                 </a>
               </div>
 
