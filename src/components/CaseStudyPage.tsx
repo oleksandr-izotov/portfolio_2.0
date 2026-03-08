@@ -3,8 +3,9 @@ import { motion } from 'motion/react';
 import { ArrowLeft, Send, Shield, GitBranch, RefreshCcw, Users, ExternalLink, Terminal } from 'lucide-react';
 import { GrainTexture } from './GrainTexture';
 import { ImageWithFallback } from './ui/ImageWithFallback';
-import heroImg from '../assets/background.webp';
-import abstractImg from '../assets/liquid-bg.webp';
+import heroImg from '../assets/med-bg.webp';
+import abstractImg from '../assets/med2-bg.webp';
+import finalCtaImg from '../assets/med3-bg.webp';
 
 interface CaseStudyPageProps {
   onBack: () => void;
@@ -45,7 +46,7 @@ export const CaseStudyPage = ({ onBack }: CaseStudyPageProps) => {
       <GrainTexture />
 
       {/* ── NAV ── */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-xl border-b border-white/5">
+      <nav className="absolute top-0 left-0 right-0 z-50">
         <div className="max-w-7xl mx-auto h-14 flex items-center justify-between px-6">
           <button
             onClick={onBack}
@@ -72,22 +73,27 @@ export const CaseStudyPage = ({ onBack }: CaseStudyPageProps) => {
           Background: project-specific blurred image + blueprint grid
       ══════════════════════════════════════════════════════════════ */}
       <section className="relative min-h-[70vh] flex flex-col items-center justify-center pt-36 pb-28 px-6 overflow-hidden bg-black">
-        {/* Project image blurred out as atmosphere */}
+        {/* Hero image — vibrant, brightness-trimmed for text contrast */}
         <div className="absolute inset-0 z-0">
           <ImageWithFallback
             src={heroImg}
             alt=""
-            className="w-full h-full object-cover grayscale opacity-20 blur-[3px] scale-105"
+            className="w-full h-full object-cover object-[center_20%] brightness-90"
           />
         </div>
+        {/* Subtle dark base for minimum contrast */}
+        <div className="absolute inset-0 z-[1] bg-black/25" />
         {/* Blueprint grid overlay */}
-        <div className="absolute inset-0 z-[1] bg-[linear-gradient(to_right,#ffffff06_1px,transparent_1px),linear-gradient(to_bottom,#ffffff06_1px,transparent_1px)] bg-[size:60px_60px]" />
-        {/* Radial vignette — pulls edges to pure black */}
-        <div className="absolute inset-0 z-[2] bg-[radial-gradient(ellipse_75%_65%_at_50%_50%,transparent_20%,#000_100%)]" />
+        <div className="absolute inset-0 z-[2] bg-[linear-gradient(to_right,#ffffff06_1px,transparent_1px),linear-gradient(to_bottom,#ffffff06_1px,transparent_1px)] bg-[size:60px_60px]" />
+        {/* Bottom fade to black for smooth section transition */}
+        <div className="absolute bottom-0 left-0 right-0 h-36 z-[3] bg-gradient-to-t from-black to-transparent" />
         {/* Subtle blue ambient centre glow */}
-        <div className="absolute z-[2] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-blue-600/10 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute z-[3] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-blue-600/10 blur-[120px] rounded-full pointer-events-none" />
 
         <div className="relative z-10 max-w-5xl mx-auto text-center">
+          {/* Radial shadow mask behind text content for readability */}
+          <div className="absolute inset-0 -m-24 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.55)_0%,rgba(0,0,0,0.25)_55%,transparent_80%)] pointer-events-none -z-[1]" />
+
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -105,7 +111,7 @@ export const CaseStudyPage = ({ onBack }: CaseStudyPageProps) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[13vw] md:text-[90px] lg:text-[110px] font-black uppercase tracking-[-0.05em] leading-[0.88] mb-10"
+            className="text-[13vw] md:text-[90px] lg:text-[110px] font-black uppercase tracking-[-0.05em] leading-[0.88] mb-10 [text-shadow:0_4px_30px_rgba(0,0,0,0.9)]"
           >
             Enterprise
             <br />
@@ -152,7 +158,7 @@ export const CaseStudyPage = ({ onBack }: CaseStudyPageProps) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
-              className="relative p-8 bg-white/[0.02] border border-white/5 hover:border-white/10 rounded-sm transition-colors duration-500 overflow-hidden"
+              className="relative p-8 bg-[#0A0A0A] border border-white/[0.05] hover:border-white/10 rounded-sm transition-colors duration-500 overflow-hidden"
             >
               <div className="absolute top-0 left-0 w-16 h-[2px] bg-red-500/60" />
               <span className="text-[9px] font-mono font-bold uppercase tracking-[0.45em] text-red-400 block mb-5">
@@ -172,7 +178,7 @@ export const CaseStudyPage = ({ onBack }: CaseStudyPageProps) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="relative p-8 bg-blue-600/[0.04] border border-blue-500/10 hover:border-blue-500/20 rounded-sm transition-colors duration-500 overflow-hidden"
+              className="relative p-8 bg-[#0A0A0F] border border-blue-500/[0.08] hover:border-blue-500/20 rounded-sm transition-colors duration-500 overflow-hidden"
             >
               <div className="absolute top-0 left-0 w-16 h-[2px] bg-blue-500" />
               <span className="text-[9px] font-mono font-bold uppercase tracking-[0.45em] text-blue-400 block mb-5">
@@ -194,18 +200,16 @@ export const CaseStudyPage = ({ onBack }: CaseStudyPageProps) => {
           Background: abstract liquid image — "services" atmosphere
       ══════════════════════════════════════════════════════════════ */}
       <section className="relative py-24 px-6 border-t border-white/5 overflow-hidden">
-        {/* Abstract background image */}
+        {/* Abstract background image — recognizable cables texture, soft blur */}
         <div className="absolute inset-0 z-0">
           <ImageWithFallback
             src={abstractImg}
             alt=""
-            className="w-full h-full object-cover grayscale opacity-[0.08] blur-[6px] scale-105"
+            className="w-full h-full object-cover blur-[8px] scale-105"
           />
         </div>
-        {/* Dot-grid overlay for texture */}
-        <div className="absolute inset-0 z-[1] bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:28px_28px] opacity-[0.06]" />
-        {/* Top + bottom fade to black */}
-        <div className="absolute inset-0 z-[2] bg-[linear-gradient(to_bottom,#000_0%,transparent_15%,transparent_85%,#000_100%)]" />
+        {/* Gradient mask — solid black at edges, barely-there at center */}
+        <div className="absolute inset-0 z-[1] bg-[linear-gradient(to_bottom,#000000_0%,rgba(0,0,0,0.2)_50%,#000000_100%)]" />
 
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="flex items-center gap-3 mb-14">
@@ -223,7 +227,7 @@ export const CaseStudyPage = ({ onBack }: CaseStudyPageProps) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08, duration: 0.6 }}
-                className="group p-6 bg-black/60 backdrop-blur-sm border border-white/5 hover:border-blue-500/20 hover:bg-blue-500/[0.04] rounded-sm transition-all duration-500"
+                className="group p-6 bg-[#0A0A0A] border border-white/[0.1] hover:border-blue-500/30 hover:bg-[#0A0A14] rounded-sm transition-all duration-500"
               >
                 <div className="w-10 h-10 bg-blue-500/10 group-hover:bg-blue-500/20 flex items-center justify-center mb-5 transition-colors duration-300 rounded-sm">
                   <f.icon size={18} className="text-blue-500" />
@@ -331,17 +335,37 @@ export const CaseStudyPage = ({ onBack }: CaseStudyPageProps) => {
           SECTION 4 — CTA  (grand finale)
           Background: layered gradients — dramatic blue/silver bloom
       ══════════════════════════════════════════════════════════════ */}
-      <section className="relative py-32 px-6 border-t border-white/5 overflow-hidden">
-        {/* Deep blue radial bloom from bottom centre */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_90%_60%_at_50%_110%,rgba(59,130,246,0.12),transparent_65%)]" />
-        {/* Secondary warm-silver bloom from top */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_-10%,rgba(180,180,200,0.04),transparent_60%)]" />
-        {/* Faint dot grid for texture */}
-        <div className="absolute inset-0 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:32px_32px] opacity-[0.03]" />
-        {/* Bottom edge glow line */}
-        <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-blue-500/25 to-transparent" />
+      {/* border-top uses inline style to match the exact rgba spec */}
+      <section
+        className="relative py-32 px-6 overflow-hidden"
+        style={{ borderTop: '1px solid rgba(255,255,255,0.03)' }}
+      >
+        {/* Layer 0 — sphere image, fully visible behind the glass */}
+        <div className="absolute inset-0 z-0">
+          <ImageWithFallback
+            src={finalCtaImg}
+            alt=""
+            className="w-full h-full object-cover object-center"
+          />
+        </div>
 
-        <div className="max-w-4xl mx-auto text-center relative z-10">
+        {/* Layer 1 — glass panel: backdrop-filter ONLY, no mask on this element */}
+        <div
+          className="absolute inset-0 z-[1]"
+          style={{
+            backdropFilter: 'blur(40px)',
+            WebkitBackdropFilter: 'blur(40px)',
+            backgroundColor: 'rgba(0,0,0,0.5)',
+          }}
+        />
+
+        {/* Layer 2 — edge-fading gradient: separate element so it never touches backdrop-filter */}
+        <div className="absolute inset-0 z-[2] bg-[linear-gradient(to_bottom,#000000_0%,rgba(0,0,0,0)_22%,rgba(0,0,0,0)_78%,#000000_100%)]" />
+
+        {/* Layer 3 — bottom glow line */}
+        <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-blue-500/25 to-transparent z-[3]" />
+
+        <div className="max-w-4xl mx-auto text-center relative z-[4]">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
