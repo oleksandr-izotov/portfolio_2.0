@@ -158,7 +158,7 @@ export const CaseStudyPage = ({ onBack }: CaseStudyPageProps) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
-              className="relative p-8 bg-[#0A0A0A] border border-white/[0.05] hover:border-white/10 rounded-sm transition-colors duration-500 overflow-hidden"
+              className="relative p-8 bg-[#111113] border border-white/[0.05] hover:border-white/10 rounded-sm transition-colors duration-500 overflow-hidden"
             >
               <div className="absolute top-0 left-0 w-16 h-[2px] bg-red-500/60" />
               <span className="text-[9px] font-mono font-bold uppercase tracking-[0.45em] text-red-400 block mb-5">
@@ -178,7 +178,7 @@ export const CaseStudyPage = ({ onBack }: CaseStudyPageProps) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="relative p-8 bg-[#0A0A0F] border border-blue-500/[0.08] hover:border-blue-500/20 rounded-sm transition-colors duration-500 overflow-hidden"
+              className="relative p-8 bg-[#111113] border border-blue-500/[0.08] hover:border-blue-500/20 rounded-sm transition-colors duration-500 overflow-hidden"
             >
               <div className="absolute top-0 left-0 w-16 h-[2px] bg-blue-500" />
               <span className="text-[9px] font-mono font-bold uppercase tracking-[0.45em] text-blue-400 block mb-5">
@@ -227,7 +227,7 @@ export const CaseStudyPage = ({ onBack }: CaseStudyPageProps) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08, duration: 0.6 }}
-                className="group p-6 bg-[#0A0A0A] border border-white/[0.1] hover:border-blue-500/30 hover:bg-[#0A0A14] rounded-sm transition-all duration-500"
+                className="group p-6 bg-[#111113] border border-white/[0.05] hover:border-blue-500/30 hover:bg-[#13131A] rounded-sm transition-all duration-500"
               >
                 <div className="w-10 h-10 bg-blue-500/10 group-hover:bg-blue-500/20 flex items-center justify-center mb-5 transition-colors duration-300 rounded-sm">
                   <f.icon size={18} className="text-blue-500" />
@@ -355,7 +355,7 @@ export const CaseStudyPage = ({ onBack }: CaseStudyPageProps) => {
           style={{
             backdropFilter: 'blur(40px)',
             WebkitBackdropFilter: 'blur(40px)',
-            backgroundColor: 'rgba(0,0,0,0.5)',
+            backgroundColor: 'rgba(13,13,13,0.7)',
           }}
         />
 
