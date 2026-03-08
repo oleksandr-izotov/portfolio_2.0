@@ -1,7 +1,10 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { motion } from 'motion/react';
 import { ArrowLeft, Send, Shield, GitBranch, RefreshCcw, Users, ExternalLink, Terminal } from 'lucide-react';
 import { GrainTexture } from './GrainTexture';
+import { ImageWithFallback } from './ui/ImageWithFallback';
+import heroImg from '../assets/background.webp';
+import abstractImg from '../assets/liquid-bg.webp';
 
 interface CaseStudyPageProps {
   onBack: () => void;
@@ -64,14 +67,25 @@ export const CaseStudyPage = ({ onBack }: CaseStudyPageProps) => {
         </div>
       </nav>
 
-      {/* ── HERO ── */}
-      <section className="relative min-h-[65vh] flex flex-col items-center justify-center pt-36 pb-24 px-6 overflow-hidden">
-        {/* Blueprint grid */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff06_1px,transparent_1px),linear-gradient(to_bottom,#ffffff06_1px,transparent_1px)] bg-[size:60px_60px]" />
-        {/* Radial vignette */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_50%,transparent_30%,#000_100%)]" />
-        {/* Blue ambient glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-blue-600/8 blur-[120px] rounded-full pointer-events-none" />
+      {/* ══════════════════════════════════════════════════════════════
+          SECTION 0 — HERO
+          Background: project-specific blurred image + blueprint grid
+      ══════════════════════════════════════════════════════════════ */}
+      <section className="relative min-h-[70vh] flex flex-col items-center justify-center pt-36 pb-28 px-6 overflow-hidden bg-black">
+        {/* Project image blurred out as atmosphere */}
+        <div className="absolute inset-0 z-0">
+          <ImageWithFallback
+            src={heroImg}
+            alt=""
+            className="w-full h-full object-cover grayscale opacity-20 blur-[3px] scale-105"
+          />
+        </div>
+        {/* Blueprint grid overlay */}
+        <div className="absolute inset-0 z-[1] bg-[linear-gradient(to_right,#ffffff06_1px,transparent_1px),linear-gradient(to_bottom,#ffffff06_1px,transparent_1px)] bg-[size:60px_60px]" />
+        {/* Radial vignette — pulls edges to pure black */}
+        <div className="absolute inset-0 z-[2] bg-[radial-gradient(ellipse_75%_65%_at_50%_50%,transparent_20%,#000_100%)]" />
+        {/* Subtle blue ambient centre glow */}
+        <div className="absolute z-[2] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-blue-600/10 blur-[120px] rounded-full pointer-events-none" />
 
         <div className="relative z-10 max-w-5xl mx-auto text-center">
           <motion.div
@@ -109,7 +123,7 @@ export const CaseStudyPage = ({ onBack }: CaseStudyPageProps) => {
             {techTags.map((tag) => (
               <span
                 key={tag}
-                className="px-3 py-1 border border-white/10 rounded-full text-[9px] font-mono font-bold uppercase tracking-[0.3em] text-zinc-400"
+                className="px-3 py-1 border border-white/10 rounded-full text-[9px] font-mono font-bold uppercase tracking-[0.3em] text-zinc-400 backdrop-blur-sm"
               >
                 {tag}
               </span>
@@ -118,8 +132,11 @@ export const CaseStudyPage = ({ onBack }: CaseStudyPageProps) => {
         </div>
       </section>
 
-      {/* ── EXECUTIVE SUMMARY ── */}
-      <section className="relative py-24 px-6 border-t border-white/5">
+      {/* ══════════════════════════════════════════════════════════════
+          SECTION 1 — EXECUTIVE SUMMARY
+          Background: solid #000 — maximum text readability
+      ══════════════════════════════════════════════════════════════ */}
+      <section className="relative py-24 px-6 bg-black border-t border-white/5">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-3 mb-14">
             <div className="w-6 h-[1px] bg-blue-500" />
@@ -172,13 +189,67 @@ export const CaseStudyPage = ({ onBack }: CaseStudyPageProps) => {
         </div>
       </section>
 
-      {/* ── VIDEO DEMO ── */}
-      <section className="relative py-24 px-6 border-t border-white/5">
+      {/* ══════════════════════════════════════════════════════════════
+          SECTION 2 — TECHNICAL HIGHLIGHTS  (moved up)
+          Background: abstract liquid image — "services" atmosphere
+      ══════════════════════════════════════════════════════════════ */}
+      <section className="relative py-24 px-6 border-t border-white/5 overflow-hidden">
+        {/* Abstract background image */}
+        <div className="absolute inset-0 z-0">
+          <ImageWithFallback
+            src={abstractImg}
+            alt=""
+            className="w-full h-full object-cover grayscale opacity-[0.08] blur-[6px] scale-105"
+          />
+        </div>
+        {/* Dot-grid overlay for texture */}
+        <div className="absolute inset-0 z-[1] bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:28px_28px] opacity-[0.06]" />
+        {/* Top + bottom fade to black */}
+        <div className="absolute inset-0 z-[2] bg-[linear-gradient(to_bottom,#000_0%,transparent_15%,transparent_85%,#000_100%)]" />
+
+        <div className="relative z-10 max-w-7xl mx-auto">
+          <div className="flex items-center gap-3 mb-14">
+            <div className="w-6 h-[1px] bg-blue-500" />
+            <span className="text-[9px] font-mono font-bold uppercase tracking-[0.45em] text-blue-500">
+              02 // Technical Highlights
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {features.map((f, i) => (
+              <motion.div
+                key={f.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08, duration: 0.6 }}
+                className="group p-6 bg-black/60 backdrop-blur-sm border border-white/5 hover:border-blue-500/20 hover:bg-blue-500/[0.04] rounded-sm transition-all duration-500"
+              >
+                <div className="w-10 h-10 bg-blue-500/10 group-hover:bg-blue-500/20 flex items-center justify-center mb-5 transition-colors duration-300 rounded-sm">
+                  <f.icon size={18} className="text-blue-500" />
+                </div>
+                <h4 className="text-sm font-black uppercase tracking-tight text-white mb-2 leading-tight">
+                  {f.title}
+                </h4>
+                <p className="text-[11px] text-zinc-500 leading-relaxed font-medium">
+                  {f.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════
+          SECTION 3 — PROJECT WALKTHROUGH  (moved down)
+          Background: solid #000 — pure cinema effect
+      ══════════════════════════════════════════════════════════════ */}
+      <section className="relative py-24 px-6 bg-black border-t border-white/5">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-3 mb-14">
             <div className="w-6 h-[1px] bg-blue-500" />
             <span className="text-[9px] font-mono font-bold uppercase tracking-[0.45em] text-blue-500">
-              02 // Project Walkthrough
+              03 // Project Walkthrough
             </span>
           </div>
 
@@ -218,23 +289,19 @@ export const CaseStudyPage = ({ onBack }: CaseStudyPageProps) => {
             {/* Spinning ring + icon */}
             <div className="relative z-10 flex flex-col items-center gap-8">
               <div className="relative w-24 h-24">
-                {/* Static outer ring */}
                 <div className="absolute inset-0 rounded-full border border-white/5" />
-                {/* Fast outer spinner */}
                 <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ duration: 2.5, repeat: Infinity, ease: 'linear' }}
                   className="absolute inset-0 rounded-full border-2 border-transparent"
                   style={{ borderTopColor: '#3b82f6', borderRightColor: 'rgba(59,130,246,0.1)' }}
                 />
-                {/* Slow inner counter-spinner */}
                 <motion.div
                   animate={{ rotate: -360 }}
                   transition={{ duration: 5, repeat: Infinity, ease: 'linear' }}
                   className="absolute inset-[7px] rounded-full border border-transparent"
                   style={{ borderBottomColor: 'rgba(96,165,250,0.4)', borderLeftColor: 'rgba(96,165,250,0.1)' }}
                 />
-                {/* Center icon */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <Terminal size={18} className="text-blue-500/70" />
                 </div>
@@ -250,7 +317,7 @@ export const CaseStudyPage = ({ onBack }: CaseStudyPageProps) => {
               </div>
             </div>
 
-            {/* Bottom scan line */}
+            {/* Scan line */}
             <motion.div
               animate={{ y: ['0%', '2000%'] }}
               transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
@@ -260,46 +327,19 @@ export const CaseStudyPage = ({ onBack }: CaseStudyPageProps) => {
         </div>
       </section>
 
-      {/* ── KEY FEATURES GRID ── */}
-      <section className="relative py-24 px-6 border-t border-white/5">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center gap-3 mb-14">
-            <div className="w-6 h-[1px] bg-blue-500" />
-            <span className="text-[9px] font-mono font-bold uppercase tracking-[0.45em] text-blue-500">
-              03 // Technical Highlights
-            </span>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {features.map((f, i) => (
-              <motion.div
-                key={f.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08, duration: 0.6 }}
-                className="group p-6 bg-white/[0.02] border border-white/5 hover:border-blue-500/20 hover:bg-blue-500/[0.03] rounded-sm transition-all duration-500"
-              >
-                <div className="w-10 h-10 bg-blue-500/10 group-hover:bg-blue-500/20 flex items-center justify-center mb-5 transition-colors duration-300 rounded-sm">
-                  <f.icon size={18} className="text-blue-500" />
-                </div>
-                <h4 className="text-sm font-black uppercase tracking-tight text-white mb-2 leading-tight">
-                  {f.title}
-                </h4>
-                <p className="text-[11px] text-zinc-500 leading-relaxed font-medium">
-                  {f.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── BOTTOM CTA ── */}
+      {/* ══════════════════════════════════════════════════════════════
+          SECTION 4 — CTA  (grand finale)
+          Background: layered gradients — dramatic blue/silver bloom
+      ══════════════════════════════════════════════════════════════ */}
       <section className="relative py-32 px-6 border-t border-white/5 overflow-hidden">
-        {/* Ambient glow from bottom */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_100%,rgba(59,130,246,0.07),transparent_70%)]" />
-        <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-blue-500/20 to-transparent" />
+        {/* Deep blue radial bloom from bottom centre */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_90%_60%_at_50%_110%,rgba(59,130,246,0.12),transparent_65%)]" />
+        {/* Secondary warm-silver bloom from top */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_-10%,rgba(180,180,200,0.04),transparent_60%)]" />
+        {/* Faint dot grid for texture */}
+        <div className="absolute inset-0 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:32px_32px] opacity-[0.03]" />
+        {/* Bottom edge glow line */}
+        <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-blue-500/25 to-transparent" />
 
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <motion.div
@@ -325,7 +365,7 @@ export const CaseStudyPage = ({ onBack }: CaseStudyPageProps) => {
               href="https://t.me/YOUR_USERNAME"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-4 px-8 py-4 bg-white text-black rounded-full font-black text-[11px] uppercase tracking-[0.2em] hover:bg-blue-600 hover:text-white transition-all duration-400 hover:scale-[1.02]"
+              className="group inline-flex items-center gap-4 px-8 py-4 bg-white text-black rounded-full font-black text-[11px] uppercase tracking-[0.2em] hover:bg-blue-600 hover:text-white transition-all duration-300 hover:scale-[1.02]"
             >
               Connect via Telegram
               <span className="w-7 h-7 rounded-full bg-black/10 group-hover:bg-white/20 flex items-center justify-center transition-colors">
