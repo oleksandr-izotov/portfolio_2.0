@@ -7,19 +7,19 @@ export interface TechCategory {
 
 export const techStack: TechCategory[] = [
   {
-    label: "Frontend Core",
-    items: ["React", "Tailwind", "Vue", "TypeScript", "JavaScript", "HTML", "CSS"],
+    label: "Web & Cloud Apps",
+    items: ["Corporate Portals", "B2B Dashboards", "SaaS Development", "React / Tailwind"],
     duration: 15
   },
   {
-    label: "Logic & Engine",
-    items: ["Java", "Python", "Spring Boot", "Pandas", "NumPy", "SQL", "PostgreSQL"],
+    label: "AI & Automation",
+    items: ["LLM Integration", "Smart Chatbots", "Process Automation", "Python / AI Models"],
     duration: 22,
     reverse: true
   },
   {
-    label: "Architecture",
-    items: ["Git", "Docker", "Docker Compose", "GitHub Actions", "Linux", "Nginx", "Bash"],
+    label: "System Architecture",
+    items: ["Cloud Deployment", "API Development", "Secure Databases", "Docker / Microservices"],
     duration: 18
   }
 ];

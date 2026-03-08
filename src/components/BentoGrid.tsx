@@ -129,7 +129,7 @@ export const BentoGrid = () => {
             <div className="flex flex-col md:flex-row justify-between items-start mb-8 md:mb-12 gap-4 md:gap-0">
                <div>
                   <h3 className="text-[10px] font-mono font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-2">Professional Journey</h3>
-                  <h2 className="text-xl md:text-3xl font-black uppercase tracking-tight dark:text-white leading-none">Education & Experience</h2>
+                  <h2 className="text-xl md:text-3xl font-black uppercase tracking-tight dark:text-white leading-none">Foundation & Expertise</h2>
                </div>
                <div className="flex items-center gap-2 px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded-full">
                   <span className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse" />
@@ -138,18 +138,18 @@ export const BentoGrid = () => {
             </div>
 
             <div className="space-y-4">
-              <TimelineItem 
-                title="Uni Stuttgart" 
-                subtitle="B.Sc. Software Engineering" 
-                date="Oct 2025 — Sep 2029" 
-                type="edu" 
-                current 
+              <TimelineItem
+                title="Independent IT Consultant"
+                subtitle="B2B Web & AI Development"
+                date="Active"
+                type="work"
+                current
               />
-              <TimelineItem 
-                title="Evangelisches Schulzentrum" 
-                subtitle="Abitur (Maths, Physics)" 
-                date="2022 - 2025" 
-                type="edu" 
+              <TimelineItem
+                title="Uni Stuttgart"
+                subtitle="B.Sc. Software Engineering"
+                date="Academic Foundation"
+                type="edu"
               />
             </div>
           </BentoBox>
@@ -166,10 +166,10 @@ export const BentoGrid = () => {
               
               <div className="space-y-4 md:space-y-6 flex-1">
                 <p className="text-xs md:text-sm font-bold leading-relaxed uppercase tracking-tight italic opacity-90">
-                  "MINDSET: GET SH*T DONE"
+                  "MINDSET: ENGINEERED FOR BUSINESS GROWTH"
                 </p>
                 <p className="text-[10px] md:text-xs font-medium leading-relaxed opacity-80 uppercase tracking-wider">
-                  Stuttgart University Software Engineering student. Target on high-performance systems. Clean code, built to last.
+                  System architect focusing on high-performance web and AI solutions. Combining German engineering precision with modern tech stacks to solve complex B2B challenges.
                 </p>
               </div>
 
@@ -202,12 +202,11 @@ export const BentoGrid = () => {
         <div className="lg:col-span-6">
            <BentoBox className="flex flex-col justify-between min-h-[160px] md:min-h-[180px]">
               <div className="flex items-baseline gap-2 mb-4">
-                <span className="text-5xl md:text-6xl font-black text-blue-600 dark:text-blue-400 tracking-tighter">02+</span>
-                <span className="text-[10px] font-mono font-black text-blue-600 uppercase tracking-widest animate-pulse">Years</span>
+                <span className="text-5xl md:text-6xl font-black text-blue-600 dark:text-blue-400 tracking-tighter">100%</span>
               </div>
               <div>
-                 <p className="text-[9px] md:text-[10px] font-mono font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-2">Practical Experience</p>
-                 <h4 className="text-lg md:text-xl font-black uppercase tracking-tight dark:text-white leading-tight">Years in Software Craft</h4>
+                 <p className="text-[9px] md:text-[10px] font-mono font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-2">Project Delivery</p>
+                 <h4 className="text-lg md:text-xl font-black uppercase tracking-tight dark:text-white leading-tight">Committed to Scalable Architecture</h4>
               </div>
            </BentoBox>
         </div>

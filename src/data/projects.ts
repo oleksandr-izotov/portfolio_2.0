@@ -10,37 +10,40 @@ export interface Project {
   image: string;
   stack: string[];
   status?: 'active' | 'development';
-  link?: string;
+  href: string;
+  caseStudy?: boolean;
 }
 
 export const projects: Project[] = [
   {
-    title: 'Developer Portfolio',
-    category: 'Web Architecture',
+    title: 'Corporate LMS Platform',
+    category: 'React // Supabase',
     year: '2026',
-    description: 'A high-performance, dark-themed personal platform built with modern web technologies. Features a custom Dockerized environment, CI/CD pipelines via Vercel, and a premium architectural aesthetic inspired by blueprints.',
+    description: 'A scalable Learning Management System engineered for centralized educational processes. Features Role-Based Access Control (RBAC) and secure database architecture to automate administrative workflows and student onboarding.',
     image: blueprintImg,
-    stack: ["React 18", "TypeScript", "Tailwind v4", "Docker", "Vite"],
+    stack: ["React", "Supabase", "PostgreSQL", "TailwindCSS"],
     status: 'active',
-    link: 'https://izotov.dev'
+    href: '/lms-case-study',
   },
   {
-    title: 'Study Smart AI',
-    category: 'AI Architecture',
+    title: 'AI-Powered EdTech SaaS',
+    category: 'Python // LLM API',
     year: '2026',
-    description: 'Service-oriented architecture for AI-driven education. Orchestrates LLM inference for real-time content generation within a secure, containerized environment. Features a reactive HTMX frontend and asynchronous task processing for strict latency control.',
+    description: 'A production-ready SaaS platform integrating LLMs to automate content generation. Built with a high-performance asynchronous architecture (Celery/Redis) and a fully integrated Stripe billing system for subscription monetization.',
     image: coreLogicImg,
-    stack: ["Python", "Django", "HTMX", "Redis", "Docker", "PostgreSQL", "LLMs", "Stripe"],
+    stack: ["Python", "Django", "LLM APIs", "Redis", "Stripe"],
     status: 'active',
-    link: 'https://github.com/oleksandr-izotov/StudySmarterAi'
+    href: '/ai-saas-case-study',
   },
   {
-    title: 'Processing',
-    category: 'Something new...',
+    title: 'Enterprise MedTech System',
+    category: 'Java // Spring Boot 3',
     year: '2026',
-    description: 'Distributed key-value store optimized for high-write workloads. Features automatic sharding, multi-region replication, and a custom query language for real-time telemetry processing.',
+    description: 'A complex B2B scheduling platform for surgical clinics. Engineered with a custom Real-Time State Machine to manage operating room timelines, preventing scheduling conflicts. Features a secure mTLS-protected API Gateway architecture and a dynamic Drag-and-Drop timeline UI.',
     image: nexusDbImg,
-    stack: ["Go", "Kubernetes", "PostgreSQL", "Kafka", "AWS"],
-    status: 'development'
+    stack: ["Java 25", "Spring Boot", "PostgreSQL", "Vue 3", "Redis"],
+    status: 'active',
+    href: '/medtech-case-study',
+    caseStudy: true,
   },
 ];
