@@ -40,7 +40,7 @@ const Marquee = () => {
             </MarqueeItem>
             <MarqueeItem>
               <span className="text-[10px] font-mono font-medium text-gray-400 dark:text-zinc-600 uppercase tracking-[0.4em]">
-                Available 2026
+                Available for Projects
               </span>
             </MarqueeItem>
             <MarqueeItem>
@@ -69,10 +69,12 @@ export const Hero = () => {
         transition={{ duration: 3, ease: "easeOut" }}
         className="absolute inset-0 z-0 opacity-10 dark:opacity-30"
       >
-        <ImageWithFallback 
-          src={backgroundImage} 
+        <ImageWithFallback
+          src={backgroundImage}
           alt="Technical Background"
           className="w-full h-full object-cover grayscale blur-[2px]"
+          loading="eager"
+          fetchPriority="high"
         />
       </motion.div>
 

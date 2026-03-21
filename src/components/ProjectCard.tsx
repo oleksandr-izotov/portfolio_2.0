@@ -1,6 +1,9 @@
 import { motion } from 'motion/react';
+import { Link } from 'react-router-dom';
 import { ArrowUpRight, Terminal, Lock } from 'lucide-react';
 import { ImageWithFallback } from './ui/ImageWithFallback';
+
+const MotionLink = motion.create(Link);
 
 interface Project {
   title: string;
@@ -14,13 +17,13 @@ interface Project {
   caseStudy?: boolean;
 }
 
-export const ProjectCard = ({ project, index, onCaseStudyClick }: { project: Project, index: number, onCaseStudyClick?: () => void }) => {
+export const ProjectCard = ({ project, index }: { project: Project, index: number }) => {
   const isLocked = project.status === 'development';
 
   return (
-    <motion.a
-      href={isLocked ? undefined : project.href}
-      onClick={onCaseStudyClick ? (e) => { e.preventDefault(); onCaseStudyClick(); } : undefined}
+    <MotionLink
+      to={isLocked ? '/' : project.href}
+      onClick={isLocked ? (e) => e.preventDefault() : undefined}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -28,7 +31,7 @@ export const ProjectCard = ({ project, index, onCaseStudyClick }: { project: Pro
       className={`group relative flex flex-col ${isLocked ? 'opacity-80 cursor-not-allowed' : 'cursor-pointer'}`}
     >
       {/* Image Container */}
-      <div className="relative aspect-[16/10] md:aspect-[4/5] overflow-hidden bg-gray-100 dark:bg-[#111113] rounded-sm border border-transparent group-hover:border-blue-500/30 transition-colors duration-500">
+      <div className="relative aspect-[16/10] md:aspect-[4/5] overflow-hidden bg-gray-100 dark:bg-[#0D0D0D] rounded-sm border border-transparent group-hover:border-blue-500/30 transition-colors duration-500">
 
         {/* Base Image */}
         <ImageWithFallback
@@ -45,7 +48,7 @@ export const ProjectCard = ({ project, index, onCaseStudyClick }: { project: Pro
         {/* Advanced Hover Content */}
         <div className="absolute inset-0 z-20 opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-6 md:p-8">
           {/* Blurred backdrop for readability */}
-          <div className={`absolute inset-0 bg-white/90 dark:bg-[#0c0c0e]/95 backdrop-blur-md translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out ${isLocked ? 'dark:bg-[#0c0c0e]/90' : ''}`} />
+          <div className={`absolute inset-0 bg-white/90 dark:bg-black/95 backdrop-blur-md translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out ${isLocked ? 'dark:bg-black/90' : ''}`} />
 
           <div className="relative z-30 flex flex-col h-full">
             <div className="flex justify-between items-start mb-6">
@@ -139,6 +142,6 @@ export const ProjectCard = ({ project, index, onCaseStudyClick }: { project: Pro
           }
         </div>
       </div>
-    </motion.a>
+    </MotionLink>
   );
 };

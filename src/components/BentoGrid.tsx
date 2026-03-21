@@ -8,7 +8,7 @@ import {
 const BentoBox = ({ children, className = '', delay = 0, noPadding = false }: { children: React.ReactNode, className?: string, delay?: number, noPadding?: boolean }) => (
   <motion.div
     initial={{ opacity: 1, y: 0 }}
-    className={`bg-white dark:bg-[#161618] border border-gray-100 dark:border-white/5 ${noPadding ? '' : 'p-5 md:p-8'} hover:border-black dark:hover:border-blue-500/50 transition-all duration-500 group relative overflow-hidden rounded-sm ${className}`}
+    className={`bg-white dark:bg-[#0D0D0D] border border-gray-100 dark:border-white/5 ${noPadding ? '' : 'p-5 md:p-8'} hover:border-black dark:hover:border-blue-500/50 transition-all duration-500 group relative overflow-hidden rounded-sm ${className}`}
   >
     {children}
   </motion.div>
@@ -20,7 +20,7 @@ const TimelineItem = ({ title, subtitle, date, type, current = false }: { title:
     <div className={`absolute left-0 top-1 w-5 h-5 md:w-6 md:h-6 rounded-full border-2 flex items-center justify-center z-10 transition-colors ${
       current 
         ? 'bg-blue-500 border-blue-500 text-white shadow-[0_0_15px_rgba(59,130,246,0.5)]' 
-        : 'bg-white dark:bg-[#1a1a1c] border-gray-200 dark:border-white/10 text-gray-400 dark:text-gray-500 group-hover/time:border-blue-500'
+        : 'bg-white dark:bg-[#0D0D0D] border-gray-200 dark:border-white/10 text-gray-400 dark:text-gray-500 group-hover/time:border-blue-500'
     }`}>
       {type === 'edu' ? <GraduationCap size={10} className="md:w-3 md:h-3" /> : <Briefcase size={10} className="md:w-3 md:h-3" />}
     </div>
@@ -40,7 +40,7 @@ const TimelineItem = ({ title, subtitle, date, type, current = false }: { title:
 
 const ArchitectureBlueprint = () => {
   return (
-    <div className="relative h-full min-h-[300px] w-full bg-gray-50 dark:bg-[#0c0c0e] overflow-hidden p-5 md:p-8 font-mono hidden md:block">
+    <div className="relative h-full min-h-[300px] w-full bg-gray-50 dark:bg-black overflow-hidden p-5 md:p-8 font-mono hidden md:block">
       {/* Grid Overlay */}
       <div className="absolute inset-0 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:24px_24px] opacity-10 dark:opacity-20" />
       
@@ -52,7 +52,7 @@ const ArchitectureBlueprint = () => {
       <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-8 h-full items-center">
         {/* Client Layer */}
         <div className="flex flex-col items-center gap-4">
-          <div className="w-16 h-16 border border-blue-500/30 bg-white dark:bg-[#1a1a1c] flex items-center justify-center rounded-sm group-hover:border-blue-500 transition-colors shadow-lg shadow-blue-500/5">
+          <div className="w-16 h-16 border border-blue-500/30 bg-white dark:bg-[#0D0D0D] flex items-center justify-center rounded-sm group-hover:border-blue-500 transition-colors shadow-lg shadow-blue-500/5">
             <Globe size={24} className="text-blue-500" />
           </div>
           <span className="text-[8px] uppercase tracking-widest text-gray-400 font-bold">Client Layer</span>
@@ -63,14 +63,14 @@ const ArchitectureBlueprint = () => {
           <div className="w-20 h-20 border-2 border-blue-500 bg-blue-500/5 dark:bg-blue-500/10 flex items-center justify-center rounded-sm relative group-hover:scale-110 transition-transform">
             <Server size={28} className="text-blue-500" />
             {/* Pulsing indicator */}
-            <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white dark:border-[#0c0c0e] animate-pulse" />
+            <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white dark:border-black animate-pulse" />
           </div>
           <span className="text-[8px] uppercase tracking-widest text-blue-500 font-bold">API / Engine</span>
         </div>
 
         {/* Data Layer */}
         <div className="flex flex-col items-center gap-4">
-          <div className="w-16 h-16 border border-blue-500/30 bg-white dark:bg-[#1a1a1c] flex items-center justify-center rounded-sm group-hover:border-blue-500 transition-colors">
+          <div className="w-16 h-16 border border-blue-500/30 bg-white dark:bg-[#0D0D0D] flex items-center justify-center rounded-sm group-hover:border-blue-500 transition-colors">
             <Database size={24} className="text-blue-500" />
           </div>
           <span className="text-[8px] uppercase tracking-widest text-gray-400 font-bold">Persistence</span>
