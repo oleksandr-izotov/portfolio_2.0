@@ -59,15 +59,13 @@ export const CaseStudyPage = () => {
             <span className="text-[10px] font-bold uppercase tracking-[0.2em]">Back to Cases</span>
           </button>
 
-          <a
-            href="https://t.me/lunevvvv"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={() => navigate('/', { state: { scrollToContact: true } })}
             className="flex items-center gap-2 px-5 py-1.5 bg-blue-600 hover:bg-blue-500 rounded-full text-white text-[10px] font-bold uppercase tracking-[0.15em] transition-colors"
           >
             Discuss Project
             <ExternalLink size={10} />
-          </a>
+          </button>
         </div>
       </nav>
 
@@ -401,17 +399,15 @@ export const CaseStudyPage = () => {
               Ready to implement a similar architecture for your business? Let's discuss the technical requirements and scope of your project.
             </p>
 
-            <a
-              href="https://t.me/lunevvvv"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={() => navigate('/', { state: { scrollToContact: true } })}
               className="group inline-flex items-center gap-4 px-8 py-4 bg-white text-black rounded-full font-black text-[11px] uppercase tracking-[0.2em] hover:bg-blue-600 hover:text-white transition-all duration-300 hover:scale-[1.02]"
             >
-              Connect via Telegram
+              Submit a Request
               <span className="w-7 h-7 rounded-full bg-black/10 group-hover:bg-white/20 flex items-center justify-center transition-colors">
                 <Send size={12} />
               </span>
-            </a>
+            </button>
           </div>
         </div>
       </section>

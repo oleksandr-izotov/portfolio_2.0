@@ -32,6 +32,11 @@ const HomePage = () => {
         document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
       }, 100);
     }
+    if (location.state?.scrollToContact) {
+      setTimeout(() => {
+        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
   }, [location.state]);
 
   return (

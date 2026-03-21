@@ -100,7 +100,7 @@ export const TechStack = () => {
             <div className="h-[1px] w-8 bg-blue-500" />
           </div>
           <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter dark:text-white leading-none relative z-10">
-            System <span className="text-gray-300 dark:text-zinc-800">Components</span>
+            System <span style={{ color: '#27272a' }}>Components</span>
           </h2>
         </div>
 
