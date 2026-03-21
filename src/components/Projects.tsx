@@ -1,4 +1,3 @@
-import React from 'react';
 import { ProjectCard } from './ProjectCard';
 import { projects } from '../data/projects';
 
@@ -17,7 +16,7 @@ export const Projects = () => {
         <div className="relative">
           <div className="flex items-center gap-3 mb-4">
              <div className="w-12 h-[1px] bg-blue-500" />
-             <span className="text-[10px] font-mono font-bold uppercase tracking-[0.4em] text-blue-500">Engineering Portfolio</span>
+             <span className="text-[10px] font-mono font-bold uppercase tracking-[0.4em] text-blue-500">Featured Case Studies</span>
           </div>
           <h2 className="text-6xl md:text-8xl font-black uppercase tracking-tighter dark:text-white leading-[0.85]">
             Proj<span className="text-gray-200 dark:text-zinc-800">ects</span>
@@ -30,13 +29,19 @@ export const Projects = () => {
               <div className="w-1 h-1 bg-blue-500/20" />
            </div>
            <p className="text-[11px] font-mono text-gray-500 dark:text-zinc-500 uppercase tracking-widest leading-relaxed">
-             Architectural case studies focusing on performance, scalability, and robust system implementation.
+             Real-world case studies demonstrating how we solve complex B2B challenges through scalable web architecture, AI integration, and automation.
            </p>
         </div>
       </div>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-24">
-        {projects.map((p, i) => <ProjectCard key={p.title} project={p} index={i} />)}
+        {projects.map((p, i) => (
+          <ProjectCard
+            key={p.title}
+            project={p}
+            index={i}
+          />
+        ))}
       </div>
     </section>
   );
