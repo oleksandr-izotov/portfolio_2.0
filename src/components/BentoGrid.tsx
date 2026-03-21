@@ -117,7 +117,7 @@ export const BentoGrid = () => {
            <span className="text-[9px] md:text-[10px] font-mono font-bold uppercase tracking-[0.4em] text-blue-500">Core Foundation</span>
         </div>
         <h2 className="text-4xl md:text-5xl lg:text-7xl font-black uppercase tracking-tighter dark:text-white leading-[0.9] md:leading-[0.85]">
-          Architectural <span className="text-gray-200 dark:text-zinc-800">Identity</span>
+          Architectural <span style={{ color: '#27272a' }}>Identity</span>
         </h2>
       </div>
 
