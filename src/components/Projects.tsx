@@ -1,7 +1,7 @@
 import { ProjectCard } from './ProjectCard';
 import { projects } from '../data/projects';
 
-export const Projects = ({ onCaseStudyClick }: { onCaseStudyClick: () => void }) => {
+export const Projects = () => {
   return (
     <section id="projects" className="relative pt-20 pb-8 px-6 max-w-7xl mx-auto border-t border-gray-100 dark:border-white/5">
       {/* Visual Section Divider */}
@@ -40,7 +40,6 @@ export const Projects = ({ onCaseStudyClick }: { onCaseStudyClick: () => void })
             key={p.title}
             project={p}
             index={i}
-            onCaseStudyClick={p.caseStudy ? onCaseStudyClick : undefined}
           />
         ))}
       </div>

@@ -1,46 +1,44 @@
 import { useLayoutEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { ArrowLeft, Send, Shield, GitBranch, RefreshCcw, Users, ExternalLink, Terminal } from 'lucide-react';
+import { ArrowLeft, Send, Brain, Zap, CreditCard, ExternalLink, Terminal } from 'lucide-react';
 import { GrainTexture } from './GrainTexture';
 import { ImageWithFallback } from './ui/ImageWithFallback';
-import heroImg from '../assets/med-bg.webp';
-import abstractImg from '../assets/med2-bg.webp';
-import finalCtaImg from '../assets/med3-bg.webp';
+import heroImg from '../assets/ai-bg.webp';
+import abstractImg from '../assets/ai2-bg.webp';
+import finalCtaImg from '../assets/ai3-bg.webp';
 
 
-const techTags = ['Java 25', 'Spring Boot', 'PostgreSQL', 'Vue 3', 'Redis'];
+const techTags = ['Python', 'LLM API', 'Celery', 'Redis', 'Stripe'];
 
 const features = [
   {
-    icon: Shield,
-    title: 'mTLS API Security',
-    description: 'Zero-trust transport layer authentication between all microservices, ensuring encrypted and mutually verified communication.',
+    icon: Brain,
+    title: 'LLM Orchestration',
+    description:
+      'Advanced prompt engineering and context window management to ensure pedagogical accuracy and brand-voice consistency in generated materials.',
   },
   {
-    icon: GitBranch,
-    title: 'State Machine Logic',
-    description: 'Custom Finite State Machine preventing concurrent OR booking conflicts with fully deterministic state transitions.',
+    icon: Zap,
+    title: 'Async Pipeline',
+    description:
+      'Distributed task processing using Celery and Redis to handle heavy AI generation workloads without blocking the user interface.',
   },
   {
-    icon: RefreshCcw,
-    title: 'Real-Time Sync',
-    description: 'Redis Pub/Sub architecture broadcasts live OR status updates to all connected scheduling dashboards instantly.',
-  },
-  {
-    icon: Users,
-    title: 'RBAC Access Control',
-    description: 'Granular role-based permissions for surgeons, scheduling staff, administrators, and external clinic partners.',
+    icon: CreditCard,
+    title: 'Stripe Subscription',
+    description:
+      'Fully integrated billing system with usage-based quotas, tiered subscriptions, and automated invoicing for B2B clients.',
   },
 ];
 
 
-export const CaseStudyPage = () => {
+export const AiSaaSPage = () => {
   const navigate = useNavigate();
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
     const prev = document.title;
-    document.title = 'Enterprise MedTech System | Oleksandr Izotov';
+    document.title = 'AI-Powered EdTech SaaS | Oleksandr Izotov';
     return () => { document.title = prev; };
   }, []);
 
@@ -73,30 +71,29 @@ export const CaseStudyPage = () => {
 
       {/* ══════════════════════════════════════════════════════════════
           SECTION 0 — HERO
-          Background: project-specific blurred image + blueprint grid
       ══════════════════════════════════════════════════════════════ */}
       <section className="relative min-h-[70vh] flex flex-col items-center justify-center pt-36 pb-28 px-6 overflow-hidden bg-black">
-        {/* Hero image — vibrant, brightness-trimmed for text contrast */}
+        {/* Hero image */}
         <div className="absolute inset-0 z-0">
           <ImageWithFallback
             src={heroImg}
             alt=""
-            className="w-full h-full object-cover object-[center_20%] brightness-90"
+            className="w-full h-full object-cover object-[center_30%] brightness-75"
             loading="eager"
             fetchPriority="high"
           />
         </div>
-        {/* Subtle dark base for minimum contrast */}
-        <div className="absolute inset-0 z-[1] bg-black/25" />
+        {/* Dark base overlay */}
+        <div className="absolute inset-0 z-[1] bg-black/30" />
         {/* Blueprint grid overlay */}
         <div className="absolute inset-0 z-[2] bg-[linear-gradient(to_right,#ffffff06_1px,transparent_1px),linear-gradient(to_bottom,#ffffff06_1px,transparent_1px)] bg-[size:60px_60px]" />
-        {/* Bottom fade to black for smooth section transition */}
+        {/* Bottom fade to black */}
         <div className="absolute bottom-0 left-0 right-0 h-36 z-[3] bg-gradient-to-t from-black to-transparent" />
-        {/* Subtle blue ambient centre glow */}
-        <div className="absolute z-[3] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-blue-600/10 blur-[120px] rounded-full pointer-events-none" />
+        {/* Ambient blue glow */}
+        <div className="absolute z-[3] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-blue-500/10 blur-[120px] rounded-full pointer-events-none" />
 
         <div className="relative z-10 max-w-5xl mx-auto text-center">
-          {/* Radial shadow mask behind text content for readability */}
+          {/* Radial shadow mask */}
           <div className="absolute inset-0 -m-24 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.55)_0%,rgba(0,0,0,0.25)_55%,transparent_80%)] pointer-events-none -z-[1]" />
 
           <motion.div
@@ -107,7 +104,7 @@ export const CaseStudyPage = () => {
           >
             <div className="h-[1px] w-12 bg-blue-500/40" />
             <span className="text-[9px] font-mono font-bold uppercase tracking-[0.5em] text-blue-500">
-              Case Study // B2B MedTech
+              Case Study // AI &amp; SaaS
             </span>
             <div className="h-[1px] w-12 bg-blue-500/40" />
           </motion.div>
@@ -118,10 +115,10 @@ export const CaseStudyPage = () => {
             transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="text-[13vw] md:text-[90px] lg:text-[110px] font-black uppercase tracking-[-0.05em] leading-[0.88] mb-10 [text-shadow:0_4px_30px_rgba(0,0,0,0.9)]"
           >
-            Enterprise
+            AI-Powered
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-br from-white via-zinc-300 to-zinc-700">
-              MedTech System
+              EdTech SaaS
             </span>
           </motion.h1>
 
@@ -145,7 +142,6 @@ export const CaseStudyPage = () => {
 
       {/* ══════════════════════════════════════════════════════════════
           SECTION 1 — EXECUTIVE SUMMARY
-          Background: solid #000 — maximum text readability
       ══════════════════════════════════════════════════════════════ */}
       <section className="relative py-24 px-6 bg-black border-t border-white/5">
         <div className="max-w-7xl mx-auto">
@@ -164,10 +160,10 @@ export const CaseStudyPage = () => {
                 The Challenge
               </span>
               <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-white mb-6 leading-tight">
-                Surgical Scheduling<br />at Breaking Point
+                Content Velocity<br />at Breaking Point
               </h3>
               <p className="text-[13px] text-zinc-400 leading-relaxed font-medium">
-                Surgical clinic networks were managing operating room allocations through fragmented spreadsheets and manual phone coordination. The result: overlapping bookings, zero real-time OR visibility, and hours of administrative overhead per day — directly compressing patient throughput and cutting into clinic revenue.
+                Modern educational platforms struggle with content velocity. Manual creation of lesson plans and assessments takes weeks, leading to outdated materials and high operational costs.
               </p>
             </div>
 
@@ -178,10 +174,10 @@ export const CaseStudyPage = () => {
                 The Solution
               </span>
               <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-white mb-6 leading-tight">
-                State Machine<br />Core Architecture
+                LLM Orchestration<br />SaaS Layer
               </h3>
               <p className="text-[13px] text-zinc-400 leading-relaxed font-medium">
-                A custom Finite State Machine was built at the platform core — each operating room managed as a deterministic stateful entity. A mTLS-protected API Gateway authenticates all inter-service communication at the transport layer. A Vue 3 drag-and-drop timeline delivers real-time visual feedback, while Redis Pub/Sub propagates state changes to all connected clients instantly.
+                An automated SaaS orchestration layer that leverages LLMs (GPT-4/Claude) to generate production-ready educational content in real-time, managed via an asynchronous processing pipeline.
               </p>
             </div>
           </div>
@@ -201,10 +197,10 @@ export const CaseStudyPage = () => {
           </div>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/[0.04] border border-white/[0.04] rounded-sm overflow-hidden">
             {[
-              { value: '0',      unit: '',    label: 'OR Booking Conflicts',      sub: 'Since deployment' },
-              { value: '< 25',   unit: 'ms',  label: 'Real-Time Sync Latency',    sub: 'Redis Pub/Sub' },
-              { value: '80',     unit: '%',   label: 'Admin Overhead Reduced',     sub: 'Per scheduling cycle' },
-              { value: '4',      unit: '',    label: 'RBAC Access Tiers',          sub: 'Surgeon · Staff · Admin · Partner' },
+              { value: '95',   unit: '%',  label: 'Content Creation Time Saved',  sub: 'vs. manual workflow' },
+              { value: '< 4',  unit: 's',  label: 'Avg. Generation Latency',       sub: 'Async Celery pipeline' },
+              { value: '3',    unit: '',   label: 'Billing Tiers Supported',        sub: 'Stripe subscription engine' },
+              { value: '99.9', unit: '%',  label: 'Pipeline Uptime SLA',           sub: 'Redis task queue' },
             ].map(({ value, unit, label, sub }) => (
               <motion.div
                 key={label}
@@ -228,10 +224,9 @@ export const CaseStudyPage = () => {
 
       {/* ══════════════════════════════════════════════════════════════
           SECTION 3 — TECHNICAL HIGHLIGHTS
-          Background: abstract liquid image — "services" atmosphere
       ══════════════════════════════════════════════════════════════ */}
       <section className="relative py-24 px-6 border-t border-white/5 overflow-hidden">
-        {/* Abstract background image — recognizable cables texture, soft blur */}
+        {/* Abstract background image */}
         <div className="absolute inset-0 z-0">
           <ImageWithFallback
             src={abstractImg}
@@ -239,7 +234,7 @@ export const CaseStudyPage = () => {
             className="w-full h-full object-cover blur-[8px] scale-105"
           />
         </div>
-        {/* Gradient mask — solid black at edges, barely-there at center */}
+        {/* Gradient mask */}
         <div className="absolute inset-0 z-[1] bg-[linear-gradient(to_bottom,#000000_0%,rgba(0,0,0,0.2)_50%,#000000_100%)]" />
 
         <div className="relative z-10 max-w-7xl mx-auto">
@@ -250,7 +245,7 @@ export const CaseStudyPage = () => {
             </span>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {features.map((f) => (
               <div
                 key={f.title}
@@ -272,8 +267,7 @@ export const CaseStudyPage = () => {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════
-          SECTION 3 — PROJECT WALKTHROUGH  (moved down)
-          Background: solid #000 — pure cinema effect
+          SECTION 3 — PROJECT WALKTHROUGH
       ══════════════════════════════════════════════════════════════ */}
       <section className="relative py-24 px-6 bg-black border-t border-white/5">
         <div className="max-w-7xl mx-auto">
@@ -308,7 +302,7 @@ export const CaseStudyPage = () => {
 
             {/* System ID */}
             <div className="absolute top-5 right-8 text-[8px] font-mono text-zinc-800 uppercase tracking-widest">
-              PRJ-003
+              PRJ-002
             </div>
 
             {/* Spinning ring + icon */}
@@ -337,7 +331,7 @@ export const CaseStudyPage = () => {
                   Coming Soon
                 </p>
                 <p className="text-[11px] text-zinc-600 font-medium max-w-xs leading-relaxed">
-                  Project walk-through and logic demonstration is currently under final rendering.
+                  The architectural deep-dive and AI-logic demonstration are currently being finalized.
                 </p>
               </div>
             </div>
@@ -353,15 +347,13 @@ export const CaseStudyPage = () => {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════
-          SECTION 4 — CTA  (grand finale)
-          Background: layered gradients — dramatic blue/silver bloom
+          SECTION 4 — CTA
       ══════════════════════════════════════════════════════════════ */}
-      {/* border-top uses inline style to match the exact rgba spec */}
       <section
         className="relative py-32 px-6 overflow-hidden"
         style={{ borderTop: '1px solid rgba(255,255,255,0.03)' }}
       >
-        {/* Layer 0 — sphere image, fully visible behind the glass */}
+        {/* Background image */}
         <div className="absolute inset-0 z-0">
           <ImageWithFallback
             src={finalCtaImg}
@@ -370,7 +362,7 @@ export const CaseStudyPage = () => {
           />
         </div>
 
-        {/* Layer 1 — glass panel: backdrop-filter ONLY, no mask on this element */}
+        {/* Glassmorphism layer */}
         <div
           className="absolute inset-0 z-[1]"
           style={{
@@ -380,10 +372,10 @@ export const CaseStudyPage = () => {
           }}
         />
 
-        {/* Layer 2 — edge-fading gradient: separate element so it never touches backdrop-filter */}
+        {/* Edge-fading gradient */}
         <div className="absolute inset-0 z-[2] bg-[linear-gradient(to_bottom,#000000_0%,rgba(0,0,0,0)_22%,rgba(0,0,0,0)_78%,#000000_100%)]" />
 
-        {/* Layer 3 — bottom glow line */}
+        {/* Bottom glow line */}
         <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-blue-500/25 to-transparent z-[3]" />
 
         <div className="max-w-4xl mx-auto text-center relative z-[4]">
@@ -392,13 +384,13 @@ export const CaseStudyPage = () => {
               Ready to Build?
             </span>
             <h2 className="text-4xl md:text-6xl lg:text-[80px] font-black uppercase tracking-[-0.04em] text-white leading-[0.88] mb-6">
-              Implement a
+              Automate Your
               <br />
-              Similar{' '}
-              <span className="text-zinc-700">Architecture?</span>
+              Content{' '}
+              <span className="text-zinc-700">Pipeline?</span>
             </h2>
             <p className="text-sm text-zinc-500 font-medium max-w-lg mx-auto mb-12 leading-relaxed">
-              Ready to implement a similar architecture for your business? Let's discuss the technical requirements and scope of your project.
+              Ready to integrate LLM-powered automation into your platform? Let's discuss the technical requirements and architecture for your use case.
             </p>
 
             <a

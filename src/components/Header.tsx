@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Send, Linkedin } from 'lucide-react';
+import { Send, LucideLinkedin } from 'lucide-react';
 
 export const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -74,7 +74,7 @@ export const Header = () => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 bg-[#0c0c0e]/80 backdrop-blur-xl border-b border-white/5 transition-colors duration-500">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-transparent backdrop-blur-sm border-b border-white/5 transition-colors duration-500">
         <div className="max-w-[1800px] mx-auto h-14 flex items-center justify-between px-6 relative">
 
           {/* Left: Identity */}
@@ -115,11 +115,11 @@ export const Header = () => {
             </div>
 
             <div className="flex items-center gap-5 border-l border-white/10 pl-8">
-              <a href="https://t.me/YOUR_USERNAME" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+              <a href="https://t.me/lunevvvv" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
                 <Send size={14} />
               </a>
               <a href="https://www.linkedin.com/in/oleksandr-izotov/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-400 transition-colors">
-                <Linkedin size={14} />
+                <LucideLinkedin size={14} />
               </a>
             </div>
           </div>
@@ -199,11 +199,11 @@ export const Header = () => {
               transition={{ delay: 0.3 }}
               className="mt-12 flex gap-8"
             >
-              <a href="https://t.me/YOUR_USERNAME" target="_blank" rel="noopener noreferrer" className="p-4 bg-white/5 rounded-full text-white hover:bg-blue-600 transition-colors">
+              <a href="https://t.me/lunevvvv" target="_blank" rel="noopener noreferrer" className="p-4 bg-white/5 rounded-full text-white hover:bg-blue-600 transition-colors">
                 <Send size={20} />
               </a>
               <a href="https://www.linkedin.com/in/oleksandr-izotov/" target="_blank" rel="noopener noreferrer" className="p-4 bg-white/5 rounded-full text-white hover:bg-blue-600 transition-colors">
-                <Linkedin size={20} />
+                <LucideLinkedin size={20} />
               </a>
             </motion.div>
           </motion.div>

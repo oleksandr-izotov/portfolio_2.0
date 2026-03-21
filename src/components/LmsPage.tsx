@@ -1,46 +1,44 @@
 import { useLayoutEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { ArrowLeft, Send, Shield, GitBranch, RefreshCcw, Users, ExternalLink, Terminal } from 'lucide-react';
+import { ArrowLeft, Send, ShieldCheck, Database, Workflow, ExternalLink, Terminal } from 'lucide-react';
 import { GrainTexture } from './GrainTexture';
 import { ImageWithFallback } from './ui/ImageWithFallback';
-import heroImg from '../assets/med-bg.webp';
-import abstractImg from '../assets/med2-bg.webp';
-import finalCtaImg from '../assets/med3-bg.webp';
+import heroImg from '../assets/lms-hero.webp';
+import abstractImg from '../assets/lms-tech.webp';
+import finalCtaImg from '../assets/lms1.webp';
 
 
-const techTags = ['Java 25', 'Spring Boot', 'PostgreSQL', 'Vue 3', 'Redis'];
+const techTags = ['React', 'Supabase', 'PostgreSQL', 'TailwindCSS', 'Role-Based Access'];
 
 const features = [
   {
-    icon: Shield,
-    title: 'mTLS API Security',
-    description: 'Zero-trust transport layer authentication between all microservices, ensuring encrypted and mutually verified communication.',
+    icon: ShieldCheck,
+    title: 'RBAC Architecture',
+    description:
+      'Granular role-based permissions ensuring that sensitive corporate data and training materials are accessible only to verified personnel.',
   },
   {
-    icon: GitBranch,
-    title: 'State Machine Logic',
-    description: 'Custom Finite State Machine preventing concurrent OR booking conflicts with fully deterministic state transitions.',
+    icon: Database,
+    title: 'Scalable Database',
+    description:
+      'Engineered with PostgreSQL on Supabase to handle high concurrent user loads and complex relational data for certification tracking.',
   },
   {
-    icon: RefreshCcw,
-    title: 'Real-Time Sync',
-    description: 'Redis Pub/Sub architecture broadcasts live OR status updates to all connected scheduling dashboards instantly.',
-  },
-  {
-    icon: Users,
-    title: 'RBAC Access Control',
-    description: 'Granular role-based permissions for surgeons, scheduling staff, administrators, and external clinic partners.',
+    icon: Workflow,
+    title: 'Automated Workflows',
+    description:
+      'Custom-built logic to automate student onboarding, progress tracking, and automated reporting for HR departments.',
   },
 ];
 
 
-export const CaseStudyPage = () => {
+export const LmsPage = () => {
   const navigate = useNavigate();
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
     const prev = document.title;
-    document.title = 'Enterprise MedTech System | Oleksandr Izotov';
+    document.title = 'Corporate LMS Platform | Oleksandr Izotov';
     return () => { document.title = prev; };
   }, []);
 
@@ -73,30 +71,29 @@ export const CaseStudyPage = () => {
 
       {/* ══════════════════════════════════════════════════════════════
           SECTION 0 — HERO
-          Background: project-specific blurred image + blueprint grid
       ══════════════════════════════════════════════════════════════ */}
       <section className="relative min-h-[70vh] flex flex-col items-center justify-center pt-36 pb-28 px-6 overflow-hidden bg-black">
-        {/* Hero image — vibrant, brightness-trimmed for text contrast */}
+        {/* Hero image */}
         <div className="absolute inset-0 z-0">
           <ImageWithFallback
             src={heroImg}
             alt=""
-            className="w-full h-full object-cover object-[center_20%] brightness-90"
+            className="w-full h-full object-cover object-[center_25%] brightness-75"
             loading="eager"
             fetchPriority="high"
           />
         </div>
-        {/* Subtle dark base for minimum contrast */}
-        <div className="absolute inset-0 z-[1] bg-black/25" />
-        {/* Blueprint grid overlay */}
+        {/* Dark base overlay */}
+        <div className="absolute inset-0 z-[1] bg-black/30" />
+        {/* Blueprint grid */}
         <div className="absolute inset-0 z-[2] bg-[linear-gradient(to_right,#ffffff06_1px,transparent_1px),linear-gradient(to_bottom,#ffffff06_1px,transparent_1px)] bg-[size:60px_60px]" />
-        {/* Bottom fade to black for smooth section transition */}
+        {/* Bottom fade to black */}
         <div className="absolute bottom-0 left-0 right-0 h-36 z-[3] bg-gradient-to-t from-black to-transparent" />
-        {/* Subtle blue ambient centre glow */}
-        <div className="absolute z-[3] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-blue-600/10 blur-[120px] rounded-full pointer-events-none" />
+        {/* Ambient blue glow */}
+        <div className="absolute z-[3] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-blue-500/10 blur-[120px] rounded-full pointer-events-none" />
 
         <div className="relative z-10 max-w-5xl mx-auto text-center">
-          {/* Radial shadow mask behind text content for readability */}
+          {/* Radial shadow mask */}
           <div className="absolute inset-0 -m-24 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.55)_0%,rgba(0,0,0,0.25)_55%,transparent_80%)] pointer-events-none -z-[1]" />
 
           <motion.div
@@ -107,7 +104,7 @@ export const CaseStudyPage = () => {
           >
             <div className="h-[1px] w-12 bg-blue-500/40" />
             <span className="text-[9px] font-mono font-bold uppercase tracking-[0.5em] text-blue-500">
-              Case Study // B2B MedTech
+              Case Study // Corporate EdTech
             </span>
             <div className="h-[1px] w-12 bg-blue-500/40" />
           </motion.div>
@@ -118,10 +115,10 @@ export const CaseStudyPage = () => {
             transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="text-[13vw] md:text-[90px] lg:text-[110px] font-black uppercase tracking-[-0.05em] leading-[0.88] mb-10 [text-shadow:0_4px_30px_rgba(0,0,0,0.9)]"
           >
-            Enterprise
+            Corporate
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-br from-white via-zinc-300 to-zinc-700">
-              MedTech System
+              LMS Platform
             </span>
           </motion.h1>
 
@@ -145,7 +142,6 @@ export const CaseStudyPage = () => {
 
       {/* ══════════════════════════════════════════════════════════════
           SECTION 1 — EXECUTIVE SUMMARY
-          Background: solid #000 — maximum text readability
       ══════════════════════════════════════════════════════════════ */}
       <section className="relative py-24 px-6 bg-black border-t border-white/5">
         <div className="max-w-7xl mx-auto">
@@ -164,10 +160,10 @@ export const CaseStudyPage = () => {
                 The Challenge
               </span>
               <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-white mb-6 leading-tight">
-                Surgical Scheduling<br />at Breaking Point
+                Fragmented Training<br />at Enterprise Scale
               </h3>
               <p className="text-[13px] text-zinc-400 leading-relaxed font-medium">
-                Surgical clinic networks were managing operating room allocations through fragmented spreadsheets and manual phone coordination. The result: overlapping bookings, zero real-time OR visibility, and hours of administrative overhead per day — directly compressing patient throughput and cutting into clinic revenue.
+                Large-scale organizations struggled with fragmented training processes and insecure data handling. There was a critical need for a centralized system to manage employee onboarding and certification at scale.
               </p>
             </div>
 
@@ -178,10 +174,10 @@ export const CaseStudyPage = () => {
                 The Solution
               </span>
               <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-white mb-6 leading-tight">
-                State Machine<br />Core Architecture
+                High-Availability<br />LMS Architecture
               </h3>
               <p className="text-[13px] text-zinc-400 leading-relaxed font-medium">
-                A custom Finite State Machine was built at the platform core — each operating room managed as a deterministic stateful entity. A mTLS-protected API Gateway authenticates all inter-service communication at the transport layer. A Vue 3 drag-and-drop timeline delivers real-time visual feedback, while Redis Pub/Sub propagates state changes to all connected clients instantly.
+                A robust Learning Management System engineered for high-availability. It features a secure database architecture to automate administrative workflows and a granular access control system for multi-departmental use.
               </p>
             </div>
           </div>
@@ -201,10 +197,10 @@ export const CaseStudyPage = () => {
           </div>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/[0.04] border border-white/[0.04] rounded-sm overflow-hidden">
             {[
-              { value: '0',      unit: '',    label: 'OR Booking Conflicts',      sub: 'Since deployment' },
-              { value: '< 25',   unit: 'ms',  label: 'Real-Time Sync Latency',    sub: 'Redis Pub/Sub' },
-              { value: '80',     unit: '%',   label: 'Admin Overhead Reduced',     sub: 'Per scheduling cycle' },
-              { value: '4',      unit: '',    label: 'RBAC Access Tiers',          sub: 'Surgeon · Staff · Admin · Partner' },
+              { value: '20',  unit: 'min', label: 'Employee Onboarding Time',     sub: 'vs. 3-day manual process' },
+              { value: '5',   unit: '',    label: 'RBAC Permission Tiers',         sub: 'Admin · HR · Manager · Staff · Guest' },
+              { value: '3×',  unit: '',    label: 'HR Reporting Efficiency',       sub: 'Automated certification tracking' },
+              { value: '100', unit: '%',   label: 'Audit Trail Coverage',          sub: 'Full access log per user action' },
             ].map(({ value, unit, label, sub }) => (
               <motion.div
                 key={label}
@@ -228,10 +224,9 @@ export const CaseStudyPage = () => {
 
       {/* ══════════════════════════════════════════════════════════════
           SECTION 3 — TECHNICAL HIGHLIGHTS
-          Background: abstract liquid image — "services" atmosphere
       ══════════════════════════════════════════════════════════════ */}
       <section className="relative py-24 px-6 border-t border-white/5 overflow-hidden">
-        {/* Abstract background image — recognizable cables texture, soft blur */}
+        {/* Abstract background image */}
         <div className="absolute inset-0 z-0">
           <ImageWithFallback
             src={abstractImg}
@@ -239,7 +234,7 @@ export const CaseStudyPage = () => {
             className="w-full h-full object-cover blur-[8px] scale-105"
           />
         </div>
-        {/* Gradient mask — solid black at edges, barely-there at center */}
+        {/* Gradient mask — fades image into black at top and bottom */}
         <div className="absolute inset-0 z-[1] bg-[linear-gradient(to_bottom,#000000_0%,rgba(0,0,0,0.2)_50%,#000000_100%)]" />
 
         <div className="relative z-10 max-w-7xl mx-auto">
@@ -250,7 +245,7 @@ export const CaseStudyPage = () => {
             </span>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {features.map((f) => (
               <div
                 key={f.title}
@@ -272,8 +267,7 @@ export const CaseStudyPage = () => {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════
-          SECTION 3 — PROJECT WALKTHROUGH  (moved down)
-          Background: solid #000 — pure cinema effect
+          SECTION 3 — PROJECT WALKTHROUGH
       ══════════════════════════════════════════════════════════════ */}
       <section className="relative py-24 px-6 bg-black border-t border-white/5">
         <div className="max-w-7xl mx-auto">
@@ -308,7 +302,7 @@ export const CaseStudyPage = () => {
 
             {/* System ID */}
             <div className="absolute top-5 right-8 text-[8px] font-mono text-zinc-800 uppercase tracking-widest">
-              PRJ-003
+              PRJ-001
             </div>
 
             {/* Spinning ring + icon */}
@@ -337,7 +331,7 @@ export const CaseStudyPage = () => {
                   Coming Soon
                 </p>
                 <p className="text-[11px] text-zinc-600 font-medium max-w-xs leading-relaxed">
-                  Project walk-through and logic demonstration is currently under final rendering.
+                  The architectural deep-dive and platform walkthrough are currently being finalized.
                 </p>
               </div>
             </div>
@@ -353,15 +347,13 @@ export const CaseStudyPage = () => {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════
-          SECTION 4 — CTA  (grand finale)
-          Background: layered gradients — dramatic blue/silver bloom
+          SECTION 4 — CTA
       ══════════════════════════════════════════════════════════════ */}
-      {/* border-top uses inline style to match the exact rgba spec */}
       <section
         className="relative py-32 px-6 overflow-hidden"
         style={{ borderTop: '1px solid rgba(255,255,255,0.03)' }}
       >
-        {/* Layer 0 — sphere image, fully visible behind the glass */}
+        {/* Background image */}
         <div className="absolute inset-0 z-0">
           <ImageWithFallback
             src={finalCtaImg}
@@ -370,7 +362,7 @@ export const CaseStudyPage = () => {
           />
         </div>
 
-        {/* Layer 1 — glass panel: backdrop-filter ONLY, no mask on this element */}
+        {/* Glassmorphism layer */}
         <div
           className="absolute inset-0 z-[1]"
           style={{
@@ -380,10 +372,10 @@ export const CaseStudyPage = () => {
           }}
         />
 
-        {/* Layer 2 — edge-fading gradient: separate element so it never touches backdrop-filter */}
+        {/* Edge-fading gradient */}
         <div className="absolute inset-0 z-[2] bg-[linear-gradient(to_bottom,#000000_0%,rgba(0,0,0,0)_22%,rgba(0,0,0,0)_78%,#000000_100%)]" />
 
-        {/* Layer 3 — bottom glow line */}
+        {/* Bottom glow line */}
         <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-blue-500/25 to-transparent z-[3]" />
 
         <div className="max-w-4xl mx-auto text-center relative z-[4]">
@@ -392,13 +384,13 @@ export const CaseStudyPage = () => {
               Ready to Build?
             </span>
             <h2 className="text-4xl md:text-6xl lg:text-[80px] font-black uppercase tracking-[-0.04em] text-white leading-[0.88] mb-6">
-              Implement a
+              Scale Your
               <br />
-              Similar{' '}
-              <span className="text-zinc-700">Architecture?</span>
+              Training{' '}
+              <span className="text-zinc-700">Infrastructure?</span>
             </h2>
             <p className="text-sm text-zinc-500 font-medium max-w-lg mx-auto mb-12 leading-relaxed">
-              Ready to implement a similar architecture for your business? Let's discuss the technical requirements and scope of your project.
+              Ready to implement a centralized LMS for your organization? Let's discuss the technical requirements and access control architecture for your use case.
             </p>
 
             <a

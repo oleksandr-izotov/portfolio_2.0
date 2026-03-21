@@ -94,7 +94,7 @@ export const Contact = () => {
                 <a href="https://www.linkedin.com/in/oleksandr-izotov/" className="p-2 border border-gray-100 dark:border-white/5 hover:border-blue-500/50 hover:bg-blue-500/5 transition-colors rounded-lg group">
                   <Linkedin size={18} className="text-gray-400 group-hover:text-blue-600 transition-colors" />
                 </a>
-                <a href="https://t.me/YOUR_USERNAME" className="p-2 border border-gray-100 dark:border-white/5 hover:border-blue-500/50 hover:bg-blue-500/5 transition-colors rounded-lg group">
+                <a href="https://t.me/lunevvvv" className="p-2 border border-gray-100 dark:border-white/5 hover:border-blue-500/50 hover:bg-blue-500/5 transition-colors rounded-lg group">
                   <Send size={18} className="text-gray-400 group-hover:text-blue-600 transition-colors" />
                 </a>
               </div>

@@ -12,6 +12,7 @@ export interface Project {
   status?: 'active' | 'development';
   href: string;
   caseStudy?: boolean;
+  caseStudyId?: 'medtech' | 'ai-saas' | 'lms';
 }
 
 export const projects: Project[] = [
@@ -24,6 +25,8 @@ export const projects: Project[] = [
     stack: ["React", "Supabase", "PostgreSQL", "TailwindCSS"],
     status: 'active',
     href: '/lms-case-study',
+    caseStudy: true,
+    caseStudyId: 'lms',
   },
   {
     title: 'AI-Powered EdTech SaaS',
@@ -34,6 +37,8 @@ export const projects: Project[] = [
     stack: ["Python", "Django", "LLM APIs", "Redis", "Stripe"],
     status: 'active',
     href: '/ai-saas-case-study',
+    caseStudy: true,
+    caseStudyId: 'ai-saas',
   },
   {
     title: 'Enterprise MedTech System',
@@ -45,5 +50,6 @@ export const projects: Project[] = [
     status: 'active',
     href: '/medtech-case-study',
     caseStudy: true,
+    caseStudyId: 'medtech',
   },
 ];

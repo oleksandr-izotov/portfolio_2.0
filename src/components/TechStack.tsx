@@ -55,7 +55,7 @@ const TechDrum = ({ label, items, duration, reverse = false }: { label: string, 
         </motion.div>
 
         {/* Side Shadows for Depth */}
-        <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-white dark:from-[#0c0c0e] via-transparent to-white dark:to-[#0c0c0e]" />
+        <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-white dark:from-black via-transparent to-white dark:to-black" />
       </div>
 
       <div className="flex justify-between px-2">
@@ -68,7 +68,7 @@ const TechDrum = ({ label, items, duration, reverse = false }: { label: string, 
 
 export const TechStack = () => {
   return (
-    <section id="stack" className="relative py-24 px-6 overflow-hidden bg-white dark:bg-[#0c0c0e] border-t border-gray-100 dark:border-white/5">
+    <section id="stack" className="relative py-24 px-6 overflow-hidden bg-white dark:bg-black border-t border-gray-100 dark:border-white/5">
       {/* Liquid Chrome Background for System Components */}
       {/* Liquid Chrome Background for System Components */}
       <div className="hidden md:block absolute inset-0 z-0 pointer-events-none opacity-[0.05] dark:opacity-[0.15]">
