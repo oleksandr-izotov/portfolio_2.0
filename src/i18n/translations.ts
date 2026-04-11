@@ -226,6 +226,12 @@ export const translations = {
       rights: 'All rights reserved.',
       built: 'Built with React & Tailwind',
     },
+    notFound: {
+      error_label: 'Error // 404',
+      title: 'Page Not Found',
+      subtitle: 'The requested route does not exist in this system.',
+      back: 'Back to Home',
+    },
   },
 
   de: {
@@ -455,6 +461,12 @@ export const translations = {
       rights: 'Alle Rechte vorbehalten.',
       built: 'Erstellt mit React & Tailwind',
     },
+    notFound: {
+      error_label: 'Error // 404',
+      title: 'Seite nicht gefunden',
+      subtitle: 'Die angeforderte Route existiert nicht.',
+      back: 'Zurück zur Startseite',
+    },
   },
 
   ru: {
@@ -683,6 +695,12 @@ export const translations = {
     footer: {
       rights: 'Все права защищены.',
       built: 'Создано на React & Tailwind',
+    },
+    notFound: {
+      error_label: 'Error // 404',
+      title: 'Страница не найдена',
+      subtitle: 'Запрашиваемый маршрут не существует в системе.',
+      back: 'На главную',
     },
   },
 } as const;

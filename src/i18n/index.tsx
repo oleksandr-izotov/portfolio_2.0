@@ -47,6 +47,11 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
     return typeof fallback === 'string' ? fallback : key;
   };
 
+  // Update <html> lang attribute when language changes
+  useEffect(() => {
+    document.documentElement.lang = lang;
+  }, [lang]);
+
   return (
     <LanguageContext.Provider value={{ lang, setLang, t }}>
       {children}

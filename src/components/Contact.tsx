@@ -80,13 +80,13 @@ export const Contact = () => {
             {/* Socials + Status below form */}
             <div className="flex flex-wrap items-center justify-between gap-6 pt-2 border-t border-white/5">
               <div className="flex items-center gap-4">
-                <a href="https://github.com/oleksandr-izotov" className="p-2 border border-gray-100 dark:border-white/5 hover:border-blue-500/50 hover:bg-blue-500/5 transition-colors rounded-lg group">
+                <a href="https://github.com/oleksandr-izotov" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="p-2 border border-gray-100 dark:border-white/5 hover:border-blue-500/50 hover:bg-blue-500/5 transition-colors rounded-lg group">
                   <Github size={16} className="text-gray-400 group-hover:text-blue-600 transition-colors" />
                 </a>
-                <a href="https://www.linkedin.com/in/oleksandr-izotov/" className="p-2 border border-gray-100 dark:border-white/5 hover:border-blue-500/50 hover:bg-blue-500/5 transition-colors rounded-lg group">
+                <a href="https://www.linkedin.com/in/oleksandr-izotov/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="p-2 border border-gray-100 dark:border-white/5 hover:border-blue-500/50 hover:bg-blue-500/5 transition-colors rounded-lg group">
                   <Linkedin size={16} className="text-gray-400 group-hover:text-blue-600 transition-colors" />
                 </a>
-                <a href="https://t.me/lunevvvv" className="p-2 border border-gray-100 dark:border-white/5 hover:border-blue-500/50 hover:bg-blue-500/5 transition-colors rounded-lg group">
+                <a href="https://t.me/lunevvvv" target="_blank" rel="noopener noreferrer" aria-label="Telegram" className="p-2 border border-gray-100 dark:border-white/5 hover:border-blue-500/50 hover:bg-blue-500/5 transition-colors rounded-lg group">
                   <Send size={16} className="text-gray-400 group-hover:text-blue-600 transition-colors" />
                 </a>
               </div>

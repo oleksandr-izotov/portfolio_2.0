@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { Routes, Route, useLocation } from 'react-router-dom';
@@ -13,10 +13,14 @@ import { Footer } from './components/Footer';
 import { GrainTexture } from './components/GrainTexture';
 import { ThemeProvider } from './components/theme-provider';
 import { LanguageProvider } from './i18n';
-import { CaseStudyPage } from './components/CaseStudyPage';
-import { AiSaaSPage } from './components/AiSaaSPage';
-import { LmsPage } from './components/LmsPage';
-import { NotFoundPage } from './components/NotFoundPage';
+import { ErrorBoundary } from './components/ErrorBoundary';
+
+const CaseStudyPage = lazy(() => import('./components/CaseStudyPage').then(m => ({ default: m.CaseStudyPage })));
+const AiSaaSPage = lazy(() => import('./components/AiSaaSPage').then(m => ({ default: m.AiSaaSPage })));
+const LmsPage = lazy(() => import('./components/LmsPage').then(m => ({ default: m.LmsPage })));
+const NotFoundPage = lazy(() => import('./components/NotFoundPage').then(m => ({ default: m.NotFoundPage })));
+const ImpressumPage = lazy(() => import('./components/ImpressumPage').then(m => ({ default: m.ImpressumPage })));
+const DatenschutzPage = lazy(() => import('./components/DatenschutzPage').then(m => ({ default: m.DatenschutzPage })));
 
 const pageVariants = {
   initial: { opacity: 0 },
@@ -75,6 +79,8 @@ const AnimatedRoutes = () => {
           <Route path="/lms-case-study" element={<LmsPage />} />
           <Route path="/ai-saas-case-study" element={<AiSaaSPage />} />
           <Route path="/medtech-case-study" element={<CaseStudyPage />} />
+          <Route path="/impressum" element={<ImpressumPage />} />
+          <Route path="/datenschutz" element={<DatenschutzPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </motion.div>
@@ -84,10 +90,14 @@ const AnimatedRoutes = () => {
 
 export default function App() {
   return (
-    <LanguageProvider>
-      <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
-        <AnimatedRoutes />
-      </ThemeProvider>
-    </LanguageProvider>
+    <ErrorBoundary>
+      <LanguageProvider>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
+          <Suspense fallback={<div className="min-h-screen bg-black" />}>
+            <AnimatedRoutes />
+          </Suspense>
+        </ThemeProvider>
+      </LanguageProvider>
+    </ErrorBoundary>
   );
 }
