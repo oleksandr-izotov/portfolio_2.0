@@ -64,8 +64,8 @@ export const DatenschutzPage = () => {
               Verantwortliche Stelle:
             </p>
             <p>Oleksandr Izotov</p>
-            <p>[Adresse]</p>
-            <p>E-Mail: [E-Mail-Adresse]</p>
+            <p>[Schwäbisch Hall</p>
+            <p>E-Mail: izotovoleksandr05@gmail.com</p>
           </section>
 
           <section>

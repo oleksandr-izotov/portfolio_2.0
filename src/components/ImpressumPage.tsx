@@ -54,15 +54,15 @@ export const ImpressumPage = () => {
             <h2 className="text-[11px] font-bold uppercase tracking-[0.3em] text-white mb-3">
               Kontakt
             </h2>
-            <p>Telefon: [Telefonnummer]</p>
-            <p>E-Mail: [E-Mail-Adresse]</p>
+            <p>Telefon: +4915172447262</p>
+            <p>E-Mail: izotovoleksandr05@gmail.com</p>
           </section>
 
           <section>
             <h2 className="text-[11px] font-bold uppercase tracking-[0.3em] text-white mb-3">
               Umsatzsteuer-ID
             </h2>
-            <p>Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz: [USt-IdNr.]</p>
+            <p>Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz: comming soon...</p>
           </section>
 
           <section>
@@ -70,7 +70,7 @@ export const ImpressumPage = () => {
               Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV
             </h2>
             <p>Oleksandr Izotov</p>
-            <p>[Adresse]</p>
+            <p>Schwäbisch Hall</p>
           </section>
 
           <section>
