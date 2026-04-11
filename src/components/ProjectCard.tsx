@@ -17,7 +17,7 @@ interface Project {
   caseStudy?: boolean;
 }
 
-export const ProjectCard = ({ project, index }: { project: Project, index: number }) => {
+export const ProjectCard = ({ project, index, builtWith = 'Built With', locked = 'Locked', inDevelopment = 'In Development', systemId = 'System ID' }: { project: Project, index: number, builtWith?: string, locked?: string, inDevelopment?: string, systemId?: string }) => {
   const isLocked = project.status === 'development';
 
   return (
@@ -56,7 +56,7 @@ export const ProjectCard = ({ project, index }: { project: Project, index: numbe
                 {isLocked ? <Lock size={14} className="text-zinc-500" /> : <Terminal size={14} className="text-blue-500" />}
               </div>
               <div className="text-right">
-                <span className="block text-[8px] font-mono text-gray-400 dark:text-zinc-500 uppercase tracking-tighter">System ID</span>
+                <span className="block text-[8px] font-mono text-gray-400 dark:text-zinc-500 uppercase tracking-tighter">{systemId}</span>
                 <span className={`block text-[10px] font-mono font-bold ${isLocked ? 'dark:text-zinc-500' : 'dark:text-blue-400'}`}>PRJ-0{index + 1}</span>
               </div>
             </div>
@@ -65,9 +65,9 @@ export const ProjectCard = ({ project, index }: { project: Project, index: numbe
               {isLocked ? (
                 <div className="flex flex-col items-center justify-center h-full space-y-2">
                   <Lock size={32} className="text-zinc-700 dark:text-zinc-600 mb-2" />
-                  <h4 className="text-xl font-black uppercase tracking-widest text-zinc-500">Locked</h4>
+                  <h4 className="text-xl font-black uppercase tracking-widest text-zinc-500">{locked}</h4>
                   <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.2em] bg-zinc-500/10 px-2 py-1 rounded-full border border-zinc-500/20">
-                    In Development
+                    {inDevelopment}
                   </span>
                 </div>
               ) : (
@@ -95,7 +95,7 @@ export const ProjectCard = ({ project, index }: { project: Project, index: numbe
               <div className="space-y-4">
                 <div className="flex items-center gap-2">
                   <div className="h-[1px] flex-1 bg-blue-500/20" />
-                  <span className="text-[9px] font-mono font-bold uppercase tracking-widest text-blue-500">Built With</span>
+                  <span className="text-[9px] font-mono font-bold uppercase tracking-widest text-blue-500">{builtWith}</span>
                   <div className="h-[1px] w-4 bg-blue-500/20" />
                 </div>
                 <div className="flex flex-wrap gap-1.5">

@@ -12,6 +12,7 @@ import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { GrainTexture } from './components/GrainTexture';
 import { ThemeProvider } from './components/theme-provider';
+import { LanguageProvider } from './i18n';
 import { CaseStudyPage } from './components/CaseStudyPage';
 import { AiSaaSPage } from './components/AiSaaSPage';
 import { LmsPage } from './components/LmsPage';
@@ -83,8 +84,10 @@ const AnimatedRoutes = () => {
 
 export default function App() {
   return (
-    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
-      <AnimatedRoutes />
-    </ThemeProvider>
+    <LanguageProvider>
+      <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
+        <AnimatedRoutes />
+      </ThemeProvider>
+    </LanguageProvider>
   );
 }

@@ -1,7 +1,11 @@
 import { ProjectCard } from './ProjectCard';
 import { projects } from '../data/projects';
+import { useLanguage } from '../i18n';
+import { translations } from '../i18n/translations';
 
 export const Projects = () => {
+  const { lang, t } = useLanguage();
+  const projectItems = translations[lang].projects.items;
   return (
     <section id="projects" className="relative pt-20 pb-8 px-6 max-w-7xl mx-auto border-t border-gray-100 dark:border-white/5">
       {/* Visual Section Divider */}
@@ -16,10 +20,10 @@ export const Projects = () => {
         <div className="relative">
           <div className="flex items-center gap-3 mb-4">
              <div className="w-12 h-[1px] bg-blue-500" />
-             <span className="text-[10px] font-mono font-bold uppercase tracking-[0.4em] text-blue-500">Featured Case Studies</span>
+             <span className="text-[10px] font-mono font-bold uppercase tracking-[0.4em] text-blue-500">{t('projects.section_label')}</span>
           </div>
           <h2 className="text-6xl md:text-8xl font-black uppercase tracking-tighter dark:text-white leading-[0.85]">
-            Proj<span className="text-gray-200 dark:text-zinc-800">ects</span>
+            Proj<span className="text-gray-200 dark:text-zinc-800">{t('projects.heading_accent')}</span>
           </h2>
         </div>
         <div className="max-w-xs space-y-4">
@@ -29,7 +33,7 @@ export const Projects = () => {
               <div className="w-1 h-1 bg-blue-500/20" />
            </div>
            <p className="text-[11px] font-mono text-gray-500 dark:text-zinc-500 uppercase tracking-widest leading-relaxed">
-             Real-world case studies demonstrating how we solve complex B2B challenges through scalable web architecture, AI integration, and automation.
+             {t('projects.description')}
            </p>
         </div>
       </div>
@@ -38,8 +42,16 @@ export const Projects = () => {
         {projects.map((p, i) => (
           <ProjectCard
             key={p.title}
-            project={p}
+            project={{
+              ...p,
+              title: projectItems[i]?.title ?? p.title,
+              description: projectItems[i]?.description ?? p.description,
+            }}
             index={i}
+            builtWith={t('projects.built_with')}
+            locked={t('projects.locked')}
+            inDevelopment={t('projects.in_development')}
+            systemId={t('projects.system_id')}
           />
         ))}
       </div>

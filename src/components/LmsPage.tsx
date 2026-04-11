@@ -7,34 +7,18 @@ import { ImageWithFallback } from './ui/ImageWithFallback';
 import heroImg from '../assets/lms-hero.webp';
 import abstractImg from '../assets/lms-tech.webp';
 import finalCtaImg from '../assets/lms1.webp';
-
+import { useLanguage } from '../i18n';
+import { translations } from '../i18n/translations';
 
 const techTags = ['React', 'Supabase', 'PostgreSQL', 'TailwindCSS', 'Role-Based Access'];
 
-const features = [
-  {
-    icon: ShieldCheck,
-    title: 'RBAC Architecture',
-    description:
-      'Granular role-based permissions ensuring that sensitive corporate data and training materials are accessible only to verified personnel.',
-  },
-  {
-    icon: Database,
-    title: 'Scalable Database',
-    description:
-      'Engineered with PostgreSQL on Supabase to handle high concurrent user loads and complex relational data for certification tracking.',
-  },
-  {
-    icon: Workflow,
-    title: 'Automated Workflows',
-    description:
-      'Custom-built logic to automate student onboarding, progress tracking, and automated reporting for HR departments.',
-  },
-];
+const featureIcons = [ShieldCheck, Database, Workflow];
 
 
 export const LmsPage = () => {
   const navigate = useNavigate();
+  const { lang } = useLanguage();
+  const lms = translations[lang].lms;
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
     const prev = document.title;
@@ -54,14 +38,14 @@ export const LmsPage = () => {
             className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors group"
           >
             <ArrowLeft size={14} className="group-hover:-translate-x-0.5 transition-transform duration-200" />
-            <span className="text-[10px] font-bold uppercase tracking-[0.2em]">Back to Cases</span>
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em]">{lms.back}</span>
           </button>
 
           <button
             onClick={() => navigate('/', { state: { scrollToContact: true } })}
             className="flex items-center gap-2 px-5 py-1.5 bg-blue-600 hover:bg-blue-500 rounded-full text-white text-[10px] font-bold uppercase tracking-[0.15em] transition-colors"
           >
-            Discuss Project
+            {lms.discuss}
             <ExternalLink size={10} />
           </button>
         </div>
@@ -102,7 +86,7 @@ export const LmsPage = () => {
           >
             <div className="h-[1px] w-12 bg-blue-500/40" />
             <span className="text-[9px] font-mono font-bold uppercase tracking-[0.5em] text-blue-500">
-              Case Study // Corporate EdTech
+              {lms.badge}
             </span>
             <div className="h-[1px] w-12 bg-blue-500/40" />
           </motion.div>
@@ -146,7 +130,7 @@ export const LmsPage = () => {
           <div className="flex items-center gap-3 mb-14">
             <div className="w-6 h-[1px] bg-blue-500" />
             <span className="text-[9px] font-mono font-bold uppercase tracking-[0.45em] text-blue-500">
-              01 // Executive Summary
+              {lms.s1_label}
             </span>
           </div>
 
@@ -155,13 +139,13 @@ export const LmsPage = () => {
             <div className="relative p-8 bg-[#0D0D0D] border border-white/[0.05] hover:border-white/10 rounded-sm transition-colors duration-500 overflow-hidden">
               <div className="absolute top-0 left-0 w-16 h-[2px] bg-red-500/60" />
               <span className="text-[9px] font-mono font-bold uppercase tracking-[0.45em] text-red-400 block mb-5">
-                The Challenge
+                {lms.challenge_label}
               </span>
               <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-white mb-6 leading-tight">
-                Fragmented Training<br />at Enterprise Scale
+                {lms.challenge_title.split('\n').map((line, i) => <span key={i}>{line}{i === 0 && <br />}</span>)}
               </h3>
               <p className="text-[13px] text-zinc-400 leading-relaxed font-medium">
-                Large-scale organizations struggled with fragmented training processes and insecure data handling. There was a critical need for a centralized system to manage employee onboarding and certification at scale.
+                {lms.challenge_text}
               </p>
             </div>
 
@@ -169,13 +153,13 @@ export const LmsPage = () => {
             <div className="relative p-8 bg-[#0D0D0D] border border-blue-500/[0.08] hover:border-blue-500/20 rounded-sm transition-colors duration-500 overflow-hidden">
               <div className="absolute top-0 left-0 w-16 h-[2px] bg-blue-500" />
               <span className="text-[9px] font-mono font-bold uppercase tracking-[0.45em] text-blue-400 block mb-5">
-                The Solution
+                {lms.solution_label}
               </span>
               <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-white mb-6 leading-tight">
-                High-Availability<br />LMS Architecture
+                {lms.solution_title.split('\n').map((line, i) => <span key={i}>{line}{i === 0 && <br />}</span>)}
               </h3>
               <p className="text-[13px] text-zinc-400 leading-relaxed font-medium">
-                A robust Learning Management System engineered for high-availability. It features a secure database architecture to automate administrative workflows and a granular access control system for multi-departmental use.
+                {lms.solution_text}
               </p>
             </div>
           </div>
@@ -190,16 +174,11 @@ export const LmsPage = () => {
           <div className="flex items-center gap-3 mb-10">
             <div className="w-6 h-[1px] bg-blue-500" />
             <span className="text-[9px] font-mono font-bold uppercase tracking-[0.45em] text-blue-500">
-              02 // Key Outcomes
+              {lms.s2_label}
             </span>
           </div>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/[0.04] border border-white/[0.04] rounded-sm overflow-hidden">
-            {[
-              { value: '20',  unit: 'min', label: 'Employee Onboarding Time',     sub: 'vs. 3-day manual process' },
-              { value: '5',   unit: '',    label: 'RBAC Permission Tiers',         sub: 'Admin · HR · Manager · Staff · Guest' },
-              { value: '3×',  unit: '',    label: 'HR Reporting Efficiency',       sub: 'Automated certification tracking' },
-              { value: '100', unit: '%',   label: 'Audit Trail Coverage',          sub: 'Full access log per user action' },
-            ].map(({ value, unit, label, sub }) => (
+            {lms.outcomes.map(({ value, unit, label, sub }) => (
               <motion.div
                 key={label}
                 initial={{ opacity: 0, y: 16 }}
@@ -239,27 +218,30 @@ export const LmsPage = () => {
           <div className="flex items-center gap-3 mb-14">
             <div className="w-6 h-[1px] bg-blue-500" />
             <span className="text-[9px] font-mono font-bold uppercase tracking-[0.45em] text-blue-500">
-              03 // Technical Highlights
+              {lms.s3_label}
             </span>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {features.map((f) => (
-              <div
-                key={f.title}
-                className="group p-6 bg-[#0D0D0D] border border-white/[0.05] hover:border-blue-500/30 hover:bg-[#13131A] rounded-sm transition-all duration-500"
-              >
-                <div className="w-10 h-10 bg-blue-500/10 group-hover:bg-blue-500/20 flex items-center justify-center mb-5 transition-colors duration-300 rounded-sm">
-                  <f.icon size={18} className="text-blue-500" />
+            {lms.features.map((f, i) => {
+              const Icon = featureIcons[i];
+              return (
+                <div
+                  key={f.title}
+                  className="group p-6 bg-[#0D0D0D] border border-white/[0.05] hover:border-blue-500/30 hover:bg-[#13131A] rounded-sm transition-all duration-500"
+                >
+                  <div className="w-10 h-10 bg-blue-500/10 group-hover:bg-blue-500/20 flex items-center justify-center mb-5 transition-colors duration-300 rounded-sm">
+                    <Icon size={18} className="text-blue-500" />
+                  </div>
+                  <h4 className="text-sm font-black uppercase tracking-tight text-white mb-2 leading-tight">
+                    {f.title}
+                  </h4>
+                  <p className="text-[11px] text-zinc-500 leading-relaxed font-medium">
+                    {f.description}
+                  </p>
                 </div>
-                <h4 className="text-sm font-black uppercase tracking-tight text-white mb-2 leading-tight">
-                  {f.title}
-                </h4>
-                <p className="text-[11px] text-zinc-500 leading-relaxed font-medium">
-                  {f.description}
-                </p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -272,7 +254,7 @@ export const LmsPage = () => {
           <div className="flex items-center gap-3 mb-14">
             <div className="w-6 h-[1px] bg-blue-500" />
             <span className="text-[9px] font-mono font-bold uppercase tracking-[0.45em] text-blue-500">
-              04 // Project Walkthrough
+              {lms.s4_label}
             </span>
           </div>
 
@@ -326,10 +308,10 @@ export const LmsPage = () => {
 
               <div className="text-center space-y-2">
                 <p className="text-[10px] font-mono font-bold uppercase tracking-[0.4em] text-blue-500">
-                  Coming Soon
+                  {lms.coming_soon}
                 </p>
                 <p className="text-[11px] text-zinc-600 font-medium max-w-xs leading-relaxed">
-                  The architectural deep-dive and platform walkthrough are currently being finalized.
+                  {lms.coming_soon_sub}
                 </p>
               </div>
             </div>
@@ -379,23 +361,23 @@ export const LmsPage = () => {
         <div className="max-w-4xl mx-auto text-center relative z-[4]">
           <div>
             <span className="text-[9px] font-mono font-bold uppercase tracking-[0.5em] text-blue-500 block mb-8">
-              Ready to Build?
+              {lms.cta_label}
             </span>
             <h2 className="text-4xl md:text-6xl lg:text-[80px] font-black uppercase tracking-[-0.04em] text-white leading-[0.88] mb-6">
-              Scale Your
+              {lms.cta_title_1}
               <br />
-              Training{' '}
-              <span className="text-zinc-700">Infrastructure?</span>
+              {lms.cta_title_2}{' '}
+              <span className="text-zinc-700">{lms.cta_title_accent}</span>
             </h2>
             <p className="text-sm text-zinc-500 font-medium max-w-lg mx-auto mb-12 leading-relaxed">
-              Ready to implement a centralized LMS for your organization? Let's discuss the technical requirements and access control architecture for your use case.
+              {lms.cta_sub}
             </p>
 
             <button
               onClick={() => navigate('/', { state: { scrollToContact: true } })}
               className="group inline-flex items-center gap-4 px-8 py-4 bg-white text-black rounded-full font-black text-[11px] uppercase tracking-[0.2em] hover:bg-blue-600 hover:text-white transition-all duration-300 hover:scale-[1.02]"
             >
-              Submit a Request
+              {lms.cta_btn}
               <span className="w-7 h-7 rounded-full bg-black/10 group-hover:bg-white/20 flex items-center justify-center transition-colors">
                 <Send size={12} />
               </span>

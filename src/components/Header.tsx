@@ -1,8 +1,15 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Send, LucideLinkedin } from 'lucide-react';
+import { useLanguage, type Language } from '../i18n';
+
+const LANGS: { code: Language; label: string }[] = [
+  { code: 'en', label: 'EN' },
+  { code: 'de', label: 'DE' },
+  { code: 'ru', label: 'RU' },
+];
 
 export const Header = () => {
+  const { lang, setLang, t } = useLanguage();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [time, setTime] = useState('');
 
@@ -89,19 +96,19 @@ export const Header = () => {
 
           {/* Center: Desktop Navigation */}
           <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-12">
-            {[
-              { name: 'About', id: 'about' },
-              { name: 'Services', id: 'stack' },
-              { name: 'Cases', id: 'projects' },
-              { name: 'Contact', id: 'contact' }
-            ].map((item) => (
+            {([
+              { key: 'nav.about', id: 'about' },
+              { key: 'nav.services', id: 'stack' },
+              { key: 'nav.cases', id: 'projects' },
+              { key: 'nav.contact', id: 'contact' },
+            ] as const).map((item) => (
               <a
                 key={item.id}
                 href={`#${item.id}`}
                 onClick={(e) => scrollToSection(e, item.id)}
                 className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 hover:text-white transition-colors"
               >
-                {item.name}
+                {t(item.key)}
               </a>
             ))}
           </nav>
@@ -114,14 +121,27 @@ export const Header = () => {
               <span className="tabular-nums">{time || '00:00:00'}</span>
             </div>
 
-            <div className="flex items-center gap-5 border-l border-white/10 pl-8">
-              <a href="https://t.me/lunevvvv" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                <Send size={14} />
-              </a>
-              <a href="https://www.linkedin.com/in/oleksandr-izotov/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-400 transition-colors">
-                <LucideLinkedin size={14} />
-              </a>
+            {/* Language Switcher */}
+            <div className="flex items-center gap-1">
+              {LANGS.map((l, i) => (
+                <React.Fragment key={l.code}>
+                  <button
+                    onClick={() => setLang(l.code)}
+                    className={`text-[10px] font-mono font-bold uppercase tracking-widest transition-colors duration-200 ${
+                      lang === l.code
+                        ? 'text-blue-400'
+                        : 'text-zinc-600 hover:text-zinc-300'
+                    }`}
+                  >
+                    {l.label}
+                  </button>
+                  {i < LANGS.length - 1 && (
+                    <span className="text-zinc-800 text-[10px] mx-1">·</span>
+                  )}
+                </React.Fragment>
+              ))}
             </div>
+
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -173,12 +193,12 @@ export const Header = () => {
             </button>
 
             <nav className="flex flex-col items-center gap-8">
-              {[
-                { name: 'About', id: 'about' },
-                { name: 'Services', id: 'stack' },
-                { name: 'Cases', id: 'projects' },
-                { name: 'Contact', id: 'contact' }
-              ].map((item, i) => (
+              {([
+                { key: 'nav.about', id: 'about' },
+                { key: 'nav.services', id: 'stack' },
+                { key: 'nav.cases', id: 'projects' },
+                { key: 'nav.contact', id: 'contact' },
+              ] as const).map((item, i) => (
                 <motion.a
                   key={item.id}
                   href={`#${item.id}`}
@@ -188,24 +208,35 @@ export const Header = () => {
                   onClick={(e) => scrollToSection(e, item.id)}
                   className="text-2xl font-black uppercase tracking-tighter text-white hover:text-blue-500 transition-colors"
                 >
-                  {item.name}
+                  {t(item.key)}
                 </motion.a>
               ))}
             </nav>
 
+            {/* Mobile Language Switcher */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
-              className="mt-12 flex gap-8"
+              transition={{ delay: 0.5 }}
+              className="mt-4 flex items-center gap-3"
             >
-              <a href="https://t.me/lunevvvv" target="_blank" rel="noopener noreferrer" className="p-4 bg-white/5 rounded-full text-white hover:bg-blue-600 transition-colors">
-                <Send size={20} />
-              </a>
-              <a href="https://www.linkedin.com/in/oleksandr-izotov/" target="_blank" rel="noopener noreferrer" className="p-4 bg-white/5 rounded-full text-white hover:bg-blue-600 transition-colors">
-                <LucideLinkedin size={20} />
-              </a>
+              {LANGS.map((l, i) => (
+                <React.Fragment key={l.code}>
+                  <button
+                    onClick={() => { setLang(l.code); setIsMobileMenuOpen(false); }}
+                    className={`text-[11px] font-mono font-bold uppercase tracking-widest transition-colors ${
+                      lang === l.code ? 'text-blue-400' : 'text-zinc-500 hover:text-white'
+                    }`}
+                  >
+                    {l.label}
+                  </button>
+                  {i < LANGS.length - 1 && (
+                    <span className="text-zinc-700 text-[10px]">·</span>
+                  )}
+                </React.Fragment>
+              ))}
             </motion.div>
+
           </motion.div>
         )}
       </AnimatePresence>

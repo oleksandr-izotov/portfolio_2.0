@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight, CheckCircle, Loader, Send } from 'lucide-react';
+import { useLanguage } from '../i18n';
 
 type ContactType = 'private' | 'company';
 type ContactMethod = 'email' | 'whatsapp' | 'telegram';
@@ -16,6 +17,7 @@ interface FormData {
 }
 
 export const ContactForm = () => {
+  const { t } = useLanguage();
   const [form, setForm] = useState<FormData>({
     name: '',
     phone: '',
@@ -79,11 +81,11 @@ export const ContactForm = () => {
           className="flex flex-col gap-2"
         >
           <h3 className="text-2xl font-black uppercase tracking-tight text-white">
-            Request Sent!
+            {t('form.success_title')}
           </h3>
           <p className="text-sm text-zinc-400 font-medium leading-relaxed max-w-xs">
-            Thanks{form.name ? `, ${form.name}` : ''}! I'll get back to you within{' '}
-            <span className="text-white font-bold">24 hours</span>.
+            {form.name ? `${t('form.thanks')}, ${form.name}! ` : ''}{t('form.success_sub')}{' '}
+            <span className="text-white font-bold">{t('form.success_hours')}</span>.
           </p>
         </motion.div>
 
@@ -98,7 +100,7 @@ export const ContactForm = () => {
           }}
           className="mt-2 px-6 py-2.5 border border-white/10 rounded-xl text-[10px] font-mono font-bold uppercase tracking-[0.25em] text-zinc-400 hover:border-blue-500/40 hover:text-white hover:bg-blue-500/5 transition-all duration-200"
         >
-          Send another request
+          {t('form.success_another')}
         </motion.button>
 
         {/* Checkmark badge */}
@@ -109,7 +111,7 @@ export const ContactForm = () => {
           className="flex items-center gap-1.5 text-[9px] font-mono text-zinc-600 uppercase tracking-widest"
         >
           <CheckCircle size={10} className="text-green-500" />
-          Message delivered securely
+          {t('form.success_secure')}
         </motion.div>
       </motion.div>
     );
@@ -126,7 +128,7 @@ export const ContactForm = () => {
         <div className="flex items-center gap-2">
           <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
           <span className="text-[9px] font-mono font-bold uppercase tracking-[0.35em] text-zinc-500">
-            Request_Form
+            {t('form.request_form')}
           </span>
         </div>
         <span className="text-[8px] font-mono text-zinc-700 uppercase tracking-widest">
@@ -140,20 +142,20 @@ export const ContactForm = () => {
       >
       {/* Type Toggle */}
       <div>
-        <span className={labelClass}>Request Type</span>
+        <span className={labelClass}>{t('form.type')}</span>
         <div className="flex gap-2">
-          {(['private', 'company'] as ContactType[]).map(t => (
+          {(['private', 'company'] as ContactType[]).map(type => (
             <button
-              key={t}
+              key={type}
               type="button"
-              onClick={() => setForm(prev => ({ ...prev, type: t }))}
+              onClick={() => setForm(prev => ({ ...prev, type }))}
               className={`flex-1 py-2.5 px-4 text-[10px] font-mono font-bold uppercase tracking-[0.25em] rounded-lg border transition-all duration-200 ${
-                form.type === t
+                form.type === type
                   ? 'border-blue-500/60 bg-blue-500/10 text-blue-400'
                   : 'border-white/10 text-zinc-500 hover:border-white/20 hover:text-zinc-400'
               }`}
             >
-              {t === 'private' ? 'Private' : 'Company'}
+              {type === 'private' ? t('form.private') : t('form.company')}
             </button>
           ))}
         </div>
@@ -162,7 +164,7 @@ export const ContactForm = () => {
       {/* Name + Phone */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label className={labelClass}>Name *</label>
+          <label className={labelClass}>{t('form.name')}</label>
           <input
             type="text"
             name="name"
@@ -174,7 +176,7 @@ export const ContactForm = () => {
           />
         </div>
         <div>
-          <label className={labelClass}>Phone</label>
+          <label className={labelClass}>{t('form.phone')}</label>
           <input
             type="tel"
             name="phone"
@@ -188,7 +190,7 @@ export const ContactForm = () => {
 
       {/* Email */}
       <div>
-        <label className={labelClass}>Email *</label>
+        <label className={labelClass}>{t('form.email')}</label>
         <input
           type="email"
           name="email"
@@ -202,12 +204,12 @@ export const ContactForm = () => {
 
       {/* Task Description */}
       <div>
-        <label className={labelClass}>Task Description *</label>
+        <label className={labelClass}>{t('form.description')}</label>
         <textarea
           name="description"
           value={form.description}
           onChange={handleChange}
-          placeholder="Briefly describe what you need..."
+          placeholder={t('form.description_placeholder')}
           required
           rows={4}
           className={`${inputClass} resize-none`}
@@ -216,7 +218,7 @@ export const ContactForm = () => {
 
       {/* Contact Method */}
       <div>
-        <span className={labelClass}>Preferred Contact</span>
+        <span className={labelClass}>{t('form.contact_method')}</span>
         <div className="flex gap-2">
           {(['email', 'whatsapp', 'telegram'] as ContactMethod[]).map(m => (
             <button
@@ -238,7 +240,7 @@ export const ContactForm = () => {
       {/* Submit */}
       <div className="flex items-center justify-between pt-1">
         <span className="text-[8px] font-mono text-zinc-600 uppercase tracking-widest">
-          * Required fields
+          {t('form.required')}
         </span>
         <motion.button
           type="submit"
@@ -257,7 +259,7 @@ export const ContactForm = () => {
                 className="flex items-center gap-2"
               >
                 <Loader size={12} className="animate-spin" />
-                Sending
+                {t('form.sending')}
               </motion.span>
             ) : (
               <motion.span
@@ -267,7 +269,7 @@ export const ContactForm = () => {
                 exit={{ opacity: 0 }}
                 className="flex items-center gap-2"
               >
-                Send Request
+                {t('form.send')}
                 <ArrowRight size={12} />
               </motion.span>
             )}

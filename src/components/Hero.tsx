@@ -3,6 +3,7 @@ import { motion, AnimatePresence, useInView } from 'motion/react';
 import { ImageWithFallback } from './ui/ImageWithFallback';
 import { Sparkles, ArrowRight, ChevronDown } from 'lucide-react';
 import backgroundImage from '../assets/background.webp';
+import { useLanguage } from '../i18n';
 
 const MarqueeItem = ({ children }: { children: React.ReactNode }) => (
   <div className="flex items-center gap-16 px-8">
@@ -10,7 +11,7 @@ const MarqueeItem = ({ children }: { children: React.ReactNode }) => (
   </div>
 );
 
-const Marquee = () => {
+const Marquee = ({ items }: { items: string[] }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { margin: "100px" });
 
@@ -28,26 +29,13 @@ const Marquee = () => {
       >
         {[1, 2, 3, 4, 5, 6].map((i) => (
           <div key={i} className="flex items-center">
-            <MarqueeItem>
-              <span className="text-[10px] font-mono font-medium text-gray-400 dark:text-zinc-600 uppercase tracking-[0.4em]">
-                Stuttgart / Germany
-              </span>
-            </MarqueeItem>
-            <MarqueeItem>
-              <span className="text-[10px] font-mono font-medium text-gray-400 dark:text-zinc-600 uppercase tracking-[0.4em]">
-                Software Engineering
-              </span>
-            </MarqueeItem>
-            <MarqueeItem>
-              <span className="text-[10px] font-mono font-medium text-gray-400 dark:text-zinc-600 uppercase tracking-[0.4em]">
-                Available for Projects
-              </span>
-            </MarqueeItem>
-            <MarqueeItem>
-              <span className="text-[10px] font-mono font-medium text-gray-400 dark:text-zinc-600 uppercase tracking-[0.4em]">
-                System Architecture
-              </span>
-            </MarqueeItem>
+            {items.map((item) => (
+              <MarqueeItem key={item}>
+                <span className="text-[10px] font-mono font-medium text-gray-400 dark:text-zinc-600 uppercase tracking-[0.4em]">
+                  {item}
+                </span>
+              </MarqueeItem>
+            ))}
           </div>
         ))}
       </motion.div>
@@ -56,6 +44,7 @@ const Marquee = () => {
 };
 
 export const Hero = () => {
+  const { t } = useLanguage();
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -89,7 +78,7 @@ export const Hero = () => {
         >
           <div className="px-4 py-1.5 rounded-full border border-gray-100 dark:border-white/10 flex items-center gap-2 backdrop-blur-md">
             <div className="w-1.5 h-1.5 bg-blue-600 rounded-full animate-pulse" />
-            <span className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-gray-500">System Core v2.0 // Active</span>
+            <span className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-gray-500">{t('hero.badge')}</span>
           </div>
         </motion.div>
 
@@ -108,6 +97,16 @@ export const Hero = () => {
             <h1 className="text-[13vw] md:text-[12vw] lg:text-[160px] font-black tracking-[-0.08em] leading-[0.9] md:leading-[0.8] mb-4 dark:text-white transition-all duration-700 group-hover:tracking-wider group-hover:opacity-10 group-hover:blur-sm">
               AI & WEB<br />ENGINEERING
             </h1>
+
+            {/* Subtle name byline */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.9, duration: 1.2 }}
+              className="text-[9px] font-mono uppercase tracking-[0.55em] text-zinc-500 dark:text-zinc-600 transition-all duration-700 group-hover:opacity-0 select-none"
+            >
+              Oleksandr Izotov — Stuttgart, DE
+            </motion.p>
 
             {/* Hover Content */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -130,7 +129,7 @@ export const Hero = () => {
                       />
                     </div>
                     <p className="mt-8 text-[11px] font-mono uppercase tracking-[0.6em] text-gray-400">
-                      Scalable B2B Solutions // Precision Built in Stuttgart
+                      {t('hero.hover_sub')}
                     </p>
                   </motion.div>
                 )}
@@ -160,8 +159,8 @@ export const Hero = () => {
              <div className="absolute inset-0 bg-blue-600 translate-y-[101%] group-hover:translate-y-0 transition-transform duration-500 ease-[0.19,1,0.22,1]" />
              
              <div className="relative z-10 flex flex-col items-start">
-                <span className="text-[7px] font-mono font-bold uppercase tracking-[0.3em] text-blue-500 mb-0.5 group-hover:text-white/70 transition-colors italic">Active // Connect</span>
-                <span className="text-[10px] font-black uppercase tracking-[0.15em] text-white dark:text-zinc-950 group-hover:text-white transition-colors">Discuss Project</span>
+                <span className="text-[7px] font-mono font-bold uppercase tracking-[0.3em] text-blue-500 mb-0.5 group-hover:text-white/70 transition-colors italic">{t('hero.btn_primary_top')}</span>
+                <span className="text-[10px] font-black uppercase tracking-[0.15em] text-white dark:text-zinc-950 group-hover:text-white transition-colors">{t('hero.btn_primary')}</span>
              </div>
              
              <div className="relative z-10 w-8 h-8 rounded-full bg-white/10 dark:bg-black/5 flex items-center justify-center group-hover:bg-white/20 transition-colors">
@@ -182,8 +181,8 @@ export const Hero = () => {
              <div className="absolute inset-0 opacity-0 group-hover:opacity-10 pointer-events-none bg-[radial-gradient(#3b82f6_1px,transparent_1px)] bg-[size:10px_10px] transition-opacity duration-500" />
 
              <div className="relative z-10 flex flex-col items-start">
-                <span className="text-[7px] font-mono font-bold uppercase tracking-[0.3em] text-zinc-400 group-hover:text-blue-500 transition-colors italic">System // Architecture</span>
-                <span className="text-[10px] font-black uppercase tracking-[0.15em] text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">Explore Services</span>
+                <span className="text-[7px] font-mono font-bold uppercase tracking-[0.3em] text-zinc-400 group-hover:text-blue-500 transition-colors italic">{t('hero.btn_secondary_top')}</span>
+                <span className="text-[10px] font-black uppercase tracking-[0.15em] text-zinc-900 dark:text-white group-hover:text-blue-500 transition-colors">{t('hero.btn_secondary')}</span>
              </div>
 
              <div className="relative z-10 w-8 h-8 rounded-full bg-zinc-50 dark:bg-white/5 border border-zinc-100 dark:border-white/5 flex items-center justify-center group-hover:bg-blue-500/10 group-hover:border-blue-500/20 transition-all">
@@ -195,7 +194,12 @@ export const Hero = () => {
 
       {/* INFINITE MARQUEE CAROUSEL */}
       <div className="w-full mt-auto">
-        <Marquee />
+        <Marquee items={[
+          t('hero.marquee_location'),
+          t('hero.marquee_engineering'),
+          t('hero.marquee_available'),
+          t('hero.marquee_architecture'),
+        ]} />
       </div>
 
       {/* Decorative Blueprint Corner */}

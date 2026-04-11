@@ -1,11 +1,9 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { 
-  Terminal, Activity, Zap, GitBranch, Layers, 
-  GraduationCap, Briefcase, Code2, Globe, Database, Server, Cpu
-} from 'lucide-react';
+import { Activity, GraduationCap, Briefcase, Code2 } from 'lucide-react';
+import { useLanguage } from '../i18n';
 
-const BentoBox = ({ children, className = '', delay = 0, noPadding = false }: { children: React.ReactNode, className?: string, delay?: number, noPadding?: boolean }) => (
+const BentoBox = ({ children, className = '', noPadding = false }: { children: React.ReactNode, className?: string, noPadding?: boolean }) => (
   <motion.div
     initial={{ opacity: 1, y: 0 }}
     className={`bg-white dark:bg-[#0D0D0D] border border-gray-100 dark:border-white/5 ${noPadding ? '' : 'p-5 md:p-8'} hover:border-black dark:hover:border-blue-500/50 transition-all duration-500 group relative overflow-hidden rounded-sm ${className}`}
@@ -38,69 +36,9 @@ const TimelineItem = ({ title, subtitle, date, type, current = false }: { title:
   </div>
 );
 
-const ArchitectureBlueprint = () => {
-  return (
-    <div className="relative h-full min-h-[300px] w-full bg-gray-50 dark:bg-black overflow-hidden p-5 md:p-8 font-mono hidden md:block">
-      {/* Grid Overlay */}
-      <div className="absolute inset-0 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:24px_24px] opacity-10 dark:opacity-20" />
-      
-      {/* Schematic Lines (Static) */}
-      <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-20 dark:opacity-40">
-        <path d="M 100 150 L 250 150 M 250 150 L 250 100 M 250 150 L 250 200 M 250 150 L 400 150" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-blue-500" />
-      </svg>
-
-      <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-8 h-full items-center">
-        {/* Client Layer */}
-        <div className="flex flex-col items-center gap-4">
-          <div className="w-16 h-16 border border-blue-500/30 bg-white dark:bg-[#0D0D0D] flex items-center justify-center rounded-sm group-hover:border-blue-500 transition-colors shadow-lg shadow-blue-500/5">
-            <Globe size={24} className="text-blue-500" />
-          </div>
-          <span className="text-[8px] uppercase tracking-widest text-gray-400 font-bold">Client Layer</span>
-        </div>
-
-        {/* Logic Layer */}
-        <div className="flex flex-col items-center gap-4">
-          <div className="w-20 h-20 border-2 border-blue-500 bg-blue-500/5 dark:bg-blue-500/10 flex items-center justify-center rounded-sm relative group-hover:scale-110 transition-transform">
-            <Server size={28} className="text-blue-500" />
-            {/* Pulsing indicator */}
-            <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white dark:border-black animate-pulse" />
-          </div>
-          <span className="text-[8px] uppercase tracking-widest text-blue-500 font-bold">API / Engine</span>
-        </div>
-
-        {/* Data Layer */}
-        <div className="flex flex-col items-center gap-4">
-          <div className="w-16 h-16 border border-blue-500/30 bg-white dark:bg-[#0D0D0D] flex items-center justify-center rounded-sm group-hover:border-blue-500 transition-colors">
-            <Database size={24} className="text-blue-500" />
-          </div>
-          <span className="text-[8px] uppercase tracking-widest text-gray-400 font-bold">Persistence</span>
-        </div>
-      </div>
-
-      {/* Decorative Technical Stats */}
-      <div className="absolute bottom-4 left-6 right-6 flex justify-between">
-        <div className="flex flex-col">
-          <span className="text-[7px] text-gray-400 uppercase tracking-tighter">Latency</span>
-          <span className="text-[10px] text-blue-500 font-bold">~24ms</span>
-        </div>
-        <div className="flex flex-col items-end">
-          <span className="text-[7px] text-gray-400 uppercase tracking-tighter">Uptime</span>
-          <span className="text-[10px] text-blue-500 font-bold">99.9%</span>
-        </div>
-      </div>
-
-      {/* "Scanning" Effect — only animate when in view */}
-      <motion.div
-        whileInView={{ translateY: ['0%', '1000%'] }}
-        viewport={{ once: false }}
-        transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
-        className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-blue-500/20 to-transparent pointer-events-none"
-      />
-    </div>
-  );
-};
 
 export const BentoGrid = () => {
+  const { t } = useLanguage();
   return (
     <section id="about" className="relative py-12 md:py-16 px-4 md:px-6 max-w-7xl mx-auto border-t border-gray-100 dark:border-white/5">
       {/* Visual Section Divider */}
@@ -114,10 +52,10 @@ export const BentoGrid = () => {
       <div className="mb-8 md:mb-12">
         <div className="flex items-center gap-3 mb-4">
            <div className="w-8 md:w-12 h-[1px] bg-blue-500" />
-           <span className="text-[9px] md:text-[10px] font-mono font-bold uppercase tracking-[0.4em] text-blue-500">Core Foundation</span>
+           <span className="text-[9px] md:text-[10px] font-mono font-bold uppercase tracking-[0.4em] text-blue-500">{t('bento.section_label')}</span>
         </div>
         <h2 className="text-4xl md:text-5xl lg:text-7xl font-black uppercase tracking-tighter dark:text-white leading-[0.9] md:leading-[0.85]">
-          Architectural <span style={{ color: '#27272a' }}>Identity</span>
+          {t('bento.heading')} <span style={{ color: '#27272a' }}>{t('bento.heading_accent')}</span>
         </h2>
       </div>
 
@@ -128,27 +66,27 @@ export const BentoGrid = () => {
           <BentoBox className="h-full">
             <div className="flex flex-col md:flex-row justify-between items-start mb-8 md:mb-12 gap-4 md:gap-0">
                <div>
-                  <h3 className="text-[10px] font-mono font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-2">Professional Journey</h3>
-                  <h2 className="text-xl md:text-3xl font-black uppercase tracking-tight dark:text-white leading-none">Foundation & Expertise</h2>
+                  <h3 className="text-[10px] font-mono font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-2">{t('bento.journey_label')}</h3>
+                  <h2 className="text-xl md:text-3xl font-black uppercase tracking-tight dark:text-white leading-none">{t('bento.journey_title')}</h2>
                </div>
                <div className="flex items-center gap-2 px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded-full">
                   <span className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse" />
-                  <span className="text-[10px] font-bold text-blue-500 uppercase tracking-widest">Active</span>
+                  <span className="text-[10px] font-bold text-blue-500 uppercase tracking-widest">{t('bento.active')}</span>
                </div>
             </div>
 
             <div className="space-y-4">
               <TimelineItem
-                title="Independent IT Consultant"
-                subtitle="B2B Web & AI Development"
-                date="Active"
+                title={t('bento.consultant_title')}
+                subtitle={t('bento.consultant_sub')}
+                date={t('bento.consultant_date')}
                 type="work"
                 current
               />
               <TimelineItem
-                title="Uni Stuttgart"
-                subtitle="B.Sc. Software Engineering"
-                date="Academic Foundation"
+                title={t('bento.uni_title')}
+                subtitle={t('bento.uni_sub')}
+                date={t('bento.uni_date')}
                 type="edu"
               />
             </div>
@@ -160,16 +98,16 @@ export const BentoGrid = () => {
           <BentoBox className="h-full bg-blue-600 text-white border-blue-600 hover:border-white/50 dark:hover:border-blue-400/50">
             <div className="flex flex-col h-full">
               <div className="mb-6 md:mb-8">
-                <span className="text-[10px] font-mono font-bold uppercase tracking-[0.3em] opacity-60">Status // Stuttgart</span>
-                <h3 className="text-xl md:text-2xl font-black uppercase tracking-tighter mt-2 leading-none">About Me</h3>
+                <span className="text-[10px] font-mono font-bold uppercase tracking-[0.3em] opacity-60">{t('bento.about_label')}</span>
+                <h3 className="text-xl md:text-2xl font-black uppercase tracking-tighter mt-2 leading-none">{t('bento.about_title')}</h3>
               </div>
               
               <div className="space-y-4 md:space-y-6 flex-1">
                 <p className="text-xs md:text-sm font-bold leading-relaxed uppercase tracking-tight italic opacity-90">
-                  "MINDSET: ENGINEERED FOR BUSINESS GROWTH"
+                  {t('bento.about_quote')}
                 </p>
                 <p className="text-[10px] md:text-xs font-medium leading-relaxed opacity-80 uppercase tracking-wider">
-                  System architect focusing on high-performance web and AI solutions. Combining German engineering precision with modern tech stacks to solve complex B2B challenges.
+                  {t('bento.about_text')}
                 </p>
               </div>
 
@@ -178,7 +116,7 @@ export const BentoGrid = () => {
                   <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center">
                     <Activity size={14} className="text-white" />
                   </div>
-                  <span className="text-[9px] md:text-[10px] font-mono font-bold uppercase tracking-widest">System Architect</span>
+                  <span className="text-[9px] md:text-[10px] font-mono font-bold uppercase tracking-widest">{t('bento.about_role')}</span>
                 </div>
               </div>
             </div>
@@ -192,8 +130,8 @@ export const BentoGrid = () => {
                  <Code2 className="text-blue-600 dark:text-blue-400" size={20} />
               </div>
               <div>
-                 <p className="text-[9px] md:text-[10px] font-mono font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-2">Development Methodology</p>
-                 <h4 className="text-lg md:text-xl font-black uppercase tracking-tight dark:text-white leading-tight">Agile, TDD & Clean Code</h4>
+                 <p className="text-[9px] md:text-[10px] font-mono font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-2">{t('bento.method_label')}</p>
+                 <h4 className="text-lg md:text-xl font-black uppercase tracking-tight dark:text-white leading-tight">{t('bento.method_title')}</h4>
               </div>
            </BentoBox>
         </div>
@@ -205,8 +143,8 @@ export const BentoGrid = () => {
                 <span className="text-5xl md:text-6xl font-black text-blue-600 dark:text-blue-400 tracking-tighter">100%</span>
               </div>
               <div>
-                 <p className="text-[9px] md:text-[10px] font-mono font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-2">Project Delivery</p>
-                 <h4 className="text-lg md:text-xl font-black uppercase tracking-tight dark:text-white leading-tight">Committed to Scalable Architecture</h4>
+                 <p className="text-[9px] md:text-[10px] font-mono font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-2">{t('bento.delivery_label')}</p>
+                 <h4 className="text-lg md:text-xl font-black uppercase tracking-tight dark:text-white leading-tight">{t('bento.delivery_title')}</h4>
               </div>
            </BentoBox>
         </div>

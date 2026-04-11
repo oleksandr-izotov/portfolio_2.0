@@ -1,5 +1,5 @@
-import React from 'react';
 import { Github, Linkedin, Send } from 'lucide-react';
+import { useLanguage } from '../i18n';
 import { ImageWithFallback } from './ui/ImageWithFallback';
 import liquidBackground from "../assets/liquid-bg.webp";
 import contactBackground from "../assets/testx.webp";
@@ -7,6 +7,7 @@ import { ContactForm } from './ContactForm';
 import { SystemPulse } from './SystemPulse';
 
 export const Contact = () => {
+  const { t } = useLanguage();
   return (
     <section id="contact" className="relative pt-12 pb-24 px-6 bg-white dark:bg-[#0c0c0e] transition-colors duration-500 overflow-hidden">
       {/* Contact Background */}
@@ -31,22 +32,22 @@ export const Contact = () => {
         {/* Subtle separator with label and Metadata Fill */}
         <div className="flex flex-col md:flex-row md:items-center gap-6 mb-16">
           <div className="flex items-center gap-4 flex-grow">
-            <span className="text-[10px] font-mono font-bold uppercase tracking-[0.4em] text-blue-600">04 // CONTACTS</span>
+            <span className="text-[10px] font-mono font-bold uppercase tracking-[0.4em] text-blue-600">{t('contact.section_label')}</span>
             <div className="h-[1px] flex-grow bg-gray-100 dark:bg-white/5" />
           </div>
           
           {/* Engineering Metadata Block to fill space */}
           <div className="hidden md:flex gap-10">
             <div className="flex flex-col">
-              <span className="text-[8px] font-mono text-gray-400 uppercase tracking-widest mb-0.5">Location</span>
+              <span className="text-[8px] font-mono text-gray-400 uppercase tracking-widest mb-0.5">{t('contact.location_label')}</span>
               <span className="text-[9px] font-bold dark:text-zinc-500 uppercase tracking-wider">48.7758° N, 9.1829° E</span>
             </div>
             <div className="flex flex-col">
-              <span className="text-[8px] font-mono text-gray-400 uppercase tracking-widest mb-0.5">Protocol</span>
+              <span className="text-[8px] font-mono text-gray-400 uppercase tracking-widest mb-0.5">{t('contact.protocol_label')}</span>
               <span className="text-[9px] font-bold dark:text-zinc-500 uppercase tracking-wider">Secure_Transport // TLS 1.3</span>
             </div>
             <div className="flex flex-col">
-              <span className="text-[8px] font-mono text-gray-400 uppercase tracking-widest mb-0.5">Deployment</span>
+              <span className="text-[8px] font-mono text-gray-400 uppercase tracking-widest mb-0.5">{t('contact.deployment_label')}</span>
               <span className="text-[9px] font-bold dark:text-zinc-500 uppercase tracking-wider">Cloud_Edge // Vercel</span>
             </div>
           </div>
@@ -61,11 +62,11 @@ export const Contact = () => {
           <div className="relative z-10 flex flex-col gap-8">
             <div>
               <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.9] dark:text-white mb-8">
-                LET'S BUILD <br />
-                <span style={{ color: '#27272a' }}>THE FUTURE</span>
+                {t('contact.title_line1')} <br />
+                <span style={{ color: '#27272a' }}>{t('contact.title_line2')}</span>
               </h2>
               <p className="max-w-md text-sm text-gray-500 dark:text-zinc-400 font-medium leading-relaxed">
-                Ready to elevate your business with scalable web architecture and tailored AI integrations? I'm always open to discussing complex technical challenges, consulting opportunities, or immediate B2B collaborations.
+                {t('contact.subtitle')}
               </p>
             </div>
 
@@ -92,16 +93,16 @@ export const Contact = () => {
 
               <div className="flex gap-8">
                 <div className="flex flex-col">
-                  <span className="text-[8px] font-mono text-gray-400 uppercase tracking-widest mb-1">Status</span>
+                  <span className="text-[8px] font-mono text-gray-400 uppercase tracking-widest mb-1">{t('contact.status_label')}</span>
                   <span className="text-[10px] font-bold dark:text-white uppercase tracking-wider flex items-center gap-2">
                     <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
-                    Available
+                    {t('contact.status')}
                   </span>
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-[8px] font-mono text-gray-400 uppercase tracking-widest mb-1">Response Time</span>
+                  <span className="text-[8px] font-mono text-gray-400 uppercase tracking-widest mb-1">{t('contact.response_label')}</span>
                   <span className="text-[10px] font-bold dark:text-white uppercase tracking-wider underline decoration-blue-500/30">
-                    &lt; 24 Hours
+                    {t('contact.response')}
                   </span>
                 </div>
               </div>

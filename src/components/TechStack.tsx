@@ -2,7 +2,14 @@ import React, { useRef } from 'react';
 import { motion, useInView } from 'motion/react';
 import { ImageWithFallback } from './ui/ImageWithFallback';
 import liquidBackground from "../assets/liquid-bg.webp";
-import { techStack } from '../data/tech';
+import { useLanguage } from '../i18n';
+import { translations } from '../i18n/translations';
+
+const drumConfig = [
+  { duration: 15, reverse: false },
+  { duration: 22, reverse: true },
+  { duration: 18, reverse: false },
+];
 
 const TechDrum = ({ label, items, duration, reverse = false }: { label: string, items: string[], duration: number, reverse?: boolean }) => {
   const ref = useRef(null);
@@ -67,6 +74,8 @@ const TechDrum = ({ label, items, duration, reverse = false }: { label: string, 
 };
 
 export const TechStack = () => {
+  const { lang, t } = useLanguage();
+  const categories = translations[lang].techstack.categories;
   return (
     <section id="stack" className="relative py-24 px-6 overflow-hidden bg-white dark:bg-black border-t border-gray-100 dark:border-white/5">
       {/* Liquid Chrome Background for System Components */}
@@ -96,22 +105,22 @@ export const TechStack = () => {
 
           <div className="flex items-center gap-3 mb-4 relative z-10">
             <div className="h-[1px] w-8 bg-blue-500" />
-            <span className="text-[10px] font-mono font-bold uppercase tracking-[0.4em] text-blue-500">Strategic IT Implementation</span>
+            <span className="text-[10px] font-mono font-bold uppercase tracking-[0.4em] text-blue-500">{t('techstack.section_label')}</span>
             <div className="h-[1px] w-8 bg-blue-500" />
           </div>
           <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter dark:text-white leading-none relative z-10">
-            System <span style={{ color: '#27272a' }}>Components</span>
+            {t('techstack.heading')} <span style={{ color: '#27272a' }}>{t('techstack.heading_accent')}</span>
           </h2>
         </div>
 
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-12 items-stretch">
-          {techStack.map((category) => (
-            <TechDrum 
+          {categories.map((category, i) => (
+            <TechDrum
               key={category.label}
-              label={category.label} 
-              items={category.items} 
-              duration={category.duration} 
-              reverse={category.reverse} 
+              label={category.label}
+              items={[...category.items]}
+              duration={drumConfig[i].duration}
+              reverse={drumConfig[i].reverse}
             />
           ))}
         </div>

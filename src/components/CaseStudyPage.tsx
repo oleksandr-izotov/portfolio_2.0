@@ -7,36 +7,17 @@ import { ImageWithFallback } from './ui/ImageWithFallback';
 import heroImg from '../assets/med-bg.webp';
 import abstractImg from '../assets/med2-bg.webp';
 import finalCtaImg from '../assets/med3-bg.webp';
-
+import { useLanguage } from '../i18n';
+import { translations } from '../i18n/translations';
 
 const techTags = ['Java 25', 'Spring Boot', 'PostgreSQL', 'Vue 3', 'Redis'];
-
-const features = [
-  {
-    icon: Shield,
-    title: 'mTLS API Security',
-    description: 'Zero-trust transport layer authentication between all microservices, ensuring encrypted and mutually verified communication.',
-  },
-  {
-    icon: GitBranch,
-    title: 'State Machine Logic',
-    description: 'Custom Finite State Machine preventing concurrent OR booking conflicts with fully deterministic state transitions.',
-  },
-  {
-    icon: RefreshCcw,
-    title: 'Real-Time Sync',
-    description: 'Redis Pub/Sub architecture broadcasts live OR status updates to all connected scheduling dashboards instantly.',
-  },
-  {
-    icon: Users,
-    title: 'RBAC Access Control',
-    description: 'Granular role-based permissions for surgeons, scheduling staff, administrators, and external clinic partners.',
-  },
-];
+const featureIcons = [Shield, GitBranch, RefreshCcw, Users];
 
 
 export const CaseStudyPage = () => {
   const navigate = useNavigate();
+  const { lang } = useLanguage();
+  const med = translations[lang].medtech;
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
     const prev = document.title;
@@ -56,14 +37,14 @@ export const CaseStudyPage = () => {
             className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors group"
           >
             <ArrowLeft size={14} className="group-hover:-translate-x-0.5 transition-transform duration-200" />
-            <span className="text-[10px] font-bold uppercase tracking-[0.2em]">Back to Cases</span>
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em]">{med.back}</span>
           </button>
 
           <button
             onClick={() => navigate('/', { state: { scrollToContact: true } })}
             className="flex items-center gap-2 px-5 py-1.5 bg-blue-600 hover:bg-blue-500 rounded-full text-white text-[10px] font-bold uppercase tracking-[0.15em] transition-colors"
           >
-            Discuss Project
+            {med.discuss}
             <ExternalLink size={10} />
           </button>
         </div>
@@ -105,7 +86,7 @@ export const CaseStudyPage = () => {
           >
             <div className="h-[1px] w-12 bg-blue-500/40" />
             <span className="text-[9px] font-mono font-bold uppercase tracking-[0.5em] text-blue-500">
-              Case Study // B2B MedTech
+              {med.badge}
             </span>
             <div className="h-[1px] w-12 bg-blue-500/40" />
           </motion.div>
@@ -150,7 +131,7 @@ export const CaseStudyPage = () => {
           <div className="flex items-center gap-3 mb-14">
             <div className="w-6 h-[1px] bg-blue-500" />
             <span className="text-[9px] font-mono font-bold uppercase tracking-[0.45em] text-blue-500">
-              01 // Executive Summary
+              {med.s1_label}
             </span>
           </div>
 
@@ -159,13 +140,15 @@ export const CaseStudyPage = () => {
             <div className="relative p-8 bg-[#0D0D0D] border border-white/[0.05] hover:border-white/10 rounded-sm transition-colors duration-500 overflow-hidden">
               <div className="absolute top-0 left-0 w-16 h-[2px] bg-red-500/60" />
               <span className="text-[9px] font-mono font-bold uppercase tracking-[0.45em] text-red-400 block mb-5">
-                The Challenge
+                {med.challenge_label}
               </span>
               <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-white mb-6 leading-tight">
-                Surgical Scheduling<br />at Breaking Point
+                {med.challenge_title.split('\n').map((line, i) => (
+                  <span key={i}>{line}{i < med.challenge_title.split('\n').length - 1 && <br />}</span>
+                ))}
               </h3>
               <p className="text-[13px] text-zinc-400 leading-relaxed font-medium">
-                Surgical clinic networks were managing operating room allocations through fragmented spreadsheets and manual phone coordination. The result: overlapping bookings, zero real-time OR visibility, and hours of administrative overhead per day — directly compressing patient throughput and cutting into clinic revenue.
+                {med.challenge_text}
               </p>
             </div>
 
@@ -173,13 +156,15 @@ export const CaseStudyPage = () => {
             <div className="relative p-8 bg-[#0D0D0D] border border-blue-500/[0.08] hover:border-blue-500/20 rounded-sm transition-colors duration-500 overflow-hidden">
               <div className="absolute top-0 left-0 w-16 h-[2px] bg-blue-500" />
               <span className="text-[9px] font-mono font-bold uppercase tracking-[0.45em] text-blue-400 block mb-5">
-                The Solution
+                {med.solution_label}
               </span>
               <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-white mb-6 leading-tight">
-                State Machine<br />Core Architecture
+                {med.solution_title.split('\n').map((line, i) => (
+                  <span key={i}>{line}{i < med.solution_title.split('\n').length - 1 && <br />}</span>
+                ))}
               </h3>
               <p className="text-[13px] text-zinc-400 leading-relaxed font-medium">
-                A custom Finite State Machine was built at the platform core — each operating room managed as a deterministic stateful entity. A mTLS-protected API Gateway authenticates all inter-service communication at the transport layer. A Vue 3 drag-and-drop timeline delivers real-time visual feedback, while Redis Pub/Sub propagates state changes to all connected clients instantly.
+                {med.solution_text}
               </p>
             </div>
           </div>
@@ -194,16 +179,11 @@ export const CaseStudyPage = () => {
           <div className="flex items-center gap-3 mb-10">
             <div className="w-6 h-[1px] bg-blue-500" />
             <span className="text-[9px] font-mono font-bold uppercase tracking-[0.45em] text-blue-500">
-              02 // Key Outcomes
+              {med.s2_label}
             </span>
           </div>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/[0.04] border border-white/[0.04] rounded-sm overflow-hidden">
-            {[
-              { value: '0',      unit: '',    label: 'OR Booking Conflicts',      sub: 'Since deployment' },
-              { value: '< 25',   unit: 'ms',  label: 'Real-Time Sync Latency',    sub: 'Redis Pub/Sub' },
-              { value: '80',     unit: '%',   label: 'Admin Overhead Reduced',     sub: 'Per scheduling cycle' },
-              { value: '4',      unit: '',    label: 'RBAC Access Tiers',          sub: 'Surgeon · Staff · Admin · Partner' },
-            ].map(({ value, unit, label, sub }) => (
+            {med.outcomes.map(({ value, unit, label, sub }) => (
               <motion.div
                 key={label}
                 initial={{ opacity: 0, y: 16 }}
@@ -244,27 +224,30 @@ export const CaseStudyPage = () => {
           <div className="flex items-center gap-3 mb-14">
             <div className="w-6 h-[1px] bg-blue-500" />
             <span className="text-[9px] font-mono font-bold uppercase tracking-[0.45em] text-blue-500">
-              03 // Technical Highlights
+              {med.s3_label}
             </span>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {features.map((f) => (
-              <div
-                key={f.title}
-                className="group p-6 bg-[#0D0D0D] border border-white/[0.05] hover:border-blue-500/30 hover:bg-[#13131A] rounded-sm transition-all duration-500"
-              >
-                <div className="w-10 h-10 bg-blue-500/10 group-hover:bg-blue-500/20 flex items-center justify-center mb-5 transition-colors duration-300 rounded-sm">
-                  <f.icon size={18} className="text-blue-500" />
+            {med.features.map((f, i) => {
+              const Icon = featureIcons[i];
+              return (
+                <div
+                  key={f.title}
+                  className="group p-6 bg-[#0D0D0D] border border-white/[0.05] hover:border-blue-500/30 hover:bg-[#13131A] rounded-sm transition-all duration-500"
+                >
+                  <div className="w-10 h-10 bg-blue-500/10 group-hover:bg-blue-500/20 flex items-center justify-center mb-5 transition-colors duration-300 rounded-sm">
+                    <Icon size={18} className="text-blue-500" />
+                  </div>
+                  <h4 className="text-sm font-black uppercase tracking-tight text-white mb-2 leading-tight">
+                    {f.title}
+                  </h4>
+                  <p className="text-[11px] text-zinc-500 leading-relaxed font-medium">
+                    {f.description}
+                  </p>
                 </div>
-                <h4 className="text-sm font-black uppercase tracking-tight text-white mb-2 leading-tight">
-                  {f.title}
-                </h4>
-                <p className="text-[11px] text-zinc-500 leading-relaxed font-medium">
-                  {f.description}
-                </p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -278,7 +261,7 @@ export const CaseStudyPage = () => {
           <div className="flex items-center gap-3 mb-14">
             <div className="w-6 h-[1px] bg-blue-500" />
             <span className="text-[9px] font-mono font-bold uppercase tracking-[0.45em] text-blue-500">
-              04 // Project Walkthrough
+              {med.s4_label}
             </span>
           </div>
 
@@ -332,10 +315,10 @@ export const CaseStudyPage = () => {
 
               <div className="text-center space-y-2">
                 <p className="text-[10px] font-mono font-bold uppercase tracking-[0.4em] text-blue-500">
-                  Coming Soon
+                  {med.coming_soon}
                 </p>
                 <p className="text-[11px] text-zinc-600 font-medium max-w-xs leading-relaxed">
-                  Project walk-through and logic demonstration is currently under final rendering.
+                  {med.coming_soon_sub}
                 </p>
               </div>
             </div>
@@ -387,23 +370,23 @@ export const CaseStudyPage = () => {
         <div className="max-w-4xl mx-auto text-center relative z-[4]">
           <div>
             <span className="text-[9px] font-mono font-bold uppercase tracking-[0.5em] text-blue-500 block mb-8">
-              Ready to Build?
+              {med.cta_label}
             </span>
             <h2 className="text-4xl md:text-6xl lg:text-[80px] font-black uppercase tracking-[-0.04em] text-white leading-[0.88] mb-6">
-              Implement a
+              {med.cta_title_1}
               <br />
-              Similar{' '}
-              <span className="text-zinc-700">Architecture?</span>
+              {med.cta_title_2}{' '}
+              <span className="text-zinc-700">{med.cta_title_accent}</span>
             </h2>
             <p className="text-sm text-zinc-500 font-medium max-w-lg mx-auto mb-12 leading-relaxed">
-              Ready to implement a similar architecture for your business? Let's discuss the technical requirements and scope of your project.
+              {med.cta_sub}
             </p>
 
             <button
               onClick={() => navigate('/', { state: { scrollToContact: true } })}
               className="group inline-flex items-center gap-4 px-8 py-4 bg-white text-black rounded-full font-black text-[11px] uppercase tracking-[0.2em] hover:bg-blue-600 hover:text-white transition-all duration-300 hover:scale-[1.02]"
             >
-              Submit a Request
+              {med.cta_btn}
               <span className="w-7 h-7 rounded-full bg-black/10 group-hover:bg-white/20 flex items-center justify-center transition-colors">
                 <Send size={12} />
               </span>
