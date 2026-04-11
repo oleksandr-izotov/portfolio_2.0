@@ -46,8 +46,8 @@ export const ImpressumPage = () => {
               Angaben gemäß § 5 TMG
             </h2>
             <p className="mb-1">Oleksandr Izotov</p>
-            <p>[Straße Hausnummer]</p>
-            <p>[PLZ Ort, Deutschland]</p>
+            <p>Schwäbisch Hall</p>
+            <p>Deutschland</p>
           </section>
 
           <section>
