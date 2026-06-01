@@ -1,6 +1,4 @@
 import { useEffect, lazy, Suspense } from 'react';
-import { Analytics } from '@vercel/analytics/react';
-import { SpeedInsights } from '@vercel/speed-insights/react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'motion/react';
 import { Header } from './components/Header';
@@ -56,8 +54,6 @@ const HomePage = () => {
         <Contact />
       </main>
       <Footer />
-      <Analytics />
-      <SpeedInsights />
     </div>
   );
 };
