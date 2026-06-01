@@ -10,7 +10,7 @@ import finalCtaImg from '../assets/ai3-bg.webp';
 import { useLanguage } from '../i18n';
 import { translations } from '../i18n/translations';
 
-const techTags = ['Python', 'LLM API', 'Celery', 'Redis', 'Stripe'];
+const techTags = ['Django', 'HTMX', 'Celery', 'Redis', 'Stripe'];
 const featureIcons = [Brain, Zap, CreditCard];
 
 

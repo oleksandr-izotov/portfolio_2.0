@@ -1,7 +1,7 @@
 import { useLayoutEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { ArrowLeft, Send, Shield, GitBranch, RefreshCcw, Users, ExternalLink, Terminal } from 'lucide-react';
+import { ArrowLeft, Send, Database, GitBranch, RefreshCcw, ShieldCheck, ExternalLink, Terminal } from 'lucide-react';
 import { GrainTexture } from './GrainTexture';
 import { ImageWithFallback } from './ui/ImageWithFallback';
 import heroImg from '../assets/med-bg.webp';
@@ -10,8 +10,11 @@ import finalCtaImg from '../assets/med3-bg.webp';
 import { useLanguage } from '../i18n';
 import { translations } from '../i18n/translations';
 
-const techTags = ['Java 25', 'Spring Boot', 'PostgreSQL', 'Vue 3', 'Redis'];
-const featureIcons = [Shield, GitBranch, RefreshCcw, Users];
+const techTags = ['Kotlin', 'Spring Boot 3', 'SvelteKit', 'PostgreSQL', 'Redis', 'WebAuthn'];
+
+const LIVE_URL = 'https://kliniq.izotov.dev';
+
+const featureIcons = [Database, GitBranch, RefreshCcw, ShieldCheck];
 
 
 export const CaseStudyPage = () => {
@@ -21,7 +24,7 @@ export const CaseStudyPage = () => {
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
     const prev = document.title;
-    document.title = 'Enterprise MedTech System | Oleksandr Izotov';
+    document.title = 'Kliniq — Surgical Scheduling | Oleksandr Izotov';
     return () => { document.title = prev; };
   }, []);
 
@@ -97,10 +100,10 @@ export const CaseStudyPage = () => {
             transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="text-[13vw] md:text-[90px] lg:text-[110px] font-black uppercase tracking-[-0.05em] leading-[0.88] mb-10 [text-shadow:0_4px_30px_rgba(0,0,0,0.9)]"
           >
-            Enterprise
+            Kliniq
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-br from-white via-zinc-300 to-zinc-700">
-              MedTech System
+              Surgical Scheduling
             </span>
           </motion.h1>
 
@@ -119,6 +122,20 @@ export const CaseStudyPage = () => {
               </span>
             ))}
           </motion.div>
+
+          <motion.a
+            href={LIVE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.55 }}
+            className="inline-flex items-center gap-3 mt-8 px-6 py-2.5 bg-blue-500/10 border border-blue-500/30 hover:bg-blue-500/20 hover:border-blue-500/60 rounded-full text-[10px] font-mono font-bold uppercase tracking-[0.3em] text-blue-400 hover:text-white transition-all duration-300"
+          >
+            <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
+            {med.view_live}
+            <ExternalLink size={11} />
+          </motion.a>
         </div>
       </section>
 

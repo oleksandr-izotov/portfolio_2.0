@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight, CheckCircle, Loader, Send } from 'lucide-react';
 import { useLanguage } from '../i18n';
 
-type ContactType = 'private' | 'company';
 type ContactMethod = 'email' | 'whatsapp' | 'telegram';
 type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
 
@@ -11,7 +10,6 @@ interface FormData {
   name: string;
   phone: string;
   email: string;
-  type: ContactType;
   description: string;
   contactMethod: ContactMethod;
 }
@@ -22,7 +20,6 @@ export const ContactForm = () => {
     name: '',
     phone: '',
     email: '',
-    type: 'private',
     description: '',
     contactMethod: 'telegram',
   });
@@ -51,7 +48,7 @@ export const ContactForm = () => {
   const inputClass =
     'w-full bg-transparent border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder:text-zinc-600 focus:outline-none focus:border-blue-500/50 focus:bg-blue-500/[0.03] transition-all duration-200 font-medium';
 
-  const labelClass = 'block text-[8px] font-mono font-bold uppercase tracking-[0.3em] text-zinc-500 mb-1.5';
+  const labelClass = 'block text-[8px] font-mono font-bold uppercase tracking-[0.3em] text-zinc-400 mb-1.5';
 
   const panelClass = "border border-white/[0.08] rounded-2xl bg-white/[0.02] overflow-hidden";
 
@@ -96,7 +93,7 @@ export const ContactForm = () => {
           transition={{ delay: 0.35 }}
           onClick={() => {
             setStatus('idle');
-            setForm({ name: '', phone: '', email: '', type: 'private', description: '', contactMethod: 'telegram' });
+            setForm({ name: '', phone: '', email: '', description: '', contactMethod: 'telegram' });
           }}
           className="mt-2 px-6 py-2.5 border border-white/10 rounded-xl text-[10px] font-mono font-bold uppercase tracking-[0.25em] text-zinc-400 hover:border-blue-500/40 hover:text-white hover:bg-blue-500/5 transition-all duration-200"
         >
@@ -127,11 +124,11 @@ export const ContactForm = () => {
       <div className="flex items-center justify-between px-5 py-3 border-b border-white/[0.06] bg-white/[0.02]">
         <div className="flex items-center gap-2">
           <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-          <span className="text-[9px] font-mono font-bold uppercase tracking-[0.35em] text-zinc-500">
+          <span className="text-[9px] font-mono font-bold uppercase tracking-[0.35em] text-zinc-400">
             {t('form.request_form')}
           </span>
         </div>
-        <span className="text-[8px] font-mono text-zinc-700 uppercase tracking-widest">
+        <span className="text-[8px] font-mono text-zinc-400 uppercase tracking-widest">
           Secure // TLS 1.3
         </span>
       </div>
@@ -140,27 +137,6 @@ export const ContactForm = () => {
         onSubmit={handleSubmit}
         className="flex flex-col gap-5 p-5"
       >
-      {/* Type Toggle */}
-      <div>
-        <span className={labelClass}>{t('form.type')}</span>
-        <div className="flex gap-2">
-          {(['private', 'company'] as ContactType[]).map(type => (
-            <button
-              key={type}
-              type="button"
-              onClick={() => setForm(prev => ({ ...prev, type }))}
-              className={`flex-1 py-2.5 px-4 text-[10px] font-mono font-bold uppercase tracking-[0.25em] rounded-lg border transition-all duration-200 ${
-                form.type === type
-                  ? 'border-blue-500/60 bg-blue-500/10 text-blue-400'
-                  : 'border-white/10 text-zinc-500 hover:border-white/20 hover:text-zinc-400'
-              }`}
-            >
-              {type === 'private' ? t('form.private') : t('form.company')}
-            </button>
-          ))}
-        </div>
-      </div>
-
       {/* Name + Phone */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
@@ -228,7 +204,7 @@ export const ContactForm = () => {
               className={`flex-1 py-2.5 px-2 text-[9px] font-mono font-bold uppercase tracking-[0.2em] rounded-lg border transition-all duration-200 ${
                 form.contactMethod === m
                   ? 'border-blue-500/60 bg-blue-500/10 text-blue-400'
-                  : 'border-white/10 text-zinc-500 hover:border-white/20 hover:text-zinc-400'
+                  : 'border-white/10 text-zinc-400 hover:border-white/20 hover:text-zinc-300'
               }`}
             >
               {m}
@@ -239,7 +215,7 @@ export const ContactForm = () => {
 
       {/* Submit */}
       <div className="flex items-center justify-between pt-1">
-        <span className="text-[8px] font-mono text-zinc-600 uppercase tracking-widest">
+        <span className="text-[8px] font-mono text-zinc-400 uppercase tracking-widest">
           {t('form.required')}
         </span>
         <motion.button

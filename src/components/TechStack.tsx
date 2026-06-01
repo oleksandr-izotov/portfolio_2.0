@@ -21,7 +21,7 @@ const TechDrum = ({ label, items, duration, reverse = false }: { label: string, 
     <div className="flex flex-col gap-4 flex-1 min-w-[200px]" ref={ref}>
       <div className="flex items-center gap-2 px-2">
         <div className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse" />
-        <span className="text-[10px] font-mono font-bold uppercase tracking-[0.3em] text-gray-400 dark:text-zinc-500">
+        <span className="text-[10px] font-mono font-bold uppercase tracking-[0.3em] text-gray-400 dark:text-zinc-400">
           {label}
         </span>
       </div>
@@ -66,7 +66,7 @@ const TechDrum = ({ label, items, duration, reverse = false }: { label: string, 
       </div>
 
       <div className="flex justify-between px-2">
-         <span className="text-[8px] font-mono text-gray-300 dark:text-zinc-800 uppercase tracking-widest">Async Rotation</span>
+         <span className="text-[8px] font-mono text-gray-300 dark:text-zinc-400 uppercase tracking-widest">Async Rotation</span>
          <span className="text-[8px] font-mono text-blue-500 uppercase tracking-widest font-bold">Active</span>
       </div>
     </div>
@@ -93,7 +93,7 @@ export const TechStack = () => {
         <div className="flex gap-1">
           {[1, 2, 3].map(i => <div key={i} className="w-1 h-1 bg-blue-500 rounded-full" />)}
         </div>
-        <div className="text-[9px] font-mono text-gray-300 dark:text-zinc-800 uppercase tracking-[0.5em]">Section_02 // Stack</div>
+        <div className="text-[9px] font-mono text-gray-300 dark:text-zinc-400 uppercase tracking-[0.5em]">Section_02 // Stack</div>
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
@@ -109,7 +109,7 @@ export const TechStack = () => {
             <div className="h-[1px] w-8 bg-blue-500" />
           </div>
           <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter dark:text-white leading-none relative z-10">
-            {t('techstack.heading')} <span style={{ color: '#27272a' }}>{t('techstack.heading_accent')}</span>
+            {t('techstack.heading')} <span style={{ color: '#6b6b70' }}>{t('techstack.heading_accent')}</span>
           </h2>
         </div>
 

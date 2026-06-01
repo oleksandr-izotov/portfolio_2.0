@@ -115,9 +115,9 @@ export const Header = () => {
 
           {/* Right: Metadata & Socials (Desktop) */}
           <div className="hidden md:flex items-center gap-8 z-10">
-            <div className="hidden lg:flex items-center gap-3 text-[10px] font-mono text-zinc-600 uppercase tracking-widest">
+            <div className="hidden lg:flex items-center gap-3 text-[10px] font-mono text-zinc-400 uppercase tracking-widest">
               <span>Stuttgart</span>
-              <span className="text-zinc-800">/</span>
+              <span className="text-zinc-500">/</span>
               <span className="tabular-nums">{time || '00:00:00'}</span>
             </div>
 

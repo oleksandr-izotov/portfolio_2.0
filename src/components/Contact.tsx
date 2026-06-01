@@ -40,15 +40,15 @@ export const Contact = () => {
           <div className="hidden md:flex gap-10">
             <div className="flex flex-col">
               <span className="text-[8px] font-mono text-gray-400 uppercase tracking-widest mb-0.5">{t('contact.location_label')}</span>
-              <span className="text-[9px] font-bold dark:text-zinc-500 uppercase tracking-wider">48.7758° N, 9.1829° E</span>
+              <span className="text-[9px] font-bold dark:text-zinc-400 uppercase tracking-wider">48.7758° N, 9.1829° E</span>
             </div>
             <div className="flex flex-col">
               <span className="text-[8px] font-mono text-gray-400 uppercase tracking-widest mb-0.5">{t('contact.protocol_label')}</span>
-              <span className="text-[9px] font-bold dark:text-zinc-500 uppercase tracking-wider">Secure_Transport // TLS 1.3</span>
+              <span className="text-[9px] font-bold dark:text-zinc-400 uppercase tracking-wider">Secure_Transport // TLS 1.3</span>
             </div>
             <div className="flex flex-col">
               <span className="text-[8px] font-mono text-gray-400 uppercase tracking-widest mb-0.5">{t('contact.deployment_label')}</span>
-              <span className="text-[9px] font-bold dark:text-zinc-500 uppercase tracking-wider">Cloud_Edge // Vercel</span>
+              <span className="text-[9px] font-bold dark:text-zinc-400 uppercase tracking-wider">Self_Hosted // EU</span>
             </div>
           </div>
         </div>
@@ -63,7 +63,7 @@ export const Contact = () => {
             <div>
               <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.9] dark:text-white mb-8">
                 {t('contact.title_line1')} <br />
-                <span style={{ color: '#27272a' }}>{t('contact.title_line2')}</span>
+                <span style={{ color: '#6b6b70' }}>{t('contact.title_line2')}</span>
               </h2>
               <p className="max-w-md text-sm text-gray-500 dark:text-zinc-400 font-medium leading-relaxed">
                 {t('contact.subtitle')}

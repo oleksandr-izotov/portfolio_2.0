@@ -26,12 +26,12 @@ export const SystemPulse: React.FC = () => {
       <div className="flex items-center justify-between px-5 py-3 border-b border-white/[0.06] bg-white/[0.02]">
         <div className="flex items-center gap-2">
           <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-          <span className="text-[9px] font-mono font-bold uppercase tracking-[0.35em] text-zinc-500">
+          <span className="text-[9px] font-mono font-bold uppercase tracking-[0.35em] text-zinc-400">
             System_Pulse
           </span>
         </div>
         <span
-          className="text-[8px] font-mono uppercase tracking-widest text-red-400"
+          className="text-[8px] font-mono uppercase tracking-widest text-red-300"
           style={{ animation: 'metric-blink 1.4s ease-in-out infinite' }}
         >
           ● Live
@@ -130,7 +130,7 @@ export const SystemPulse: React.FC = () => {
             key={label}
             className={`flex flex-col gap-1 px-4 py-3 ${i < 3 ? 'border-r border-white/[0.05]' : ''}`}
           >
-            <span className="text-[7px] font-mono uppercase tracking-[0.25em] text-zinc-600">
+            <span className="text-[7px] font-mono uppercase tracking-[0.25em] text-zinc-400">
               {label}
             </span>
             <span className="text-[12px] font-mono font-bold" style={{ color }}>

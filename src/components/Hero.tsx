@@ -103,7 +103,7 @@ export const Hero = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.9, duration: 1.2 }}
-              className="text-[9px] font-mono uppercase tracking-[0.55em] text-zinc-500 dark:text-zinc-600 transition-all duration-700 group-hover:opacity-0 select-none"
+              className="text-[9px] font-mono uppercase tracking-[0.55em] text-zinc-500 dark:text-zinc-400 transition-all duration-700 group-hover:opacity-0 select-none"
             >
               Oleksandr Izotov — Stuttgart, DE
             </motion.p>
@@ -159,7 +159,7 @@ export const Hero = () => {
              <div className="absolute inset-0 bg-blue-600 translate-y-[101%] group-hover:translate-y-0 transition-transform duration-500 ease-[0.19,1,0.22,1]" />
              
              <div className="relative z-10 flex flex-col items-start">
-                <span className="text-[7px] font-mono font-bold uppercase tracking-[0.3em] text-blue-500 mb-0.5 group-hover:text-white/70 transition-colors italic">{t('hero.btn_primary_top')}</span>
+                <span className="text-[7px] font-mono font-bold uppercase tracking-[0.3em] text-blue-700 mb-0.5 group-hover:text-white/70 transition-colors italic">{t('hero.btn_primary_top')}</span>
                 <span className="text-[10px] font-black uppercase tracking-[0.15em] text-white dark:text-zinc-950 group-hover:text-white transition-colors">{t('hero.btn_primary')}</span>
              </div>
              

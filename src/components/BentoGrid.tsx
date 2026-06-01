@@ -24,14 +24,14 @@ const TimelineItem = ({ title, subtitle, date, type, current = false }: { title:
     </div>
     <div className="transition-transform group-hover/time:translate-x-1 duration-300">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-1 mb-1">
-        <h4 className={`text-sm font-bold uppercase tracking-tight ${current ? 'text-blue-500 dark:text-blue-400' : 'dark:text-white'}`}>
+        <h3 className={`text-sm font-bold uppercase tracking-tight ${current ? 'text-blue-500 dark:text-blue-400' : 'dark:text-white'}`}>
           {title}
-        </h4>
-        <span className="text-[9px] md:text-[10px] font-mono text-gray-400 dark:text-gray-500 uppercase tracking-widest bg-gray-50 dark:bg-white/5 px-2 py-0.5 rounded-full self-start">
+        </h3>
+        <span className="text-[9px] md:text-[10px] font-mono text-gray-400 dark:text-gray-400 uppercase tracking-widest bg-gray-50 dark:bg-white/5 px-2 py-0.5 rounded-full self-start">
           {date}
         </span>
       </div>
-      <p className="text-xs text-gray-500 dark:text-zinc-500 uppercase tracking-wide font-bold">{subtitle}</p>
+      <p className="text-xs text-gray-500 dark:text-zinc-400 uppercase tracking-wide font-bold">{subtitle}</p>
     </div>
   </div>
 );
@@ -46,7 +46,7 @@ export const BentoGrid = () => {
         <div className="flex gap-1">
           {[1, 2, 3].map(i => <div key={i} className="w-1 h-1 bg-blue-500 rounded-full" />)}
         </div>
-        <div className="text-[9px] font-mono text-gray-300 dark:text-zinc-800 uppercase tracking-[0.5em]">Section_01 // Identity</div>
+        <div className="text-[9px] font-mono text-gray-300 dark:text-zinc-400 uppercase tracking-[0.5em]">Section_01 // Identity</div>
       </div>
 
       <div className="mb-8 md:mb-12">
@@ -55,7 +55,7 @@ export const BentoGrid = () => {
            <span className="text-[9px] md:text-[10px] font-mono font-bold uppercase tracking-[0.4em] text-blue-500">{t('bento.section_label')}</span>
         </div>
         <h2 className="text-4xl md:text-5xl lg:text-7xl font-black uppercase tracking-tighter dark:text-white leading-[0.9] md:leading-[0.85]">
-          {t('bento.heading')} <span style={{ color: '#27272a' }}>{t('bento.heading_accent')}</span>
+          {t('bento.heading')} <span style={{ color: '#6b6b70' }}>{t('bento.heading_accent')}</span>
         </h2>
       </div>
 
@@ -66,7 +66,7 @@ export const BentoGrid = () => {
           <BentoBox className="h-full">
             <div className="flex flex-col md:flex-row justify-between items-start mb-8 md:mb-12 gap-4 md:gap-0">
                <div>
-                  <h3 className="text-[10px] font-mono font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-2">{t('bento.journey_label')}</h3>
+                  <h3 className="text-[10px] font-mono font-bold uppercase tracking-widest text-gray-400 dark:text-gray-400 mb-2">{t('bento.journey_label')}</h3>
                   <h2 className="text-xl md:text-3xl font-black uppercase tracking-tight dark:text-white leading-none">{t('bento.journey_title')}</h2>
                </div>
                <div className="flex items-center gap-2 px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded-full">
@@ -130,7 +130,7 @@ export const BentoGrid = () => {
                  <Code2 className="text-blue-600 dark:text-blue-400" size={20} />
               </div>
               <div>
-                 <p className="text-[9px] md:text-[10px] font-mono font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-2">{t('bento.method_label')}</p>
+                 <p className="text-[9px] md:text-[10px] font-mono font-bold uppercase tracking-widest text-gray-400 dark:text-gray-400 mb-2">{t('bento.method_label')}</p>
                  <h4 className="text-lg md:text-xl font-black uppercase tracking-tight dark:text-white leading-tight">{t('bento.method_title')}</h4>
               </div>
            </BentoBox>
@@ -143,7 +143,7 @@ export const BentoGrid = () => {
                 <span className="text-5xl md:text-6xl font-black text-blue-600 dark:text-blue-400 tracking-tighter">100%</span>
               </div>
               <div>
-                 <p className="text-[9px] md:text-[10px] font-mono font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-2">{t('bento.delivery_label')}</p>
+                 <p className="text-[9px] md:text-[10px] font-mono font-bold uppercase tracking-widest text-gray-400 dark:text-gray-400 mb-2">{t('bento.delivery_label')}</p>
                  <h4 className="text-lg md:text-xl font-black uppercase tracking-tight dark:text-white leading-tight">{t('bento.delivery_title')}</h4>
               </div>
            </BentoBox>

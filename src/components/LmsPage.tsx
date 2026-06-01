@@ -10,7 +10,9 @@ import finalCtaImg from '../assets/lms1.webp';
 import { useLanguage } from '../i18n';
 import { translations } from '../i18n/translations';
 
-const techTags = ['React', 'Supabase', 'PostgreSQL', 'TailwindCSS', 'Role-Based Access'];
+const techTags = ['Java 25', 'Spring Boot 3', 'React', 'PostgreSQL', 'MinIO', 'JWT Auth'];
+
+const LIVE_URL = 'https://cp-binom.ru';
 
 const featureIcons = [ShieldCheck, Database, Workflow];
 
@@ -22,7 +24,7 @@ export const LmsPage = () => {
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
     const prev = document.title;
-    document.title = 'Corporate LMS Platform | Oleksandr Izotov';
+    document.title = 'cp-binom — EdTech Platform | Oleksandr Izotov';
     return () => { document.title = prev; };
   }, []);
 
@@ -97,10 +99,10 @@ export const LmsPage = () => {
             transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="text-[13vw] md:text-[90px] lg:text-[110px] font-black uppercase tracking-[-0.05em] leading-[0.88] mb-10 [text-shadow:0_4px_30px_rgba(0,0,0,0.9)]"
           >
-            Corporate
+            cp-binom
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-br from-white via-zinc-300 to-zinc-700">
-              LMS Platform
+              EdTech Platform
             </span>
           </motion.h1>
 
@@ -119,6 +121,20 @@ export const LmsPage = () => {
               </span>
             ))}
           </motion.div>
+
+          <motion.a
+            href={LIVE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.55 }}
+            className="inline-flex items-center gap-3 mt-8 px-6 py-2.5 bg-blue-500/10 border border-blue-500/30 hover:bg-blue-500/20 hover:border-blue-500/60 rounded-full text-[10px] font-mono font-bold uppercase tracking-[0.3em] text-blue-400 hover:text-white transition-all duration-300"
+          >
+            <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
+            {lms.view_live}
+            <ExternalLink size={11} />
+          </motion.a>
         </div>
       </section>
 

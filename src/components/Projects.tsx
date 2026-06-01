@@ -13,7 +13,7 @@ export const Projects = () => {
         <div className="flex gap-1">
           {[1, 2, 3].map(i => <div key={i} className="w-1 h-1 bg-blue-500 rounded-full" />)}
         </div>
-        <div className="text-[9px] font-mono text-gray-300 dark:text-zinc-800 uppercase tracking-[0.5em]">Section_03 // Portfolio</div>
+        <div className="text-[9px] font-mono text-gray-300 dark:text-zinc-400 uppercase tracking-[0.5em]">Section_03 // Portfolio</div>
       </div>
 
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-8">
@@ -23,7 +23,7 @@ export const Projects = () => {
              <span className="text-[10px] font-mono font-bold uppercase tracking-[0.4em] text-blue-500">{t('projects.section_label')}</span>
           </div>
           <h2 className="text-6xl md:text-8xl font-black uppercase tracking-tighter dark:text-white leading-[0.85]">
-            Proj<span className="text-gray-200 dark:text-zinc-800">{t('projects.heading_accent')}</span>
+            Proj<span className="text-gray-200 dark:text-[#6b6b70]">{t('projects.heading_accent')}</span>
           </h2>
         </div>
         <div className="max-w-xs space-y-4">
@@ -32,7 +32,7 @@ export const Projects = () => {
               <div className="w-1 h-1 bg-blue-500/50" />
               <div className="w-1 h-1 bg-blue-500/20" />
            </div>
-           <p className="text-[11px] font-mono text-gray-500 dark:text-zinc-500 uppercase tracking-widest leading-relaxed">
+           <p className="text-[11px] font-mono text-gray-500 dark:text-zinc-400 uppercase tracking-widest leading-relaxed">
              {t('projects.description')}
            </p>
         </div>

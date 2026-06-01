@@ -65,20 +65,20 @@ export const ProjectCard = ({ project, index, builtWith = 'Built With', locked =
               {isLocked ? (
                 <div className="flex flex-col items-center justify-center h-full space-y-2">
                   <Lock size={32} className="text-zinc-700 dark:text-zinc-600 mb-2" />
-                  <h4 className="text-xl font-black uppercase tracking-widest text-zinc-500">{locked}</h4>
+                  <h3 className="text-xl font-black uppercase tracking-widest text-zinc-500">{locked}</h3>
                   <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.2em] bg-zinc-500/10 px-2 py-1 rounded-full border border-zinc-500/20">
                     {inDevelopment}
                   </span>
                 </div>
               ) : (
                 <>
-                  <motion.h4
+                  <motion.h3
                     initial={{ opacity: 0, x: -10 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     className="text-2xl font-black uppercase tracking-tighter dark:text-white mb-3"
                   >
                     {project.title}
-                  </motion.h4>
+                  </motion.h3>
                   <motion.p
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}

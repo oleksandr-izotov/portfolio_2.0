@@ -2,16 +2,20 @@ import { useLayoutEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import { GrainTexture } from './GrainTexture';
+import { useLanguage } from '../i18n';
+import { translations } from '../i18n/translations';
 
 export const ImpressumPage = () => {
   const navigate = useNavigate();
+  const { lang } = useLanguage();
+  const t = translations[lang].impressum;
 
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
     const prev = document.title;
-    document.title = 'Impressum | Oleksandr Izotov';
+    document.title = `${t.title} | Oleksandr Izotov`;
     return () => { document.title = prev; };
-  }, []);
+  }, [t.title]);
 
   return (
     <div className="min-h-screen bg-black text-white relative overflow-x-hidden">
@@ -25,7 +29,7 @@ export const ImpressumPage = () => {
             className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors group"
           >
             <ArrowLeft size={14} className="group-hover:-translate-x-0.5 transition-transform duration-200" />
-            <span className="text-[10px] font-bold uppercase tracking-[0.2em]">Back</span>
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em]">{t.back}</span>
           </button>
         </div>
       </nav>
@@ -33,61 +37,50 @@ export const ImpressumPage = () => {
       {/* CONTENT */}
       <div className="max-w-3xl mx-auto px-6 pt-32 pb-24 relative z-10">
         <p className="text-[10px] font-mono font-bold uppercase tracking-[0.4em] text-blue-500 mb-6">
-          Legal Notice // § 5 TMG
+          {t.label}
         </p>
 
         <h1 className="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-12">
-          Impressum
+          {t.title}
         </h1>
 
         <div className="space-y-8 text-[13px] font-mono text-zinc-400 leading-relaxed">
           <section>
             <h2 className="text-[11px] font-bold uppercase tracking-[0.3em] text-white mb-3">
-              Angaben gemäß § 5 TMG
+              {t.intro_label}
             </h2>
-            <p className="mb-1">Oleksandr Izotov</p>
-            <p>Schwäbisch Hall</p>
-            <p>Deutschland</p>
+            <p>{t.intro_text}</p>
           </section>
 
           <section>
             <h2 className="text-[11px] font-bold uppercase tracking-[0.3em] text-white mb-3">
-              Kontakt
+              {t.contact_label}
             </h2>
-            <p>Telefon: +4915172447262</p>
-            <p>E-Mail: izotovoleksandr05@gmail.com</p>
+            <p className="mb-1">{t.name}</p>
+            <p className="mb-3">{t.city}</p>
+            <p className="mb-1"><span className="text-zinc-600">{t.email_label}: </span><a href={`mailto:${t.email}`} className="hover:text-blue-400 transition-colors">{t.email}</a></p>
+            <p><span className="text-zinc-600">{t.phone_label}: </span>{t.phone}</p>
           </section>
 
           <section>
             <h2 className="text-[11px] font-bold uppercase tracking-[0.3em] text-white mb-3">
-              Umsatzsteuer-ID
+              {t.responsible_label}
             </h2>
-            <p>Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz: comming soon...</p>
+            <p>{t.responsible_text}</p>
           </section>
 
           <section>
             <h2 className="text-[11px] font-bold uppercase tracking-[0.3em] text-white mb-3">
-              Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV
+              {t.liability_label}
             </h2>
-            <p>Oleksandr Izotov</p>
-            <p>Schwäbisch Hall</p>
+            <p>{t.liability_text}</p>
           </section>
 
           <section>
             <h2 className="text-[11px] font-bold uppercase tracking-[0.3em] text-white mb-3">
-              Haftungsausschluss
+              {t.links_label}
             </h2>
-            <p className="mb-3">
-              Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit,
-              Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen.
-            </p>
-            <p className="mb-3">
-              Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten
-              nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als
-              Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde
-              Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige
-              Tätigkeit hinweisen.
-            </p>
+            <p>{t.links_text}</p>
           </section>
         </div>
       </div>

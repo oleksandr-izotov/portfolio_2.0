@@ -11,7 +11,7 @@ export const Footer = () => {
         {/* Simple minimal stamp */}
         <div className="flex items-center gap-3">
           <div className="w-1.5 h-1.5 bg-blue-600 rounded-full animate-pulse" />
-          <span className="text-[10px] font-mono text-gray-400 dark:text-zinc-500 uppercase tracking-[0.2em]">
+          <span className="text-[10px] font-mono text-gray-400 dark:text-zinc-400 uppercase tracking-[0.2em]">
             System Online // Stuttgart, DE
           </span>
         </div>
@@ -22,15 +22,15 @@ export const Footer = () => {
             Oleksandr Izotov
           </span>
           <span className="mx-3 text-gray-300 dark:text-zinc-800">/</span>
-          <span className="text-[10px] font-mono text-gray-400 dark:text-zinc-600 tracking-widest">
+          <span className="text-[10px] font-mono text-gray-400 dark:text-zinc-400 tracking-widest">
             © {currentYear} All Rights Reserved
           </span>
           <span className="mx-2 text-gray-300 dark:text-zinc-800 hidden md:inline">/</span>
           <div className="flex items-center gap-4">
-            <Link to="/impressum" className="text-[9px] font-mono text-gray-400 dark:text-zinc-600 uppercase tracking-widest hover:text-blue-500 transition-colors">
+            <Link to="/impressum" className="text-[9px] font-mono text-gray-400 dark:text-zinc-400 uppercase tracking-widest hover:text-blue-500 transition-colors">
               Impressum
             </Link>
-            <Link to="/datenschutz" className="text-[9px] font-mono text-gray-400 dark:text-zinc-600 uppercase tracking-widest hover:text-blue-500 transition-colors">
+            <Link to="/datenschutz" className="text-[9px] font-mono text-gray-400 dark:text-zinc-400 uppercase tracking-widest hover:text-blue-500 transition-colors">
               Datenschutz
             </Link>
           </div>
@@ -38,7 +38,7 @@ export const Footer = () => {
 
         {/* Blueprint version / Technical info */}
         <div className="hidden md:block">
-          <span className="text-[9px] font-mono text-gray-300 dark:text-zinc-800 uppercase tracking-[0.4em]">
+          <span className="text-[9px] font-mono text-gray-300 dark:text-zinc-400 uppercase tracking-[0.4em]">
             v1.0.4_stable
           </span>
         </div>
