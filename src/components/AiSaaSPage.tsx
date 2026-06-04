@@ -13,6 +13,8 @@ import { translations } from '../i18n/translations';
 const techTags = ['Django', 'HTMX', 'Celery', 'Redis', 'Stripe'];
 const featureIcons = [Brain, Zap, CreditCard];
 
+const LIVE_URL = 'https://studyai.izotov.dev';
+
 
 export const AiSaaSPage = () => {
   const navigate = useNavigate();
@@ -118,6 +120,20 @@ export const AiSaaSPage = () => {
               </span>
             ))}
           </motion.div>
+
+          <motion.a
+            href={LIVE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.55 }}
+            className="inline-flex items-center gap-3 mt-8 px-6 py-2.5 bg-blue-500/10 border border-blue-500/30 hover:bg-blue-500/20 hover:border-blue-500/60 rounded-full text-[10px] font-mono font-bold uppercase tracking-[0.3em] text-blue-400 hover:text-white transition-all duration-300"
+          >
+            <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
+            {ai.view_live}
+            <ExternalLink size={11} />
+          </motion.a>
         </div>
       </section>
 
