@@ -56,9 +56,13 @@ function json(res, status, obj) {
 }
 
 function getIP(req) {
-  // nginx sets X-Forwarded-For with the real client (CF-Connecting-IP upstream).
-  const fwd = req.headers['x-forwarded-for'];
-  if (fwd) return fwd.split(',')[0].trim();
+  // X-Forwarded-For is NOT usable here: nginx appends to whatever the client
+  // sent, so its first entry is attacker-controlled and the rate limit could be
+  // sidestepped by sending a fresh fake IP with every request. X-Real-IP is set
+  // by nginx itself from $remote_addr (Cloudflare's CF-Connecting-IP, once
+  // set_real_ip_from trusts the CF ranges) and cannot be spoofed from outside.
+  const real = req.headers['x-real-ip'];
+  if (typeof real === 'string' && real.trim()) return real.trim();
   return req.socket.remoteAddress || 'unknown';
 }
 
@@ -96,8 +100,22 @@ async function handleContact(req, res) {
 
   const { name, phone, email, type, description, contactMethod } = body || {};
 
-  if (!name || !email || !description) {
-    return json(res, 400, { error: 'Missing required fields' });
+  // Honeypot: the form ships a field no human sees. Anything that fills it is a
+  // bot — answer 200 so it has no signal to retry, and send nothing to Telegram.
+  if (body && typeof body.company_website === 'string' && body.company_website.trim() !== '') {
+    console.log('contact: honeypot triggered, dropping submission');
+    return json(res, 200, { success: true });
+  }
+
+  // Everything below indexes .length and interpolates into a message; anything
+  // that is not a string (arrays, objects, numbers) has no business here.
+  for (const [key, value] of Object.entries({ name, email, description })) {
+    if (typeof value !== 'string' || value.trim() === '') {
+      return json(res, 400, { error: `Field "${key}" must be a non-empty string` });
+    }
+  }
+  if (phone !== undefined && phone !== null && typeof phone !== 'string') {
+    return json(res, 400, { error: 'Field "phone" must be a string' });
   }
   if (name.length > FIELD_LIMITS.name) {
     return json(res, 400, { error: `Name must be ${FIELD_LIMITS.name} characters or less` });
@@ -123,34 +141,44 @@ async function handleContact(req, res) {
     : contactMethod === 'whatsapp' ? '📱 WhatsApp'
     : '📧 Email';
 
+  // The markers below are the MarkdownV2 formatting syntax and must stay
+  // unescaped; every interpolated value goes through escapeMarkdown(). They
+  // used to be written as \\* and \\_, which Telegram renders as literal
+  // asterisks and underscores — the labels arrived starred instead of bold.
   const text = [
-    `🚀 \\*New Request from Portfolio\\*`,
+    `🚀 *New Request from Portfolio*`,
     ``,
     `${escapeMarkdown(typeLabel)}`,
-    `👤 \\*Name:\\* ${escapeMarkdown(name)}`,
-    `📱 \\*Phone:\\* ${escapeMarkdown(phone || '—')}`,
-    `📧 \\*Email:\\* ${escapeMarkdown(email)}`,
+    `👤 *Name:* ${escapeMarkdown(name)}`,
+    `📱 *Phone:* ${escapeMarkdown(phone || '—')}`,
+    `📧 *Email:* ${escapeMarkdown(email)}`,
     ``,
-    `📝 \\*Task:\\*`,
+    `📝 *Task:*`,
     `${escapeMarkdown(description)}`,
     ``,
-    `💬 \\*Preferred Contact:\\* ${escapeMarkdown(methodLabel)}`,
+    `💬 *Preferred Contact:* ${escapeMarkdown(methodLabel)}`,
     ``,
-    `\\_Sent via portfolio contact form\\_`,
+    `_Sent via portfolio contact form_`,
   ].join('\n');
 
   try {
+    // Without a deadline a hung Telegram connection would hold the nginx worker
+    // until its own 15s proxy_read_timeout fires.
     const tgRes = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ chat_id: CHAT_ID, text, parse_mode: 'MarkdownV2' }),
+      signal: AbortSignal.timeout(10_000),
     });
     if (!tgRes.ok) {
-      console.error('Telegram error:', await tgRes.text());
+      // Only the status: Telegram's error bodies can echo back the request.
+      console.error('Telegram rejected the message, HTTP', tgRes.status);
       return json(res, 500, { error: 'Failed to send' });
     }
   } catch (err) {
-    console.error('Telegram fetch failed:', err);
+    // Never log the error object itself — a fetch failure carries the request
+    // URL, and that URL contains the bot token.
+    console.error('Telegram request failed:', err?.name || 'Error');
     return json(res, 500, { error: 'Failed to send' });
   }
 
