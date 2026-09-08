@@ -1,0 +1,16 @@
+# Normalise line endings in the repository, checkout native on each platform.
+# Without this, editing on Windows commits CRLF and every later diff looks like
+# the whole file changed.
+* text=auto eol=lf
+
+# Binary assets: never touch, and do not try to diff them as text.
+*.webp binary
+*.png  binary
+*.ico  binary
+*.mp4  binary
+*.webm binary
+*.woff binary
+*.woff2 binary
+
+# Generated: collapse in pull request diffs.
+package-lock.json linguist-generated=true
