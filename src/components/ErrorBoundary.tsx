@@ -1,4 +1,4 @@
-import { Component, type ReactNode } from 'react';
+import { Component, type ErrorInfo, type ReactNode } from 'react';
 
 interface Props { children: ReactNode }
 interface State { hasError: boolean }
@@ -8,6 +8,12 @@ export class ErrorBoundary extends Component<Props, State> {
 
   static getDerivedStateFromError(): State {
     return { hasError: true };
+  }
+
+  // Without this the crash is swallowed: the visitor sees the fallback and the
+  // stack never reaches the console, which makes a bug report unactionable.
+  componentDidCatch(error: Error, info: ErrorInfo) {
+    console.error('Unhandled UI error:', error, info.componentStack);
   }
 
   render() {

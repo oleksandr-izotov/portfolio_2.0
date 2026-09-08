@@ -45,8 +45,9 @@ export const ProjectCard = ({ project, index, builtWith = 'Built With', locked =
           <div className="absolute inset-0 opacity-0 group-hover:opacity-10 pointer-events-none bg-[linear-gradient(to_right,#3b82f6_1px,transparent_1px),linear-gradient(to_bottom,#3b82f6_1px,transparent_1px)] bg-[size:10px_10px] transition-opacity duration-700" />
         )}
 
-        {/* Advanced Hover Content */}
-        <div className="absolute inset-0 z-20 opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-6 md:p-8">
+        {/* Hover detail — pointer devices only. Touch users get the same copy
+            below the card, where it does not depend on a hover state. */}
+        <div className="absolute inset-0 z-20 opacity-0 group-hover:opacity-100 transition-all duration-500 hidden md:flex flex-col justify-end p-6 md:p-8">
           {/* Blurred backdrop for readability */}
           <div className={`absolute inset-0 bg-white/90 dark:bg-black/95 backdrop-blur-md translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out ${isLocked ? 'dark:bg-black/90' : ''}`} />
 
@@ -120,6 +121,25 @@ export const ProjectCard = ({ project, index, builtWith = 'Built With', locked =
           </div>
         </div>
       </div>
+
+      {/* Touch-friendly detail: on md+ this lives in the hover overlay above. */}
+      {!isLocked && (
+        <div className="md:hidden mt-5 flex flex-col gap-3">
+          <p className="text-[13px] leading-relaxed text-gray-600 dark:text-zinc-400 font-medium">
+            {project.description}
+          </p>
+          <div className="flex flex-wrap gap-1.5">
+            {project.stack.map((tech) => (
+              <span
+                key={tech}
+                className="px-2 py-0.5 bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-[9px] font-mono uppercase tracking-wider dark:text-zinc-300"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Footer Info */}
       <div className="mt-6 flex justify-between items-end">

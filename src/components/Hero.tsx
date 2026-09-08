@@ -15,30 +15,39 @@ const Marquee = ({ items }: { items: string[] }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { margin: "100px" });
 
+  // Two identical copies scrolled by exactly -50% loop seamlessly whatever the
+  // text width is. The previous version animated to a hard-coded -1500px, which
+  // only lined up for the English strings — German and Russian are longer and
+  // showed a visible jump on every cycle.
+  const strip = (
+    <div className="flex items-center shrink-0" aria-hidden={undefined}>
+      {items.map((item) => (
+        <MarqueeItem key={item}>
+          <span className="text-[10px] font-mono font-medium text-gray-500 dark:text-zinc-400 uppercase tracking-[0.4em]">
+            {item}
+          </span>
+        </MarqueeItem>
+      ))}
+    </div>
+  );
+
   return (
     <div ref={ref} className="relative w-full overflow-hidden py-6 bg-transparent border-t border-gray-100 dark:border-white/5">
-      <motion.div
-        className="flex whitespace-nowrap"
-        animate={isInView ? { x: [0, -1500] } : undefined}
-        transition={{
-          duration: 30,
-          repeat: Infinity,
-          ease: "linear"
-        }}
-        style={{ willChange: 'transform' }}
+      <div
+        className="flex w-max whitespace-nowrap marquee-track"
+        style={{ animationPlayState: isInView ? 'running' : 'paused' }}
       >
-        {[1, 2, 3, 4, 5, 6].map((i) => (
-          <div key={i} className="flex items-center">
-            {items.map((item) => (
-              <MarqueeItem key={item}>
-                <span className="text-[10px] font-mono font-medium text-gray-400 dark:text-zinc-600 uppercase tracking-[0.4em]">
-                  {item}
-                </span>
-              </MarqueeItem>
-            ))}
-          </div>
-        ))}
-      </motion.div>
+        {strip}
+        <div aria-hidden="true" className="flex items-center shrink-0">
+          {items.map((item) => (
+            <MarqueeItem key={`dup-${item}`}>
+              <span className="text-[10px] font-mono font-medium text-gray-500 dark:text-zinc-400 uppercase tracking-[0.4em]">
+                {item}
+              </span>
+            </MarqueeItem>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
@@ -78,7 +87,7 @@ export const Hero = () => {
         >
           <div className="px-4 py-1.5 rounded-full border border-gray-100 dark:border-white/10 flex items-center gap-2 backdrop-blur-md">
             <div className="w-1.5 h-1.5 bg-blue-600 rounded-full animate-pulse" />
-            <span className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-gray-500">{t('hero.badge')}</span>
+            <span className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-gray-600 dark:text-zinc-300">{t('hero.badge')}</span>
           </div>
         </motion.div>
 
@@ -202,11 +211,13 @@ export const Hero = () => {
         ]} />
       </div>
 
-      {/* Decorative Blueprint Corner */}
-      <div className="absolute top-0 right-0 p-8 hidden lg:block opacity-20">
-         <div className="flex flex-col items-end gap-2 border-r-2 border-t-2 border-blue-600 pr-4 pt-4">
-            <span className="text-[10px] font-mono font-black text-blue-600">STG-2026</span>
-            <Sparkles size={12} className="text-blue-600" />
+      {/* Decorative blueprint corner. The frame stays faint, but the label itself
+          carries text and has to clear WCAG AA — at the old opacity-20 over blue-600
+          it rendered as #041332 on black, a contrast ratio of 1.14. */}
+      <div className="absolute top-0 right-0 p-8 hidden lg:block">
+         <div className="flex flex-col items-end gap-2 border-r-2 border-t-2 border-blue-600/20 pr-4 pt-4">
+            <span className="text-[10px] font-mono font-black text-blue-300/80">STG-2026</span>
+            <Sparkles aria-hidden="true" size={12} className="text-blue-600/30" />
          </div>
       </div>
 

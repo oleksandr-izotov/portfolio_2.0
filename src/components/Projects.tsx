@@ -5,7 +5,15 @@ import { translations } from '../i18n/translations';
 
 export const Projects = () => {
   const { lang, t } = useLanguage();
+  // Translated copy is matched to projects by position. Guard it in dev so a
+  // future project added to only one of the two lists is noticed immediately
+  // rather than silently shifting every title by one.
   const projectItems = translations[lang].projects.items;
+  if (import.meta.env.DEV && projectItems.length !== projects.length) {
+    console.warn(
+      `i18n: ${projectItems.length} translated project entries for ${projects.length} projects (${lang})`,
+    );
+  }
   return (
     <section id="projects" className="relative pt-20 pb-8 px-6 max-w-7xl mx-auto border-t border-gray-100 dark:border-white/5">
       {/* Visual Section Divider */}

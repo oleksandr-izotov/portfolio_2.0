@@ -86,12 +86,17 @@ export const Header = () => {
 
           {/* Left: Identity */}
           <div className="flex items-center z-50">
-            <div className="flex items-center gap-3 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+            <button
+              type="button"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              aria-label="Izotov — back to top"
+              className="flex items-center gap-3 cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-500"
+            >
               <span className="text-blue-400 font-bold text-[10px]">//</span>
               <span className="text-[11px] font-bold tracking-[0.3em] text-white uppercase">
                 Izotov
               </span>
-            </div>
+            </button>
           </div>
 
           {/* Center: Desktop Navigation */}

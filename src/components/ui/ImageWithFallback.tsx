@@ -12,7 +12,8 @@ export function ImageWithFallback(props: React.ImgHTMLAttributes<HTMLImageElemen
   if (didError) {
     return (
       <div
-        className={`inline-block bg-gray-100 text-center align-middle ${className ?? ''}`}
+        // bg-gray-100 used to punch a light rectangle through the dark theme.
+        className={`inline-block bg-white/5 text-center align-middle ${className ?? ''}`}
         style={style}
       >
         <div className="flex items-center justify-center w-full h-full">
