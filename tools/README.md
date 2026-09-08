@@ -1,6 +1,6 @@
 # Checks
 
-Five scripts that verify the things the build itself cannot: that the
+Six scripts that verify the things the build itself cannot: that the
 prerendered HTML actually hydrates, that metadata follows client-side
 navigation, and that the contact relay rejects what it should.
 
@@ -80,3 +80,16 @@ SITE_URL=http://127.0.0.1:4173 node tools/check-pulse.mjs   # against a local bu
 
 Expected: `● Live`, four metrics with values, clean console. A dash means
 `/api/status` did not answer; `○ Offline` means the relay is down.
+
+## check-hero-video.mjs
+
+Checks the hero backdrop video across three conditions: a desktop viewport
+(should play), a phone viewport and `prefers-reduced-motion` (should not even be
+requested). The still image must be present in all three.
+
+```bash
+node tools/check-hero-video.mjs
+```
+
+Expected: video plays only on desktop, one `.webm` request with status 206,
+zero video requests in the other two, still image always there.

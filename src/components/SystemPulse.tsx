@@ -107,7 +107,7 @@ export const SystemPulse: React.FC = () => {
     {
       label: 'API_LATENCY',
       value: latencyMs === null ? dash : `${latencyMs}ms`,
-      color: latencyMs === null ? '#71717a' : latencyMs < 150 ? '#22c55e' : latencyMs < 400 ? '#facc15' : '#f87171',
+      color: latencyMs === null ? '#a1a1aa' : latencyMs < 150 ? '#22c55e' : latencyMs < 400 ? '#facc15' : '#f87171',
     },
     {
       label: 'BUILD_TIME',
@@ -117,12 +117,12 @@ export const SystemPulse: React.FC = () => {
     {
       label: 'MEMORY',
       value: status ? `${status.memoryUsedPct}%` : dash,
-      color: !status ? '#71717a' : status.memoryUsedPct < 70 ? '#4ade80' : status.memoryUsedPct < 90 ? '#facc15' : '#f87171',
+      color: !status ? '#a1a1aa' : status.memoryUsedPct < 70 ? '#4ade80' : status.memoryUsedPct < 90 ? '#facc15' : '#f87171',
     },
     {
       label: 'UPTIME',
       value: status ? formatUptime(status.uptimeDays) : dash,
-      color: status ? '#4ade80' : '#71717a',
+      color: status ? '#4ade80' : '#a1a1aa',
     },
   ];
 
@@ -140,7 +140,7 @@ export const SystemPulse: React.FC = () => {
           </span>
         </div>
         <span
-          className={`text-[8px] font-mono uppercase tracking-widest ${live ? 'text-red-300' : 'text-zinc-500'}`}
+          className={`text-[8px] font-mono uppercase tracking-widest ${live ? 'text-red-300' : 'text-zinc-400'}`}
           style={live ? { animation: 'metric-blink 1.4s ease-in-out infinite' } : undefined}
           aria-live="polite"
         >

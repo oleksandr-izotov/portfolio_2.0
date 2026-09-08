@@ -1,8 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { motion, AnimatePresence, useInView } from 'motion/react';
-import { ImageWithFallback } from './ui/ImageWithFallback';
 import { Sparkles, ArrowRight, ChevronDown } from 'lucide-react';
-import backgroundImage from '../assets/background.webp';
+import { HeroBackground } from './HeroBackground';
 import { useLanguage } from '../i18n';
 
 const MarqueeItem = ({ children }: { children: React.ReactNode }) => (
@@ -67,13 +66,7 @@ export const Hero = () => {
         transition={{ duration: 3, ease: "easeOut" }}
         className="absolute inset-0 z-0 opacity-10 dark:opacity-30"
       >
-        <ImageWithFallback
-          src={backgroundImage}
-          alt="Technical Background"
-          className="w-full h-full object-cover grayscale blur-[2px]"
-          loading="eager"
-          fetchPriority="high"
-        />
+        <HeroBackground />
       </motion.div>
 
       <div className="relative z-10 w-full max-w-7xl px-6 flex-1 flex flex-col justify-center">
