@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowRight, CheckCircle, Loader, Send } from 'lucide-react';
+import { AlertTriangle, ArrowRight, CheckCircle, Loader, Send } from 'lucide-react';
 import { useLanguage } from '../i18n';
 
 type ContactMethod = 'email' | 'whatsapp' | 'telegram';
@@ -14,6 +14,10 @@ interface FormData {
   contactMethod: ContactMethod;
 }
 
+// Bots fill every field they find; humans never see this one. A filled value
+// makes the request look identical to a success without ever reaching Telegram.
+const HONEYPOT_FIELD = 'company_website';
+
 export const ContactForm = () => {
   const { t } = useLanguage();
   const [form, setForm] = useState<FormData>({
@@ -24,6 +28,8 @@ export const ContactForm = () => {
     contactMethod: 'telegram',
   });
   const [status, setStatus] = useState<FormStatus>('idle');
+  const [errorKey, setErrorKey] = useState<'error_generic' | 'error_rate_limited'>('error_generic');
+  const [honeypot, setHoneypot] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -36,11 +42,16 @@ export const ContactForm = () => {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, [HONEYPOT_FIELD]: honeypot }),
       });
-      if (!res.ok) throw new Error('Server error');
+      if (!res.ok) {
+        setErrorKey(res.status === 429 ? 'error_rate_limited' : 'error_generic');
+        setStatus('error');
+        return;
+      }
       setStatus('success');
     } catch {
+      setErrorKey('error_generic');
       setStatus('error');
     }
   };
@@ -140,25 +151,29 @@ export const ContactForm = () => {
       {/* Name + Phone */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label className={labelClass}>{t('form.name')}</label>
+          <label htmlFor="contact-name" className={labelClass}>{t('form.name')}</label>
           <input
+            id="contact-name"
             type="text"
             name="name"
             value={form.name}
             onChange={handleChange}
             placeholder="John Doe"
+            autoComplete="name"
             required
             className={inputClass}
           />
         </div>
         <div>
-          <label className={labelClass}>{t('form.phone')}</label>
+          <label htmlFor="contact-phone" className={labelClass}>{t('form.phone')}</label>
           <input
+            id="contact-phone"
             type="tel"
             name="phone"
             value={form.phone}
             onChange={handleChange}
             placeholder="+49 123 456 789"
+            autoComplete="tel"
             className={inputClass}
           />
         </div>
@@ -166,22 +181,39 @@ export const ContactForm = () => {
 
       {/* Email */}
       <div>
-        <label className={labelClass}>{t('form.email')}</label>
+        <label htmlFor="contact-email" className={labelClass}>{t('form.email')}</label>
         <input
+          id="contact-email"
           type="email"
           name="email"
           value={form.email}
           onChange={handleChange}
           placeholder="john@company.com"
+          autoComplete="email"
           required
           className={inputClass}
         />
       </div>
 
+      {/* Honeypot: hidden from people, irresistible to form-filling bots. */}
+      <div aria-hidden="true" className="absolute -left-[9999px] w-px h-px overflow-hidden">
+        <label htmlFor={HONEYPOT_FIELD}>Company website</label>
+        <input
+          id={HONEYPOT_FIELD}
+          name={HONEYPOT_FIELD}
+          type="text"
+          value={honeypot}
+          onChange={e => setHoneypot(e.target.value)}
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
+
       {/* Task Description */}
       <div>
-        <label className={labelClass}>{t('form.description')}</label>
+        <label htmlFor="contact-description" className={labelClass}>{t('form.description')}</label>
         <textarea
+          id="contact-description"
           name="description"
           value={form.description}
           onChange={handleChange}
@@ -194,12 +226,14 @@ export const ContactForm = () => {
 
       {/* Contact Method */}
       <div>
-        <span className={labelClass}>{t('form.contact_method')}</span>
-        <div className="flex gap-2">
+        <span id="contact-method-label" className={labelClass}>{t('form.contact_method')}</span>
+        <div className="flex gap-2" role="radiogroup" aria-labelledby="contact-method-label">
           {(['email', 'whatsapp', 'telegram'] as ContactMethod[]).map(m => (
             <button
               key={m}
               type="button"
+              role="radio"
+              aria-checked={form.contactMethod === m}
               onClick={() => setForm(prev => ({ ...prev, contactMethod: m }))}
               className={`flex-1 py-2.5 px-2 text-[9px] font-mono font-bold uppercase tracking-[0.2em] rounded-lg border transition-all duration-200 ${
                 form.contactMethod === m
@@ -212,6 +246,31 @@ export const ContactForm = () => {
           ))}
         </div>
       </div>
+
+      {/* Delivery failure. Before this existed, a failed send just quietly reset
+          the button and the visitor had no idea the message never arrived. */}
+      <AnimatePresence>
+        {status === 'error' && (
+          <motion.div
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            role="alert"
+            aria-live="assertive"
+            className="flex items-start gap-3 rounded-lg border border-red-500/30 bg-red-500/[0.06] px-4 py-3"
+          >
+            <AlertTriangle size={14} className="text-red-400 mt-0.5 shrink-0" />
+            <div className="flex flex-col gap-1">
+              <span className="text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-red-300">
+                {t('form.error_title')}
+              </span>
+              <span className="text-[12px] text-zinc-400 leading-relaxed">
+                {t(`form.${errorKey}`)}
+              </span>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Submit */}
       <div className="flex items-center justify-between pt-1">
@@ -245,7 +304,7 @@ export const ContactForm = () => {
                 exit={{ opacity: 0 }}
                 className="flex items-center gap-2"
               >
-                {t('form.send')}
+                {status === 'error' ? t('form.error_retry') : t('form.send')}
                 <ArrowRight size={12} />
               </motion.span>
             )}
