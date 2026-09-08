@@ -1,6 +1,6 @@
 # Checks
 
-Three scripts that verify the things the build itself cannot: that the
+Four scripts that verify the things the build itself cannot: that the
 prerendered HTML actually hydrates, that metadata follows client-side
 navigation, and that the contact relay rejects what it should.
 
@@ -52,3 +52,17 @@ node tools/check-contact-api.mjs
 Expected: honeypot → 200 with nothing sent, non-string fields → 400, fourth
 request from one IP → 429, and a forged `X-Forwarded-For` **not** resetting the
 limit.
+
+## check-live.mjs
+
+Loads the deployed site in a real browser and reports console errors, failed
+requests and how much text each page actually rendered. Run it after a deploy —
+it is the check that catches a Content-Security-Policy blocking something that
+worked fine locally.
+
+```bash
+node tools/check-live.mjs
+```
+
+Expected: five routes, the last one 404, every page with real text content, and
+no console output beyond that 404.
