@@ -18,6 +18,8 @@ coverage
 # Production
 build
 dist
+dist-ssr
+dist-debug
 
 # Misc
 .DS_Store

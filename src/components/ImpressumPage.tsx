@@ -1,4 +1,3 @@
-import { useLayoutEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import { GrainTexture } from './GrainTexture';
@@ -9,13 +8,6 @@ export const ImpressumPage = () => {
   const navigate = useNavigate();
   const { lang } = useLanguage();
   const t = translations[lang].impressum;
-
-  useLayoutEffect(() => {
-    window.scrollTo(0, 0);
-    const prev = document.title;
-    document.title = `${t.title} | Oleksandr Izotov`;
-    return () => { document.title = prev; };
-  }, [t.title]);
 
   return (
     <div className="min-h-screen bg-black text-white relative overflow-x-hidden">

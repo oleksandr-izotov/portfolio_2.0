@@ -1,4 +1,4 @@
-import { useEffect, lazy, Suspense } from 'react';
+import { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'motion/react';
 import { Header } from './components/Header';
@@ -9,16 +9,21 @@ import { Projects } from './components/Projects';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { GrainTexture } from './components/GrainTexture';
-import { ThemeProvider } from './components/theme-provider';
 import { LanguageProvider } from './i18n';
 import { ErrorBoundary } from './components/ErrorBoundary';
+import { useRouteSeo } from './useRouteSeo';
 
-const CaseStudyPage = lazy(() => import('./components/CaseStudyPage').then(m => ({ default: m.CaseStudyPage })));
-const AiSaaSPage = lazy(() => import('./components/AiSaaSPage').then(m => ({ default: m.AiSaaSPage })));
-const LmsPage = lazy(() => import('./components/LmsPage').then(m => ({ default: m.LmsPage })));
-const NotFoundPage = lazy(() => import('./components/NotFoundPage').then(m => ({ default: m.NotFoundPage })));
-const ImpressumPage = lazy(() => import('./components/ImpressumPage').then(m => ({ default: m.ImpressumPage })));
-const DatenschutzPage = lazy(() => import('./components/DatenschutzPage').then(m => ({ default: m.DatenschutzPage })));
+// Routes are imported eagerly on purpose. They used to be React.lazy chunks,
+// but with prerendered HTML that breaks hydration: the server ships the full
+// page while the client's first render is still the Suspense fallback, so React
+// discards the markup and re-renders from scratch. The six route modules add
+// ~12 kB gzipped to the entry bundle and save six extra requests.
+import { CaseStudyPage } from './components/CaseStudyPage';
+import { AiSaaSPage } from './components/AiSaaSPage';
+import { LmsPage } from './components/LmsPage';
+import { NotFoundPage } from './components/NotFoundPage';
+import { ImpressumPage } from './components/ImpressumPage';
+import { DatenschutzPage } from './components/DatenschutzPage';
 
 const pageVariants = {
   initial: { opacity: 0 },
@@ -58,8 +63,24 @@ const HomePage = () => {
   );
 };
 
+/**
+ * Sends the viewport to the top on navigation. Skipped when the home page was
+ * entered with a scroll target in the router state — that flow wants to land on
+ * a specific section, not at the top.
+ */
+const useScrollToTop = () => {
+  const location = useLocation();
+  useEffect(() => {
+    const state = location.state as { scrollToProjects?: boolean; scrollToContact?: boolean } | null;
+    if (state?.scrollToProjects || state?.scrollToContact) return;
+    window.scrollTo(0, 0);
+  }, [location.pathname, location.state]);
+};
+
 const AnimatedRoutes = () => {
   const location = useLocation();
+  useRouteSeo();
+  useScrollToTop();
 
   return (
     <AnimatePresence mode="wait">
@@ -77,6 +98,7 @@ const AnimatedRoutes = () => {
           <Route path="/medtech-case-study" element={<CaseStudyPage />} />
           <Route path="/impressum" element={<ImpressumPage />} />
           <Route path="/datenschutz" element={<DatenschutzPage />} />
+          <Route path="/404" element={<NotFoundPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </motion.div>
@@ -88,11 +110,7 @@ export default function App() {
   return (
     <ErrorBoundary>
       <LanguageProvider>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
-          <Suspense fallback={<div className="min-h-screen bg-black" />}>
-            <AnimatedRoutes />
-          </Suspense>
-        </ThemeProvider>
+        <AnimatedRoutes />
       </LanguageProvider>
     </ErrorBoundary>
   );

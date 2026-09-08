@@ -1,6 +1,9 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useLayoutEffect } from 'react';
+import { translations } from './translations';
 
 export type Language = 'en' | 'de' | 'ru';
+
+const SUPPORTED: Language[] = ['en', 'de', 'ru'];
 
 interface LanguageContextType {
   lang: Language;
@@ -10,24 +13,41 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | null>(null);
 
-function detectLanguage(): Language {
-  const saved = localStorage.getItem('lang') as Language | null;
-  if (saved && ['en', 'de', 'ru'].includes(saved)) return saved;
+// The prerendered HTML is always English, so the first client render must be
+// English too — otherwise hydration mismatches and React throws the markup away.
+// The real language is picked in a layout effect, which runs before paint.
+const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 
-  const browser = navigator.language.toLowerCase();
+function detectLanguage(): Language {
+  let saved: string | null = null;
+  try {
+    saved = localStorage.getItem('lang');
+  } catch {
+    // Storage can be unavailable (private mode, blocked cookies) — fall through.
+  }
+  if (saved && SUPPORTED.includes(saved as Language)) return saved as Language;
+
+  const browser = (navigator.language || 'en').toLowerCase();
   if (browser.startsWith('ru') || browser.startsWith('uk')) return 'ru';
   if (browser.startsWith('de')) return 'de';
   return 'en';
 }
 
-import { translations } from './translations';
-
 export const LanguageProvider = ({ children }: { children: React.ReactNode }) => {
-  const [lang, setLangState] = useState<Language>(detectLanguage);
+  const [lang, setLangState] = useState<Language>('en');
+
+  useIsomorphicLayoutEffect(() => {
+    const detected = detectLanguage();
+    if (detected !== 'en') setLangState(detected);
+  }, []);
 
   const setLang = (l: Language) => {
     setLangState(l);
-    localStorage.setItem('lang', l);
+    try {
+      localStorage.setItem('lang', l);
+    } catch {
+      // Language just won't persist across visits; not worth failing the click.
+    }
   };
 
   const t = (key: string): string => {

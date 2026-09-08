@@ -1,4 +1,3 @@
-import { useLayoutEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ArrowLeft, Send, ShieldCheck, Database, Workflow, ExternalLink, Terminal } from 'lucide-react';
@@ -21,12 +20,6 @@ export const LmsPage = () => {
   const navigate = useNavigate();
   const { lang } = useLanguage();
   const lms = translations[lang].lms;
-  useLayoutEffect(() => {
-    window.scrollTo(0, 0);
-    const prev = document.title;
-    document.title = 'cp-binom — EdTech Platform | Oleksandr Izotov';
-    return () => { document.title = prev; };
-  }, []);
 
   return (
     <div className="min-h-screen bg-black text-white relative overflow-x-hidden">

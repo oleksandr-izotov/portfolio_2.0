@@ -1,4 +1,3 @@
-import { useLayoutEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ArrowLeft, Send, Database, GitBranch, RefreshCcw, ShieldCheck, ExternalLink, Terminal } from 'lucide-react';
@@ -21,12 +20,6 @@ export const CaseStudyPage = () => {
   const navigate = useNavigate();
   const { lang } = useLanguage();
   const med = translations[lang].medtech;
-  useLayoutEffect(() => {
-    window.scrollTo(0, 0);
-    const prev = document.title;
-    document.title = 'Kliniq — Surgical Scheduling | Oleksandr Izotov';
-    return () => { document.title = prev; };
-  }, []);
 
   return (
     <div className="min-h-screen bg-black text-white relative overflow-x-hidden">
