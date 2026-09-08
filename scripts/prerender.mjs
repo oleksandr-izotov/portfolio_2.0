@@ -33,7 +33,18 @@ if (!ssrEntry) {
 
 const { render, routes, SITE_URL, OG_IMAGE } = await import(pathToFileURL(ssrEntry).href);
 
-const shell = readFileSync(join(distDir, 'index.html'), 'utf8');
+let shell = readFileSync(join(distDir, 'index.html'), 'utf8');
+
+// Real build figures for the System Pulse panel. A <meta> tag rather than an
+// inline <script>: the site's CSP is script-src 'self', which blocks inline
+// script. Absent (a plain `vite build` without scripts/build.mjs), the panel
+// shows a dash instead of inventing a number.
+const buildDurationMs = Number(process.env.BUILD_DURATION_MS) || null;
+const builtAt = process.env.BUILT_AT || new Date().toISOString();
+if (buildDurationMs) {
+  const info = escapeAttr(JSON.stringify({ durationMs: buildDurationMs, builtAt }));
+  shell = shell.replace('</head>', `    <meta name="build-info" content="${info}" />\n  </head>`);
+}
 
 /** Replace the content of a meta tag, matching on its name/property. */
 function setMeta(html, attr, key, value) {

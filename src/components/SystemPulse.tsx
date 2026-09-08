@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const TILE_W = 280;
 
@@ -11,16 +11,125 @@ const ECG_TILE =
   'L240,36 L244,33 L247,40 L249,8 L251,62 L253,40 L256,36 ' +
   'L280,36';
 
-const metrics = [
-  { label: 'API_LATENCY', value: '12ms',  color: '#22c55e' },
-  { label: 'BUILD_TIME',  value: '1.2s',  color: '#60a5fa' },
-  { label: 'MEMORY',      value: '68%',   color: '#facc15' },
-  { label: 'UPTIME',      value: '99.9%', color: '#4ade80' },
-];
+interface ServerStatus {
+  memoryUsedPct: number;
+  cpuLoadPct: number;
+  uptimeDays: number;
+}
+
+/** Build figures, written into the page by scripts/prerender.mjs. */
+function readBuildInfo(): { durationMs: number; builtAt: string } | null {
+  if (typeof document === 'undefined') return null;
+  const meta = document.querySelector<HTMLMetaElement>('meta[name="build-info"]');
+  if (!meta?.content) return null;
+  try {
+    const parsed = JSON.parse(meta.content);
+    if (typeof parsed?.durationMs === 'number') return parsed;
+  } catch {
+    // Malformed metadata is not worth breaking the panel over.
+  }
+  return null;
+}
+
+function formatUptime(days: number): string {
+  if (days >= 1) return `${days.toFixed(1)}d`;
+  const hours = days * 24;
+  if (hours >= 1) return `${Math.round(hours)}h`;
+  return `${Math.round(hours * 60)}m`;
+}
 
 export const SystemPulse: React.FC = () => {
+  const [status, setStatus] = useState<ServerStatus | null>(null);
+  const [latencyMs, setLatencyMs] = useState<number | null>(null);
+  const [failed, setFailed] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  // Read after mount, not during render: the prerendered HTML has no build
+  // metadata to read, so pulling it in the first client render would disagree
+  // with the server markup and make React throw the whole tree away.
+  const [buildInfo, setBuildInfo] = useState<{ durationMs: number; builtAt: string } | null>(null);
+
+  useEffect(() => {
+    setBuildInfo(readBuildInfo());
+  }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+    let timer: ReturnType<typeof setInterval> | null = null;
+
+    const poll = async () => {
+      // Round-trip measured from the visitor's own browser — this is the
+      // latency figure the panel reports, not a number from the server.
+      const startedAt = performance.now();
+      try {
+        const res = await fetch('/api/status', { cache: 'no-store' });
+        if (!res.ok) throw new Error(String(res.status));
+        const data = (await res.json()) as ServerStatus;
+        if (cancelled) return;
+        setLatencyMs(Math.round(performance.now() - startedAt));
+        setStatus(data);
+        setFailed(false);
+      } catch {
+        if (cancelled) return;
+        // Show dashes rather than stale or invented values.
+        setFailed(true);
+        setStatus(null);
+        setLatencyMs(null);
+      }
+    };
+
+    // Only poll while the panel is actually on screen: it sits at the bottom of
+    // a long page, and most visitors never scroll to it.
+    const observer = new IntersectionObserver(
+      entries => {
+        const visible = entries[0]?.isIntersecting;
+        if (visible && !timer) {
+          poll();
+          timer = setInterval(poll, 10_000);
+        } else if (!visible && timer) {
+          clearInterval(timer);
+          timer = null;
+        }
+      },
+      { rootMargin: '120px' },
+    );
+
+    if (containerRef.current) observer.observe(containerRef.current);
+
+    return () => {
+      cancelled = true;
+      if (timer) clearInterval(timer);
+      observer.disconnect();
+    };
+  }, []);
+
+  const dash = '—';
+  const metrics = [
+    {
+      label: 'API_LATENCY',
+      value: latencyMs === null ? dash : `${latencyMs}ms`,
+      color: latencyMs === null ? '#71717a' : latencyMs < 150 ? '#22c55e' : latencyMs < 400 ? '#facc15' : '#f87171',
+    },
+    {
+      label: 'BUILD_TIME',
+      value: buildInfo ? `${(buildInfo.durationMs / 1000).toFixed(1)}s` : dash,
+      color: '#60a5fa',
+    },
+    {
+      label: 'MEMORY',
+      value: status ? `${status.memoryUsedPct}%` : dash,
+      color: !status ? '#71717a' : status.memoryUsedPct < 70 ? '#4ade80' : status.memoryUsedPct < 90 ? '#facc15' : '#f87171',
+    },
+    {
+      label: 'UPTIME',
+      value: status ? formatUptime(status.uptimeDays) : dash,
+      color: status ? '#4ade80' : '#71717a',
+    },
+  ];
+
+  const live = status !== null && !failed;
+
   return (
-    <div className="border border-white/[0.08] rounded-2xl bg-white/[0.02] overflow-hidden">
+    <div ref={containerRef} className="border border-white/[0.08] rounded-2xl bg-white/[0.02] overflow-hidden">
 
       {/* Header */}
       <div className="flex items-center justify-between px-5 py-3 border-b border-white/[0.06] bg-white/[0.02]">
@@ -31,10 +140,11 @@ export const SystemPulse: React.FC = () => {
           </span>
         </div>
         <span
-          className="text-[8px] font-mono uppercase tracking-widest text-red-300"
-          style={{ animation: 'metric-blink 1.4s ease-in-out infinite' }}
+          className={`text-[8px] font-mono uppercase tracking-widest ${live ? 'text-red-300' : 'text-zinc-500'}`}
+          style={live ? { animation: 'metric-blink 1.4s ease-in-out infinite' } : undefined}
+          aria-live="polite"
         >
-          ● Live
+          {live ? '● Live' : failed ? '○ Offline' : '○ Connecting'}
         </span>
       </div>
 
@@ -45,6 +155,7 @@ export const SystemPulse: React.FC = () => {
           height="80"
           xmlns="http://www.w3.org/2000/svg"
           style={{ display: 'block' }}
+          aria-hidden="true"
         >
           <defs>
             {/* Oscilloscope grid */}
@@ -133,7 +244,7 @@ export const SystemPulse: React.FC = () => {
             <span className="text-[7px] font-mono uppercase tracking-[0.25em] text-zinc-400">
               {label}
             </span>
-            <span className="text-[12px] font-mono font-bold" style={{ color }}>
+            <span className="text-[12px] font-mono font-bold tabular-nums" style={{ color }}>
               {value}
             </span>
           </div>

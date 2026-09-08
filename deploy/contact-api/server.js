@@ -7,6 +7,7 @@
 
 import { createServer } from 'node:http';
 import dns from 'node:dns';
+import os from 'node:os';
 
 // Prefer IPv4 — this host's IPv6 egress to Telegram is unreachable.
 // This VPS's upstream network filters most of Telegram's IP range, so the
@@ -82,6 +83,53 @@ function readBody(req, limitBytes = 16_384) {
     req.on('end', () => resolve(Buffer.concat(chunks).toString('utf8')));
     req.on('error', reject);
   });
+}
+
+// --- Live status ----------------------------------------------------------
+// Feeds the System Pulse panel on the site. It used to display hard-coded
+// numbers under a "Live" label, which is a bad look on an engineer's portfolio:
+// anyone who checked would find the figures were props.
+//
+// Deliberately narrow. Percentages and durations only — no hostname, no kernel
+// or package versions, no addresses, no process list. Nothing here helps
+// someone attack the box; it is the same class of data any status page shows.
+// The container sees the host's figures, which is what we want to report.
+
+const STATUS_CACHE_MS = 2_000;
+let statusCache = { at: 0, body: null };
+
+function buildStatus() {
+  const total = os.totalmem();
+  const used = total - os.freemem();
+  const [load1] = os.loadavg();
+  const cores = os.cpus().length || 1;
+
+  return {
+    // Whole percent: the exact byte count is nobody's business.
+    memoryUsedPct: Math.round((used / total) * 100),
+    // Load normalised against core count, so the number means the same thing
+    // regardless of how many cores the box has.
+    cpuLoadPct: Math.min(100, Math.round((load1 / cores) * 100)),
+    uptimeDays: Number((os.uptime() / 86_400).toFixed(1)),
+    ts: Date.now(),
+  };
+}
+
+function handleStatus(req, res) {
+  if (req.method !== 'GET') return json(res, 405, { error: 'Method not allowed' });
+
+  const now = Date.now();
+  if (!statusCache.body || now - statusCache.at > STATUS_CACHE_MS) {
+    statusCache = { at: now, body: buildStatus() };
+  }
+
+  const body = JSON.stringify(statusCache.body);
+  res.writeHead(200, {
+    'Content-Type': 'application/json',
+    'Content-Length': Buffer.byteLength(body),
+    'Cache-Control': 'no-store',
+  });
+  res.end(body);
 }
 
 // --- Handler --------------------------------------------------------------
@@ -188,6 +236,7 @@ async function handleContact(req, res) {
 const server = createServer((req, res) => {
   const url = (req.url || '').split('?')[0];
   if (url === '/api/contact') return handleContact(req, res);
+  if (url === '/api/status') return handleStatus(req, res);
   if (url === '/healthz') return json(res, 200, { ok: true });
   return json(res, 404, { error: 'Not found' });
 });

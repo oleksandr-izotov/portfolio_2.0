@@ -1,6 +1,6 @@
 # Checks
 
-Four scripts that verify the things the build itself cannot: that the
+Five scripts that verify the things the build itself cannot: that the
 prerendered HTML actually hydrates, that metadata follows client-side
 navigation, and that the contact relay rejects what it should.
 
@@ -66,3 +66,17 @@ node tools/check-live.mjs
 
 Expected: five routes, the last one 404, every page with real text content, and
 no console output beyond that 404.
+
+## check-pulse.mjs
+
+Scrolls the System Pulse panel into view on the deployed site and prints what it
+reports. The panel shows live figures, so this is how you confirm the endpoint
+is reachable and no metric has fallen back to a dash.
+
+```bash
+node tools/check-pulse.mjs                    # against izotov.dev
+SITE_URL=http://127.0.0.1:4173 node tools/check-pulse.mjs   # against a local build
+```
+
+Expected: `● Live`, four metrics with values, clean console. A dash means
+`/api/status` did not answer; `○ Offline` means the relay is down.
