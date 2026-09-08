@@ -14,7 +14,8 @@ SSH_TARGET="${IZOTOV_SSH_TARGET:-cp-binom}"
 SSH_KEY="${IZOTOV_SSH_KEY:-}"
 SSH_OPTS=(-o StrictHostKeyChecking=accept-new)
 if [ -n "$SSH_KEY" ]; then SSH_OPTS+=(-i "$SSH_KEY"); fi
-REMOTE_BASE="/home/admin-binom/izotov.dev"
+# Remote layout is configurable for the same reason the SSH target is.
+REMOTE_BASE="${IZOTOV_REMOTE_BASE:-/srv/izotov.dev}"
 LOCAL_DIST="$(cd "$(dirname "$0")/.." && pwd)/dist"
 
 if [ "${1:-}" != "--no-build" ]; then
