@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ArrowLeft, Send, ShieldCheck, Database, Workflow, ExternalLink, Terminal } from 'lucide-react';
 import { GrainTexture } from './GrainTexture';
+import { CaseStudyLiveLink } from './CaseStudyLiveLink';
 import { ImageWithFallback } from './ui/ImageWithFallback';
 import heroImg from '../assets/lms-hero.webp';
 import abstractImg from '../assets/lms-tech.webp';
@@ -11,10 +12,8 @@ import { translations } from '../i18n/translations';
 
 const techTags = ['Java 25', 'Spring Boot 3', 'React', 'PostgreSQL', 'MinIO', 'JWT Auth'];
 
-const LIVE_URL = 'https://cp-binom.ru';
 
 const featureIcons = [ShieldCheck, Database, Workflow];
-
 
 export const LmsPage = () => {
   const navigate = useNavigate();
@@ -115,19 +114,7 @@ export const LmsPage = () => {
             ))}
           </motion.div>
 
-          <motion.a
-            href={LIVE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.55 }}
-            className="inline-flex items-center gap-3 mt-8 px-6 py-2.5 bg-blue-500/10 border border-blue-500/30 hover:bg-blue-500/20 hover:border-blue-500/60 rounded-full text-[10px] font-mono font-bold uppercase tracking-[0.3em] text-blue-400 hover:text-white transition-all duration-300"
-          >
-            <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
-            {lms.view_live}
-            <ExternalLink size={11} />
-          </motion.a>
+          <CaseStudyLiveLink caseStudyId="lms" />
         </div>
       </section>
 

@@ -10,6 +10,8 @@ export interface Project {
   image: string;
   stack: string[];
   status?: 'active' | 'development';
+  /** Public demo. Absent while a project is in development. */
+  liveUrl?: string;
   href: string;
   caseStudy?: boolean;
   caseStudyId?: 'medtech' | 'ai-saas' | 'lms';
@@ -24,6 +26,7 @@ export const projects: Project[] = [
     image: blueprintImg,
     stack: ["Java 25", "Spring Boot", "React", "PostgreSQL", "MinIO"],
     status: 'active',
+    liveUrl: 'https://cp-binom.ru',
     href: '/lms-case-study',
     caseStudy: true,
     caseStudyId: 'lms',
@@ -35,7 +38,7 @@ export const projects: Project[] = [
     description: 'A subscription AI tutor: one topic in, four structured sections out — explanation, summary, study plan, self-check quiz — generated in five languages. Server-rendered Django + HTMX with a Celery/Redis pipeline streaming sections live to the UI, a Gemini → Qwen LLM fallback chain, and four-tier Stripe billing with usage-quota enforcement.',
     image: coreLogicImg,
     stack: ["Django", "HTMX", "Celery", "Redis", "Stripe"],
-    status: 'active',
+    status: 'development',
     href: '/ai-saas-case-study',
     caseStudy: true,
     caseStudyId: 'ai-saas',
@@ -47,7 +50,7 @@ export const projects: Project[] = [
     description: 'A surgical operating-room scheduling platform, built solo from scratch. A Kotlin/Spring Boot 3 backend with jOOQ over PostgreSQL makes double-bookings impossible at the database via an EXCLUDE constraint, with real-time updates over Server-Sent Events, drag-and-drop reschedule, and self-hosted auth using WebAuthn passkeys. SvelteKit frontend, deployed on Hetzner.',
     image: nexusDbImg,
     stack: ["Kotlin", "Spring Boot", "SvelteKit", "PostgreSQL", "Passkeys"],
-    status: 'active',
+    status: 'development',
     href: '/medtech-case-study',
     caseStudy: true,
     caseStudyId: 'medtech',
