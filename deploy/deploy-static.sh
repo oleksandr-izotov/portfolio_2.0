@@ -6,8 +6,14 @@
 
 set -euo pipefail
 
-KEY="/c/Users/Admin/Downloads/id_rsa(1)"
-HOST="admin-binom@95.174.92.126"
+# SSH target is configurable so this runs both from a workstation (key file,
+# direct login) and from a server that already has a host alias with ProxyJump
+# in ~/.ssh/config. Override with:
+#   IZOTOV_SSH_TARGET=admin-binom@95.174.92.126 IZOTOV_SSH_KEY=~/.ssh/id_rsa ./script.sh
+SSH_TARGET="${IZOTOV_SSH_TARGET:-cp-binom}"
+SSH_KEY="${IZOTOV_SSH_KEY:-}"
+SSH_OPTS=(-o StrictHostKeyChecking=accept-new)
+if [ -n "$SSH_KEY" ]; then SSH_OPTS+=(-i "$SSH_KEY"); fi
 REMOTE_BASE="/home/admin-binom/izotov.dev"
 LOCAL_DIST="$(cd "$(dirname "$0")/.." && pwd)/dist"
 
@@ -22,16 +28,16 @@ if [ ! -d "$LOCAL_DIST" ]; then
 fi
 
 echo "==> Preparing remote staging dir"
-ssh -i "$KEY" -o StrictHostKeyChecking=no "$HOST" \
+ssh "${SSH_OPTS[@]}" "$SSH_TARGET" \
   "mkdir -p '$REMOTE_BASE' && rm -rf '$REMOTE_BASE/dist.new' && mkdir -p '$REMOTE_BASE/dist.new'"
 
 echo "==> Streaming dist/ via tar over ssh"
 tar czf - -C "$LOCAL_DIST" . \
-  | ssh -i "$KEY" -o StrictHostKeyChecking=no "$HOST" \
+  | ssh "${SSH_OPTS[@]}" "$SSH_TARGET" \
       "tar xzf - -C '$REMOTE_BASE/dist.new'"
 
 echo "==> Atomic swap (dist <- dist.new), keeping previous as dist.bak.prev"
-ssh -i "$KEY" -o StrictHostKeyChecking=no "$HOST" bash -s <<REMOTE
+ssh "${SSH_OPTS[@]}" "$SSH_TARGET" bash -s <<REMOTE
 set -euo pipefail
 cd "$REMOTE_BASE"
 if [ -d dist ]; then

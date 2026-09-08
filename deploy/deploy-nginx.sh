@@ -10,8 +10,14 @@ set -euo pipefail
 
 MODE="${1:-final}"
 
-KEY="/c/Users/Admin/Downloads/id_rsa(1)"
-HOST="admin-binom@95.174.92.126"
+# SSH target is configurable so this runs both from a workstation (key file,
+# direct login) and from a server that already has a host alias with ProxyJump
+# in ~/.ssh/config. Override with:
+#   IZOTOV_SSH_TARGET=admin-binom@95.174.92.126 IZOTOV_SSH_KEY=~/.ssh/id_rsa ./script.sh
+SSH_TARGET="${IZOTOV_SSH_TARGET:-cp-binom}"
+SSH_KEY="${IZOTOV_SSH_KEY:-}"
+SSH_OPTS=(-o StrictHostKeyChecking=accept-new)
+if [ -n "$SSH_KEY" ]; then SSH_OPTS+=(-i "$SSH_KEY"); fi
 
 case "$MODE" in
   bootstrap)
@@ -26,6 +32,8 @@ case "$MODE" in
     ;;
 esac
 
+LOCAL_SNIPPET="$(cd "$(dirname "$0")" && pwd)/nginx-host/izotov.dev.security-headers.conf"
+REMOTE_SNIPPET="/etc/nginx/snippets/izotov.dev.security-headers.conf"
 REMOTE_CONF="/etc/nginx/sites-available/izotov.dev"
 ENABLED_LINK="/etc/nginx/sites-enabled/izotov.dev"
 STAGING_CONF="/tmp/izotov.dev.conf.new"
@@ -36,11 +44,20 @@ if [ ! -f "$LOCAL_CONF" ]; then
 fi
 
 echo "==> Mode: $MODE"
-echo "==> Uploading $LOCAL_CONF to $HOST:$STAGING_CONF"
-scp -i "$KEY" -o StrictHostKeyChecking=no "$LOCAL_CONF" "$HOST:$STAGING_CONF"
+echo "==> Uploading $LOCAL_CONF to $SSH_TARGET:$STAGING_CONF"
+scp "${SSH_OPTS[@]}" "$LOCAL_CONF" "$SSH_TARGET:$STAGING_CONF"
+
+# The final config includes this snippet in every location block; it has to be
+# in place before nginx -t runs, or the test fails on a missing include.
+if [ "$MODE" = "final" ]; then
+  echo "==> Uploading security-headers snippet"
+  scp "${SSH_OPTS[@]}" "$LOCAL_SNIPPET" "$SSH_TARGET:/tmp/izotov.security-headers.conf"
+  ssh "${SSH_OPTS[@]}" "$SSH_TARGET" \
+    "sudo mkdir -p /etc/nginx/snippets && sudo cp /tmp/izotov.security-headers.conf $REMOTE_SNIPPET && rm -f /tmp/izotov.security-headers.conf"
+fi
 
 echo "==> Validating and reloading nginx on the server"
-ssh -i "$KEY" -o StrictHostKeyChecking=no "$HOST" bash -s <<REMOTE
+ssh "${SSH_OPTS[@]}" "$SSH_TARGET" bash -s <<REMOTE
 set -euo pipefail
 
 STAGING=$STAGING_CONF
