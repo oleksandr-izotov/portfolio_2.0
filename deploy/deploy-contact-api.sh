@@ -9,8 +9,14 @@
 # Usage:  ./deploy/deploy-contact-api.sh
 set -euo pipefail
 
-KEY="/c/Users/Admin/Downloads/id_rsa(1)"
-HOST="admin-binom@95.174.92.126"
+# SSH target is configurable so this runs both from a workstation (key file,
+# direct login) and from a server that already has a host alias with ProxyJump
+# in ~/.ssh/config. Override with:
+#   IZOTOV_SSH_TARGET=admin-binom@95.174.92.126 IZOTOV_SSH_KEY=~/.ssh/id_rsa ./script.sh
+SSH_TARGET="${IZOTOV_SSH_TARGET:-cp-binom}"
+SSH_KEY="${IZOTOV_SSH_KEY:-}"
+SSH_OPTS=(-o StrictHostKeyChecking=accept-new)
+if [ -n "$SSH_KEY" ]; then SSH_OPTS+=(-i "$SSH_KEY"); fi
 REMOTE_DIR="/home/admin-binom/izotov.dev/contact-api"
 PORT=3002
 LOCAL_DIR="$(cd "$(dirname "$0")/contact-api" && pwd)"
@@ -25,18 +31,28 @@ LOCAL_DIR="$(cd "$(dirname "$0")/contact-api" && pwd)"
 #     timeout 5 bash -c "</dev/tcp/$ip/443" 2>/dev/null && echo "$ip OPEN"; done
 TELEGRAM_API_IP="149.154.167.220"
 
-if [ ! -f "$LOCAL_DIR/.env" ]; then
-  echo "ERROR: $LOCAL_DIR/.env not found (needs TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID)" >&2
+# The secrets file is optional here: on a redeploy the server already holds a
+# working .env, and re-uploading the token only widens the number of places it
+# travels through. It is required only when the remote copy is missing.
+FILES=(server.js Dockerfile)
+if [ -f "$LOCAL_DIR/.env" ]; then
+  FILES+=(.env)
+  echo "==> Local .env found; it will be uploaded"
+elif ssh "${SSH_OPTS[@]}" "$SSH_TARGET" "test -f '$REMOTE_DIR/.env'"; then
+  echo "==> No local .env; keeping the one already on the server"
+else
+  echo "ERROR: no local $LOCAL_DIR/.env and none on the server" >&2
+  echo "       (needs TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID)" >&2
   exit 1
 fi
 
-echo "==> Streaming contact-api source to $HOST:$REMOTE_DIR"
-ssh -i "$KEY" -o StrictHostKeyChecking=no "$HOST" "mkdir -p '$REMOTE_DIR'"
-tar czf - -C "$LOCAL_DIR" server.js Dockerfile .env \
-  | ssh -i "$KEY" -o StrictHostKeyChecking=no "$HOST" "tar xzf - -C '$REMOTE_DIR'"
+echo "==> Streaming contact-api source to $SSH_TARGET:$REMOTE_DIR"
+ssh "${SSH_OPTS[@]}" "$SSH_TARGET" "mkdir -p '$REMOTE_DIR'"
+tar czf - -C "$LOCAL_DIR" "${FILES[@]}" \
+  | ssh "${SSH_OPTS[@]}" "$SSH_TARGET" "tar xzf - -C '$REMOTE_DIR'"
 
 echo "==> Building image and (re)starting container on the server"
-ssh -i "$KEY" -o StrictHostKeyChecking=no "$HOST" \
+ssh "${SSH_OPTS[@]}" "$SSH_TARGET" \
   "cd '$REMOTE_DIR' && \
    docker build -t izotov-contact-api:latest . && \
    docker rm -f izotov-contact-api 2>/dev/null || true && \
@@ -46,7 +62,7 @@ ssh -i "$KEY" -o StrictHostKeyChecking=no "$HOST" \
    sleep 1 && docker ps --filter name=izotov-contact-api --format '{{.Names}} {{.Status}} {{.Ports}}'"
 
 echo "==> Smoke test (/healthz)"
-ssh -i "$KEY" -o StrictHostKeyChecking=no "$HOST" \
+ssh "${SSH_OPTS[@]}" "$SSH_TARGET" \
   "curl -fsS http://127.0.0.1:${PORT}/healthz && echo"
 
 echo "==> Done."
