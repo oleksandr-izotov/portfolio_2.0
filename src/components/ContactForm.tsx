@@ -3,15 +3,12 @@ import { motion, AnimatePresence } from 'motion/react';
 import { AlertTriangle, ArrowRight, CheckCircle, Loader, Send } from 'lucide-react';
 import { useLanguage } from '../i18n';
 
-type ContactMethod = 'email' | 'whatsapp' | 'telegram';
 type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
 
 interface FormData {
   name: string;
-  phone: string;
   email: string;
   description: string;
-  contactMethod: ContactMethod;
 }
 
 // Bots fill every field they find; humans never see this one. A filled value
@@ -22,10 +19,8 @@ export const ContactForm = () => {
   const { t } = useLanguage();
   const [form, setForm] = useState<FormData>({
     name: '',
-    phone: '',
     email: '',
     description: '',
-    contactMethod: 'telegram',
   });
   const [status, setStatus] = useState<FormStatus>('idle');
   const [errorKey, setErrorKey] = useState<'error_generic' | 'error_rate_limited'>('error_generic');
@@ -104,7 +99,7 @@ export const ContactForm = () => {
           transition={{ delay: 0.35 }}
           onClick={() => {
             setStatus('idle');
-            setForm({ name: '', phone: '', email: '', description: '', contactMethod: 'telegram' });
+            setForm({ name: '', email: '', description: '' });
           }}
           className="mt-2 px-6 py-2.5 border border-white/10 rounded-xl text-[10px] font-mono font-bold uppercase tracking-[0.25em] text-zinc-400 hover:border-blue-500/40 hover:text-white hover:bg-blue-500/5 transition-all duration-200"
         >
@@ -148,35 +143,20 @@ export const ContactForm = () => {
         onSubmit={handleSubmit}
         className="flex flex-col gap-5 p-5"
       >
-      {/* Name + Phone */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div>
-          <label htmlFor="contact-name" className={labelClass}>{t('form.name')}</label>
-          <input
-            id="contact-name"
-            type="text"
-            name="name"
-            value={form.name}
-            onChange={handleChange}
-            placeholder="John Doe"
-            autoComplete="name"
-            required
-            className={inputClass}
-          />
-        </div>
-        <div>
-          <label htmlFor="contact-phone" className={labelClass}>{t('form.phone')}</label>
-          <input
-            id="contact-phone"
-            type="tel"
-            name="phone"
-            value={form.phone}
-            onChange={handleChange}
-            placeholder="+49 123 456 789"
-            autoComplete="tel"
-            className={inputClass}
-          />
-        </div>
+      {/* Name */}
+      <div>
+        <label htmlFor="contact-name" className={labelClass}>{t('form.name')}</label>
+        <input
+          id="contact-name"
+          type="text"
+          name="name"
+          value={form.name}
+          onChange={handleChange}
+          placeholder="John Doe"
+          autoComplete="name"
+          required
+          className={inputClass}
+        />
       </div>
 
       {/* Email */}
@@ -222,29 +202,6 @@ export const ContactForm = () => {
           rows={4}
           className={`${inputClass} resize-none`}
         />
-      </div>
-
-      {/* Contact Method */}
-      <div>
-        <span id="contact-method-label" className={labelClass}>{t('form.contact_method')}</span>
-        <div className="flex gap-2" role="radiogroup" aria-labelledby="contact-method-label">
-          {(['email', 'whatsapp', 'telegram'] as ContactMethod[]).map(m => (
-            <button
-              key={m}
-              type="button"
-              role="radio"
-              aria-checked={form.contactMethod === m}
-              onClick={() => setForm(prev => ({ ...prev, contactMethod: m }))}
-              className={`flex-1 py-2.5 px-2 text-[9px] font-mono font-bold uppercase tracking-[0.2em] rounded-lg border transition-all duration-200 ${
-                form.contactMethod === m
-                  ? 'border-blue-500/60 bg-blue-500/10 text-blue-400'
-                  : 'border-white/10 text-zinc-400 hover:border-white/20 hover:text-zinc-300'
-              }`}
-            >
-              {m}
-            </button>
-          ))}
-        </div>
       </div>
 
       {/* Delivery failure. Before this existed, a failed send just quietly reset

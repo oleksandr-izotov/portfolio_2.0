@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react';
-import { motion, AnimatePresence, useInView } from 'motion/react';
+import React, { useRef } from 'react';
+import { motion, useInView } from 'motion/react';
 import { Sparkles, ArrowRight, ChevronDown } from 'lucide-react';
 import { HeroBackground } from './HeroBackground';
 import { useLanguage } from '../i18n';
@@ -22,7 +22,7 @@ const Marquee = ({ items }: { items: string[] }) => {
     <div className="flex items-center shrink-0" aria-hidden={undefined}>
       {items.map((item) => (
         <MarqueeItem key={item}>
-          <span className="text-[10px] font-mono font-medium text-gray-500 dark:text-zinc-400 uppercase tracking-[0.4em]">
+          <span className="text-[12px] md:text-[10px] font-mono font-medium text-gray-500 dark:text-zinc-400 uppercase tracking-[0.4em]">
             {item}
           </span>
         </MarqueeItem>
@@ -40,7 +40,7 @@ const Marquee = ({ items }: { items: string[] }) => {
         <div aria-hidden="true" className="flex items-center shrink-0">
           {items.map((item) => (
             <MarqueeItem key={`dup-${item}`}>
-              <span className="text-[10px] font-mono font-medium text-gray-500 dark:text-zinc-400 uppercase tracking-[0.4em]">
+              <span className="text-[12px] md:text-[10px] font-mono font-medium text-gray-500 dark:text-zinc-400 uppercase tracking-[0.4em]">
                 {item}
               </span>
             </MarqueeItem>
@@ -53,21 +53,14 @@ const Marquee = ({ items }: { items: string[] }) => {
 
 export const Hero = () => {
   const { t } = useLanguage();
-  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <section className="relative min-h-[100dvh] w-full flex flex-col items-center justify-center md:justify-between bg-transparent overflow-hidden pt-24 pb-12 md:pt-32 md:pb-0 px-0">
       
       {/* Dynamic Background Element */}
-      <motion.div 
-        animate={{ 
-          scale: isHovered ? 1.05 : 1,
-        }}
-        transition={{ duration: 3, ease: "easeOut" }}
-        className="absolute inset-0 z-0 opacity-10 dark:opacity-30"
-      >
+      <div className="absolute inset-0 z-0 opacity-10 dark:opacity-30">
         <HeroBackground />
-      </motion.div>
+      </div>
 
       <div className="relative z-10 w-full max-w-7xl px-6 flex-1 flex flex-col justify-center">
         
@@ -84,59 +77,28 @@ export const Hero = () => {
           </div>
         </motion.div>
 
-        {/* The Name Component */}
-        <div 
-          className="relative text-center cursor-default group py-6 md:py-12"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
+        {/* Name and role */}
+        <div className="relative text-center py-6 md:py-12">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
             className="flex flex-col items-center"
           >
-            <h1 className="text-[13vw] md:text-[12vw] lg:text-[160px] font-black tracking-[-0.08em] leading-[0.9] md:leading-[0.8] mb-4 dark:text-white transition-all duration-700 group-hover:tracking-wider group-hover:opacity-10 group-hover:blur-sm">
-              AI & WEB<br />ENGINEERING
+            <h1 className="text-[13vw] md:text-[12vw] lg:text-[150px] font-black tracking-[-0.08em] leading-[0.9] md:leading-[0.8] mb-6 dark:text-white">
+              OLEKSANDR<br />IZOTOV
             </h1>
 
-            {/* Subtle name byline */}
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.9, duration: 1.2 }}
-              className="text-[9px] font-mono uppercase tracking-[0.55em] text-zinc-500 dark:text-zinc-400 transition-all duration-700 group-hover:opacity-0 select-none"
+              // A readable sentence, not a decorative label: 11px uppercase with
+              // wide tracking is fine for a caption and hostile to a paragraph.
+              className="max-w-xl text-[13px] md:text-sm font-mono tracking-wide text-zinc-500 dark:text-zinc-400 leading-relaxed"
             >
-              Oleksandr Izotov — Stuttgart, DE
+              {t('hero.subtitle')}
             </motion.p>
-
-            {/* Hover Content */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <AnimatePresence>
-                {isHovered && (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.9, y: 10 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 1.1 }}
-                    className="text-center"
-                  >
-                    <div className="relative inline-block">
-                      <h2 className="text-4xl md:text-6xl lg:text-8xl font-black tracking-tighter italic dark:text-blue-500">
-                        ENGINEERING<br />ARTISTRY
-                      </h2>
-                      <motion.div 
-                        initial={{ width: 0 }}
-                        animate={{ width: '100%' }}
-                        className="h-1 bg-blue-600 mt-2 rounded-full"
-                      />
-                    </div>
-                    <p className="mt-8 text-[11px] font-mono uppercase tracking-[0.6em] text-gray-400">
-                      {t('hero.hover_sub')}
-                    </p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
           </motion.div>
         </div>
 

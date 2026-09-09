@@ -46,7 +46,7 @@ export const BentoGrid = () => {
         <div className="flex gap-1">
           {[1, 2, 3].map(i => <div key={i} className="w-1 h-1 bg-blue-500 rounded-full" />)}
         </div>
-        <div className="text-[9px] font-mono text-gray-300 dark:text-zinc-400 uppercase tracking-[0.5em]">Section_01 // Identity</div>
+        <div className="text-[9px] font-mono text-gray-300 dark:text-zinc-400 uppercase tracking-[0.5em]">Section_01 // About</div>
       </div>
 
       <div className="mb-8 md:mb-12">
@@ -106,7 +106,7 @@ export const BentoGrid = () => {
                 <p className="text-xs md:text-sm font-bold leading-relaxed uppercase tracking-tight italic opacity-90">
                   {t('bento.about_quote')}
                 </p>
-                <p className="text-[10px] md:text-xs font-medium leading-relaxed opacity-80 uppercase tracking-wider">
+                <p className="text-[12px] md:text-xs font-medium leading-relaxed opacity-80 tracking-wide">
                   {t('bento.about_text')}
                 </p>
               </div>
@@ -116,7 +116,7 @@ export const BentoGrid = () => {
                   <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center">
                     <Activity size={14} className="text-white" />
                   </div>
-                  <span className="text-[9px] md:text-[10px] font-mono font-bold uppercase tracking-widest">{t('bento.about_role')}</span>
+                  <span className="text-[11px] md:text-[10px] font-mono font-bold uppercase tracking-widest">{t('bento.about_role')}</span>
                 </div>
               </div>
             </div>
@@ -130,7 +130,7 @@ export const BentoGrid = () => {
                  <Code2 className="text-blue-600 dark:text-blue-400" size={20} />
               </div>
               <div>
-                 <p className="text-[9px] md:text-[10px] font-mono font-bold uppercase tracking-widest text-gray-400 dark:text-gray-400 mb-2">{t('bento.method_label')}</p>
+                 <p className="text-[11px] md:text-[10px] font-mono font-bold uppercase tracking-widest text-gray-400 dark:text-gray-400 mb-2">{t('bento.method_label')}</p>
                  <h4 className="text-lg md:text-xl font-black uppercase tracking-tight dark:text-white leading-tight">{t('bento.method_title')}</h4>
               </div>
            </BentoBox>
@@ -140,10 +140,10 @@ export const BentoGrid = () => {
         <div className="lg:col-span-6">
            <BentoBox className="flex flex-col justify-between min-h-[160px] md:min-h-[180px]">
               <div className="flex items-baseline gap-2 mb-4">
-                <span className="text-5xl md:text-6xl font-black text-blue-600 dark:text-blue-400 tracking-tighter">100%</span>
+                <span className="text-5xl md:text-6xl font-black text-blue-600 dark:text-blue-400 tracking-tighter">5</span>
               </div>
               <div>
-                 <p className="text-[9px] md:text-[10px] font-mono font-bold uppercase tracking-widest text-gray-400 dark:text-gray-400 mb-2">{t('bento.delivery_label')}</p>
+                 <p className="text-[11px] md:text-[10px] font-mono font-bold uppercase tracking-widest text-gray-400 dark:text-gray-400 mb-2">{t('bento.delivery_label')}</p>
                  <h4 className="text-lg md:text-xl font-black uppercase tracking-tight dark:text-white leading-tight">{t('bento.delivery_title')}</h4>
               </div>
            </BentoBox>
