@@ -24,7 +24,7 @@ export const projects: Project[] = [
     year: '2026',
     description: 'A full-stack educational platform built from scratch for a tutoring center serving 200+ students. Custom Java backend with JWT-based RBAC, self-hosted MinIO object storage, and hybrid SSR for SEO. Replaces fragmented manual coordination with a unified system for scheduling, course materials, testing, and parent-teacher communication.',
     image: blueprintImg,
-    stack: ["Java 25", "Spring Boot", "React", "PostgreSQL", "MinIO"],
+    stack: ["Java 21", "Spring Boot 3.5", "React 18", "PostgreSQL 16", "MinIO"],
     status: 'active',
     liveUrl: 'https://cp-binom.ru',
     href: '/lms-case-study',
