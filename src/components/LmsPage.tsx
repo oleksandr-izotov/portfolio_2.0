@@ -10,7 +10,7 @@ import finalCtaImg from '../assets/lms1.webp';
 import { useLanguage } from '../i18n';
 import { translations } from '../i18n/translations';
 
-const techTags = ['Java 25', 'Spring Boot 3', 'React', 'PostgreSQL', 'MinIO', 'JWT Auth'];
+const techTags = ['Java 21', 'Spring Boot 3.5', 'PostgreSQL 16', 'Flyway', 'MinIO', 'React 18', 'Vite', 'Tailwind 4', 'Playwright'];
 
 
 const featureIcons = [ShieldCheck, Database, Workflow];
@@ -272,7 +272,7 @@ export const LmsPage = () => {
             <div className="absolute top-5 left-1/2 -translate-x-1/2 flex items-center gap-2">
               <div className="w-1.5 h-1.5 bg-blue-500/50 rounded-full animate-pulse" />
               <span className="text-[8px] font-mono text-zinc-700 uppercase tracking-widest">
-                DEMO_RENDER // PENDING
+                LIVE // CP-BINOM.RU
               </span>
             </div>
 

@@ -1,6 +1,6 @@
-import blueprintImg from '../assets/blueprint-engine.webp';
-import coreLogicImg from '../assets/core-logic.webp';
-import nexusDbImg from '../assets/nexus-db.webp';
+import cpBinomImg from '../assets/project-cp-binom.webp';
+import aiSaasImg from '../assets/project-ai-saas.webp';
+import kliniqImg from '../assets/project-kliniq.webp';
 
 export interface Project {
   title: string;
@@ -23,7 +23,7 @@ export const projects: Project[] = [
     category: 'Java // Spring Boot 3',
     year: '2026',
     description: 'A full-stack educational platform built from scratch for a tutoring center serving 200+ students. Custom Java backend with JWT-based RBAC, self-hosted MinIO object storage, and hybrid SSR for SEO. Replaces fragmented manual coordination with a unified system for scheduling, course materials, testing, and parent-teacher communication.',
-    image: blueprintImg,
+    image: cpBinomImg,
     stack: ["Java 21", "Spring Boot 3.5", "React 18", "PostgreSQL 16", "MinIO"],
     status: 'active',
     liveUrl: 'https://cp-binom.ru',
@@ -36,7 +36,7 @@ export const projects: Project[] = [
     category: 'Django // LLM',
     year: '2026',
     description: 'A subscription AI tutor: one topic in, four structured sections out — explanation, summary, study plan, self-check quiz — generated in five languages. Server-rendered Django + HTMX with a Celery/Redis pipeline streaming sections live to the UI, a Gemini → Qwen LLM fallback chain, and four-tier Stripe billing with usage-quota enforcement.',
-    image: coreLogicImg,
+    image: aiSaasImg,
     stack: ["Django", "HTMX", "Celery", "Redis", "Stripe"],
     status: 'development',
     href: '/ai-saas-case-study',
@@ -48,7 +48,7 @@ export const projects: Project[] = [
     category: 'Kotlin // Spring Boot 3',
     year: '2026',
     description: 'A surgical operating-room scheduling platform, built solo from scratch. A Kotlin/Spring Boot 3 backend with jOOQ over PostgreSQL makes double-bookings impossible at the database via an EXCLUDE constraint, with real-time updates over Server-Sent Events, drag-and-drop reschedule, and self-hosted auth using WebAuthn passkeys. SvelteKit frontend, deployed on Hetzner.',
-    image: nexusDbImg,
+    image: kliniqImg,
     stack: ["Kotlin", "Spring Boot", "SvelteKit", "PostgreSQL", "Passkeys"],
     status: 'development',
     href: '/medtech-case-study',

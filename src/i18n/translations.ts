@@ -44,7 +44,7 @@ export const translations = {
     },
     aisaas: {
       back: 'Back to Cases',
-      discuss: 'Discuss Project',
+      discuss: 'Get in touch',
       view_live: 'View Live Demo',
       badge: 'Case Study // AI & SaaS',
       s1_label: '01 // Executive Summary',
@@ -79,7 +79,7 @@ export const translations = {
     },
     lms: {
       back: 'Back to Cases',
-      discuss: 'Discuss Project',
+      discuss: 'Get in touch',
       view_live: 'View Live Platform',
       badge: 'Case Study // Exam-Prep Platform',
       s1_label: '01 // Executive Summary',
@@ -321,7 +321,7 @@ export const translations = {
     },
     aisaas: {
       back: 'Zurück zu Projekten',
-      discuss: 'Projekt besprechen',
+      discuss: 'Kontakt aufnehmen',
       view_live: 'Live-Demo ansehen',
       badge: 'Fallstudie // KI & SaaS',
       s1_label: '01 // Zusammenfassung',
@@ -356,7 +356,7 @@ export const translations = {
     },
     lms: {
       back: 'Zurück zu Projekten',
-      discuss: 'Projekt besprechen',
+      discuss: 'Kontakt aufnehmen',
       view_live: 'Live-Plattform ansehen',
       badge: 'Fallstudie // Prüfungsvorbereitung',
       s1_label: '01 // Zusammenfassung',
@@ -598,7 +598,7 @@ export const translations = {
     },
     aisaas: {
       back: 'Назад к проектам',
-      discuss: 'Обсудить проект',
+      discuss: 'Написать мне',
       view_live: 'Открыть демо',
       badge: 'Кейс // AI & SaaS',
       s1_label: '01 // Резюме',
@@ -633,7 +633,7 @@ export const translations = {
     },
     lms: {
       back: 'Назад к проектам',
-      discuss: 'Обсудить проект',
+      discuss: 'Написать мне',
       view_live: 'Открыть платформу',
       badge: 'Кейс // Платформа подготовки к экзаменам',
       s1_label: '01 // Резюме',
