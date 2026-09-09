@@ -14,9 +14,7 @@ import { useLanguage } from '../i18n';
 export const CaseStudyLiveLink = ({ caseStudyId }: { caseStudyId: NonNullable<Project['caseStudyId']> }) => {
   const { t } = useLanguage();
   const project = projects.find(p => p.caseStudyId === caseStudyId);
-  // Translation sections are named per case study, not per route id.
-  const section = caseStudyId === 'ai-saas' ? 'aisaas' : caseStudyId;
-  const label = t(`${section}.view_live`);
+  const label = t(`${caseStudyId}.view_live`);
 
   if (!project?.liveUrl) {
     return (

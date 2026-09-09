@@ -19,7 +19,7 @@ import { useRouteSeo } from './useRouteSeo';
 // discards the markup and re-renders from scratch. The six route modules add
 // ~12 kB gzipped to the entry bundle and save six extra requests.
 import { CaseStudyPage } from './components/CaseStudyPage';
-import { AiSaaSPage } from './components/AiSaaSPage';
+import { FortochkaPage } from './components/FortochkaPage';
 import { LmsPage } from './components/LmsPage';
 import { NotFoundPage } from './components/NotFoundPage';
 import { ImpressumPage } from './components/ImpressumPage';
@@ -94,7 +94,7 @@ const AnimatedRoutes = () => {
         <Routes location={location}>
           <Route path="/" element={<HomePage />} />
           <Route path="/lms-case-study" element={<LmsPage />} />
-          <Route path="/ai-saas-case-study" element={<AiSaaSPage />} />
+          <Route path="/fortochka-case-study" element={<FortochkaPage />} />
           <Route path="/medtech-case-study" element={<CaseStudyPage />} />
           <Route path="/impressum" element={<ImpressumPage />} />
           <Route path="/datenschutz" element={<DatenschutzPage />} />

@@ -1,5 +1,5 @@
 import cpBinomImg from '../assets/project-cp-binom.webp';
-import aiSaasImg from '../assets/project-ai-saas.webp';
+import fortochkaImg from '../assets/project-fortochka.webp';
 import kliniqImg from '../assets/project-kliniq.webp';
 
 export interface Project {
@@ -14,7 +14,7 @@ export interface Project {
   liveUrl?: string;
   href: string;
   caseStudy?: boolean;
-  caseStudyId?: 'medtech' | 'ai-saas' | 'lms';
+  caseStudyId?: 'medtech' | 'fortochka' | 'lms';
 }
 
 export const projects: Project[] = [
@@ -45,15 +45,16 @@ export const projects: Project[] = [
     caseStudyId: 'medtech',
   },
   {
-    title: 'AI-Powered EdTech SaaS',
-    category: 'Django // LLM',
+    title: 'Форточка — Private VPN',
+    category: 'Python // Distributed',
     year: '2026',
-    description: 'A subscription AI tutor: one topic in, four structured sections out — explanation, summary, study plan, self-check quiz — generated in five languages. Server-rendered Django + HTMX with a Celery/Redis pipeline streaming sections live to the UI, a Gemini → Qwen LLM fallback chain, and four-tier Stripe billing with usage-quota enforcement.',
-    image: aiSaasImg,
-    stack: ["Django", "HTMX", "Celery", "Redis", "Stripe"],
-    status: 'development',
-    href: '/ai-saas-case-study',
+    description: 'A private VPN service built as a distributed system rather than a box with WireGuard on it.',
+    image: fortochkaImg,
+    stack: ["Python 3.12", "FastAPI", "aiogram 3", "AmneziaWG", "Next.js 16"],
+    status: 'active',
+    liveUrl: 'https://fortochka.me',
+    href: '/fortochka-case-study',
     caseStudy: true,
-    caseStudyId: 'ai-saas',
+    caseStudyId: 'fortochka',
   },
 ];

@@ -75,16 +75,16 @@ export const routes: RouteSeo[] = [
     ),
   },
   {
-    path: '/ai-saas-case-study',
-    title: 'AI-Powered EdTech SaaS | Case Study',
+    path: '/fortochka-case-study',
+    title: 'Форточка — Private VPN Infrastructure | Case Study',
     description:
-      'Case study: a subscription AI tutor built on Django and HTMX — a Celery/Redis pipeline streaming generated sections live, a Gemini-to-Qwen fallback chain and Stripe billing with usage quotas.',
-    canonical: `${SITE_URL}/ai-saas-case-study`,
+      'Case study: a private VPN service built as a distributed system — an agent on every node behind a management-only tunnel, a separate control plane that stays out of the traffic path, and usage accounting that survives an interface restart.',
+    canonical: `${SITE_URL}/fortochka-case-study`,
     jsonLd: caseStudy(
-      'AI-Powered EdTech SaaS',
-      '/ai-saas-case-study',
-      'Subscription AI tutor: Django, HTMX, Celery, Redis, Stripe, LLM fallback chain.',
-      ['Django', 'HTMX', 'Celery', 'Redis', 'Stripe', 'LLM', 'SaaS'],
+      'Форточка — Private VPN Infrastructure',
+      '/fortochka-case-study',
+      'Private VPN service: Python, FastAPI, aiogram, AmneziaWG, distributed agent/control-plane architecture.',
+      ['Python', 'FastAPI', 'aiogram', 'WireGuard', 'AmneziaWG', 'Distributed Systems', 'Infrastructure'],
     ),
   },
   {

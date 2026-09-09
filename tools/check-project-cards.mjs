@@ -30,10 +30,10 @@ for (const c of cards) {
 }
 
 console.log('\nКнопка живого демо на кейс-страницах:');
-for (const path of ['/lms-case-study', '/ai-saas-case-study', '/medtech-case-study']) {
+for (const path of ['/lms-case-study', '/medtech-case-study', '/fortochka-case-study']) {
   await page.goto(base + path, { waitUntil: 'networkidle0', timeout: 45000 });
   const state = await page.evaluate(() => {
-    const link = [...document.querySelectorAll('a')].find(a => /view live/i.test(a.textContent || ''));
+    const link = [...document.querySelectorAll('a')].find(a => /view live|open the site|zur website|открыть сайт|открыть платформу/i.test(a.textContent || ''));
     const badge = [...document.querySelectorAll('div')].find(d => (d.textContent || '').trim() === 'In Development');
     return { live: link?.href ?? null, badge: !!badge };
   });

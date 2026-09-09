@@ -1,23 +1,23 @@
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { ArrowLeft, Send, Brain, Zap, CreditCard, ExternalLink, Terminal } from 'lucide-react';
+import { ArrowLeft, Send, ShieldCheck, Network, Activity, ExternalLink, Terminal } from 'lucide-react';
 import { GrainTexture } from './GrainTexture';
 import { CaseStudyLiveLink } from './CaseStudyLiveLink';
 import { ImageWithFallback } from './ui/ImageWithFallback';
-import heroImg from '../assets/ai-bg.webp';
-import abstractImg from '../assets/ai2-bg.webp';
-import finalCtaImg from '../assets/ai3-bg.webp';
+import heroImg from '../assets/fortochka-hero.webp';
+import abstractImg from '../assets/fortochka-mid.webp';
+import finalCtaImg from '../assets/fortochka-cta.webp';
 import { useLanguage } from '../i18n';
 import { translations } from '../i18n/translations';
 
-const techTags = ['Django', 'HTMX', 'Celery', 'Redis', 'Stripe'];
-const featureIcons = [Brain, Zap, CreditCard];
+const techTags = ['Python 3.12', 'FastAPI', 'aiogram 3', 'SQLAlchemy 2', 'AmneziaWG', 'WireGuard', 'systemd', 'Next.js 16'];
+const featureIcons = [ShieldCheck, Network, Activity];
 
 
-export const AiSaaSPage = () => {
+export const FortochkaPage = () => {
   const navigate = useNavigate();
   const { lang } = useLanguage();
-  const ai = translations[lang].aisaas;
+  const ai = translations[lang].fortochka;
 
   return (
     <div className="min-h-screen bg-black text-white relative overflow-x-hidden">
@@ -113,7 +113,7 @@ export const AiSaaSPage = () => {
             ))}
           </motion.div>
 
-          <CaseStudyLiveLink caseStudyId="ai-saas" />
+          <CaseStudyLiveLink caseStudyId="fortochka" />
         </div>
       </section>
 
