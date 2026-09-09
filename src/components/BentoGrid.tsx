@@ -106,7 +106,7 @@ export const BentoGrid = () => {
                 <p className="text-xs md:text-sm font-bold leading-relaxed uppercase tracking-tight italic opacity-90">
                   {t('bento.about_quote')}
                 </p>
-                <p className="text-[12px] md:text-xs font-medium leading-relaxed opacity-80 tracking-wide">
+                <p className="text-[12px] md:text-xs font-medium leading-relaxed opacity-80 uppercase tracking-wider">
                   {t('bento.about_text')}
                 </p>
               </div>

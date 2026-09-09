@@ -158,7 +158,8 @@ export const translations = {
     },
     hero: {
       badge: 'B.Sc. Software Engineering // Uni Stuttgart',
-      subtitle: 'Software Engineering student in Stuttgart. Werkstudent at RECARO Aircraft Seating.',
+      subtitle: 'Software Engineering Student — Stuttgart, DE',
+      hover_sub: 'Stuttgart // Building things end to end',
       btn_primary_top: 'Contact',
       btn_primary: 'Get in Touch',
       btn_secondary_top: 'Projects',
@@ -434,7 +435,8 @@ export const translations = {
     },
     hero: {
       badge: 'B.Sc. Software Engineering // Uni Stuttgart',
-      subtitle: 'Student der Softwaretechnik in Stuttgart. Werkstudent bei RECARO Aircraft Seating.',
+      subtitle: 'Student der Softwaretechnik — Stuttgart, DE',
+      hover_sub: 'Stuttgart // Von der Datenbank bis zum Deployment',
       btn_primary_top: 'Kontakt',
       btn_primary: 'Kontakt aufnehmen',
       btn_secondary_top: 'Projekte',
@@ -710,7 +712,8 @@ export const translations = {
     },
     hero: {
       badge: 'B.Sc. Software Engineering // Uni Stuttgart',
-      subtitle: 'Студент программной инженерии в Штутгарте. Werkstudent в RECARO Aircraft Seating.',
+      subtitle: 'Студент программной инженерии — Штутгарт, DE',
+      hover_sub: 'Штутгарт // От базы до деплоя',
       btn_primary_top: 'Контакт',
       btn_primary: 'Связаться',
       btn_secondary_top: 'Проекты',
