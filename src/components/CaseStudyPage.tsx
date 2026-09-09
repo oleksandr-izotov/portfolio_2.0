@@ -10,7 +10,7 @@ import finalCtaImg from '../assets/med3-bg.webp';
 import { useLanguage } from '../i18n';
 import { translations } from '../i18n/translations';
 
-const techTags = ['Kotlin', 'Spring Boot 3', 'SvelteKit', 'PostgreSQL', 'Redis', 'WebAuthn'];
+const techTags = ['Kotlin 2.1', 'Spring Boot 3.5', 'jOOQ', 'PostgreSQL 16', 'Redis', 'SvelteKit 2', 'WebAuthn', 'Playwright'];
 
 
 const featureIcons = [Database, GitBranch, RefreshCcw, ShieldCheck];
@@ -280,7 +280,7 @@ export const CaseStudyPage = () => {
             <div className="absolute top-5 left-1/2 -translate-x-1/2 flex items-center gap-2">
               <div className="w-1.5 h-1.5 bg-blue-500/50 rounded-full animate-pulse" />
               <span className="text-[8px] font-mono text-zinc-700 uppercase tracking-widest">
-                DEMO_RENDER // PENDING
+                LIVE // KLINIQ.IZOTOV.DEV
               </span>
             </div>
 
