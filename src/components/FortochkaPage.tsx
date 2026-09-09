@@ -90,10 +90,10 @@ export const FortochkaPage = () => {
             transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="text-[13vw] md:text-[90px] lg:text-[110px] font-black uppercase tracking-[-0.05em] leading-[0.88] mb-10 [text-shadow:0_4px_30px_rgba(0,0,0,0.9)]"
           >
-            AI-Powered
+            Fortochka
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-br from-white via-zinc-300 to-zinc-700">
-              EdTech SaaS
+              Private VPN
             </span>
           </motion.h1>
 

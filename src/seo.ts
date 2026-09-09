@@ -76,12 +76,12 @@ export const routes: RouteSeo[] = [
   },
   {
     path: '/fortochka-case-study',
-    title: 'Форточка — Private VPN Infrastructure | Case Study',
+    title: 'Fortochka — Private VPN Infrastructure | Case Study',
     description:
       'Case study: a private VPN service built as a distributed system — an agent on every node behind a management-only tunnel, a separate control plane that stays out of the traffic path, and usage accounting that survives an interface restart.',
     canonical: `${SITE_URL}/fortochka-case-study`,
     jsonLd: caseStudy(
-      'Форточка — Private VPN Infrastructure',
+      'Fortochka — Private VPN Infrastructure',
       '/fortochka-case-study',
       'Private VPN service: Python, FastAPI, aiogram, AmneziaWG, distributed agent/control-plane architecture.',
       ['Python', 'FastAPI', 'aiogram', 'WireGuard', 'AmneziaWG', 'Distributed Systems', 'Infrastructure'],

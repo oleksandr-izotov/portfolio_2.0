@@ -45,7 +45,7 @@ export const projects: Project[] = [
     caseStudyId: 'medtech',
   },
   {
-    title: 'Форточка — Private VPN',
+    title: 'Fortochka — Private VPN',
     category: 'Python // Distributed',
     year: '2026',
     description: 'A private VPN service built as a distributed system rather than a box with WireGuard on it.',

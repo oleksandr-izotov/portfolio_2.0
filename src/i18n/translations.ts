@@ -130,7 +130,7 @@ export const translations = {
           description: 'Operating-room scheduling, built solo from scratch and running live — sign in with a demo account and move a booking. A Postgres EXCLUDE constraint makes overlapping bookings impossible to insert at all, so the guarantee survives two people clicking at once; Server-Sent Events push every change to open dashboards. Auth is self-hosted end to end: Argon2id, WebAuthn passkeys, Redis sessions, no external provider. 29k lines of Kotlin and SvelteKit under 187 tests.',
         },
         {
-          title: 'Форточка — Private VPN',
+          title: 'Fortochka — Private VPN',
           description: 'A private VPN service, built as a distributed system rather than a box with WireGuard installed on it. An agent runs on every node with a six-operation contract, listening only inside a management tunnel — from outside its port does not exist. A separate control plane holds the database, polls the agents and runs the Telegram bot people use. It deliberately stays out of the traffic path: take it offline and the VPN keeps working. 260 tests across both halves.',
         },
       ],
@@ -407,7 +407,7 @@ export const translations = {
           description: 'OP-Planung, solo von Grund auf gebaut und live erreichbar — mit einem Demo-Konto anmelden und eine Buchung verschieben. Ein EXCLUDE-Constraint in Postgres macht überlappende Buchungen schon beim Einfügen unmöglich, die Garantie hält also auch, wenn zwei Personen gleichzeitig klicken; Server-Sent Events schieben jede Änderung an alle offenen Dashboards. Auth komplett selbst gebaut: Argon2id, WebAuthn-Passkeys, Redis-Sessions, kein externer Anbieter. 29k Zeilen Kotlin und SvelteKit, abgedeckt von 187 Tests.',
         },
         {
-          title: 'Форточка — Privates VPN',
+          title: 'Fortochka — Private VPN',
           description: 'Ein privater VPN-Dienst, gebaut als verteiltes System statt als Kiste mit WireGuard darauf. Auf jedem Knoten läuft ein Agent mit einem Vertrag aus sechs Operationen, der nur innerhalb eines Management-Tunnels lauscht — von außen existiert sein Port nicht. Eine separate Steuerungsebene hält die Datenbank, fragt die Agenten ab und betreibt den Telegram-Bot. Sie liegt bewusst außerhalb des Datenpfads: Nimmt man sie offline, läuft das VPN weiter. 260 Tests über beide Hälften.',
         },
       ],
@@ -684,7 +684,7 @@ export const translations = {
           description: 'Планирование операционных, написанное в одиночку с нуля и работающее вживую — зайди под демо-аккаунтом и подвинь бронь. Ограничение EXCLUDE в Postgres не даёт вставить пересекающиеся брони вообще, поэтому гарантия держится, даже когда двое нажимают одновременно; Server-Sent Events отправляют каждое изменение во все открытые панели. Аутентификация своя целиком: Argon2id, WebAuthn passkeys, сессии в Redis, без сторонних провайдеров. 29 тысяч строк Kotlin и SvelteKit под 187 тестами.',
         },
         {
-          title: 'Форточка — свой VPN',
+          title: 'Fortochka — свой VPN',
           description: 'Личный VPN-сервис, собранный как распределённая система, а не как коробка с установленным WireGuard. На каждом узле работает агент с контрактом из шести операций, слушающий только внутри служебного туннеля — снаружи его порта не существует. Отдельно живёт управляющий слой: база, опрос агентов и телеграм-бот, которым пользуются люди. Он намеренно вне пути трафика: выключи его — VPN продолжит работать. 260 тестов на обе половины.',
         },
       ],
