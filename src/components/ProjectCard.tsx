@@ -12,13 +12,14 @@ interface Project {
   description: string;
   image: string;
   stack: string[];
-  status?: 'active' | 'development';
+  status?: 'active' | 'development' | 'archived';
   href: string;
   caseStudy?: boolean;
 }
 
-export const ProjectCard = ({ project, index, builtWith = 'Built With', locked = 'Locked', inDevelopment = 'In Development', systemId = 'System ID' }: { project: Project, index: number, builtWith?: string, locked?: string, inDevelopment?: string, systemId?: string }) => {
+export const ProjectCard = ({ project, index, builtWith = 'Built With', locked = 'Locked', inDevelopment = 'In Development', archived = 'Archived', systemId = 'System ID' }: { project: Project, index: number, builtWith?: string, locked?: string, inDevelopment?: string, archived?: string, systemId?: string }) => {
   const isLocked = project.status === 'development';
+  const isArchived = project.status === 'archived';
 
   return (
     <MotionLink
@@ -115,10 +116,15 @@ export const ProjectCard = ({ project, index, builtWith = 'Built With', locked =
         </div>
 
         {/* Year Badge (Always Visible) */}
-        <div className="absolute top-4 left-4 z-10">
+        <div className="absolute top-4 left-4 z-10 flex items-center gap-2">
           <div className={`px-2 py-1 backdrop-blur-sm border rounded-sm ${isLocked ? 'bg-zinc-900/40 border-zinc-500/30' : 'bg-black/40 border-white/10'}`}>
             <span className={`text-[9px] font-mono font-bold tracking-widest ${isLocked ? 'text-zinc-400' : 'text-white'}`}>{project.year}</span>
           </div>
+          {isArchived && (
+            <div className="px-2 py-1 backdrop-blur-sm border rounded-sm bg-black/40 border-white/10">
+              <span className="text-[9px] font-mono font-bold uppercase tracking-widest text-zinc-300">{archived}</span>
+            </div>
+          )}
         </div>
       </div>
 

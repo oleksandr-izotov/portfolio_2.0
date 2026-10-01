@@ -45,7 +45,7 @@ export const translations = {
     fortochka: {
       back: 'Back to Cases',
       discuss: 'Get in touch',
-      view_live: 'Open the site',
+      view_live: 'Open the archived site',
       badge: 'Case Study // Private VPN Infrastructure',
       s1_label: '01 // Executive Summary',
       challenge_label: 'The Challenge',
@@ -68,8 +68,8 @@ export const translations = {
         { title: 'Accounting that survives a restart', description: 'WireGuard counters reset whenever the interface restarts, which would read as a user suddenly spending negative traffic. Usage is therefore accumulated against a stored baseline rather than read directly, and a counter that moved backwards is recognised as a restart rather than an anomaly.' },
       ],
       s4_label: '04 // Project Walkthrough',
-      coming_soon: 'Running',
-      coming_soon_sub: 'The service runs for a small group of real people across two nodes. The site is public; the service itself is not open for sign-ups, and the code stays private because it describes a live deployment.',
+      coming_soon: 'Archived // 2026',
+      coming_soon_sub: 'The service ran for a small group of real people across two nodes and was shut down in September 2026: keeping two servers paid for and watched for a handful of friends stopped being worth it. The site stays online as a demo of the landing page; nothing on it can be bought.',
       cta_label: 'About this project',
       cta_title_1: 'Questions',
       cta_title_2: 'about the',
@@ -115,10 +115,11 @@ export const translations = {
     projects: {
       section_label: 'Featured Case Studies',
       heading_accent: 'ects',
-      description: 'Three projects I built end to end. The first is commissioned work, in production and in daily use; the other two are still being built.',
+      description: 'Three projects I built end to end. The first is commissioned work, in production and in daily use; the second is still being built; the third ran for a small group of people and is now archived.',
       built_with: 'Built With',
       locked: 'Locked',
       in_development: 'In Development',
+      archived: 'Archived',
       system_id: 'System ID',
       items: [
         {
@@ -131,7 +132,7 @@ export const translations = {
         },
         {
           title: 'Fortochka — Private VPN',
-          description: 'A private VPN service, built as a distributed system rather than a box with WireGuard installed on it. An agent runs on every node with a six-operation contract, listening only inside a management tunnel — from outside its port does not exist. A separate control plane holds the database, polls the agents and runs the Telegram bot people use. It deliberately stays out of the traffic path: take it offline and the VPN keeps working. 260 tests across both halves.',
+          description: 'A private VPN service that ran for a small group of people until September 2026, now archived. Built as a distributed system rather than a box with WireGuard installed on it. An agent ran on every node with a six-operation contract, listening only inside a management tunnel — from outside its port did not exist. A separate control plane held the database, polled the agents and ran the Telegram bot people used. It deliberately stayed out of the traffic path: take it offline and the VPN kept working. 260 tests across both halves.',
         },
       ],
     },
@@ -322,7 +323,7 @@ export const translations = {
     fortochka: {
       back: 'Zurück zu Projekten',
       discuss: 'Kontakt aufnehmen',
-      view_live: 'Zur Website',
+      view_live: 'Zur archivierten Website',
       badge: 'Fallstudie // Private VPN-Infrastruktur',
       s1_label: '01 // Zusammenfassung',
       challenge_title: 'Ein Dienst,\nvon Hand betrieben',
@@ -345,8 +346,8 @@ export const translations = {
         { title: 'Verbrauchszählung, die einen Neustart übersteht', description: 'WireGuard-Zähler werden bei jedem Interface-Neustart zurückgesetzt, was sich läse, als hätte jemand plötzlich negativen Traffic verbraucht. Der Verbrauch wird deshalb gegen einen gespeicherten Basiswert kumuliert statt direkt gelesen, und ein rückwärts gelaufener Zähler wird als Neustart erkannt, nicht als Anomalie.' },
       ],
       s4_label: '04 // Projekt-Walkthrough',
-      coming_soon: 'Im Betrieb',
-      coming_soon_sub: 'Der Dienst läuft für eine kleine Gruppe echter Menschen auf zwei Knoten. Die Website ist öffentlich; der Dienst selbst nimmt keine Anmeldungen an, und der Code bleibt privat, weil er ein laufendes Deployment beschreibt.',
+      coming_soon: 'Archiviert // 2026',
+      coming_soon_sub: 'Der Dienst lief für eine kleine Gruppe echter Menschen auf zwei Knoten und wurde im September 2026 abgeschaltet: Zwei Server für eine Handvoll Freunde zu bezahlen und zu überwachen, hat sich nicht mehr gelohnt. Die Website bleibt als Demo der Landingpage online; kaufen kann man dort nichts.',
       cta_label: 'Zu diesem Projekt',
       cta_title_1: 'Fragen',
       cta_title_2: 'zur',
@@ -392,10 +393,11 @@ export const translations = {
     projects: {
       section_label: 'Ausgewählte Fallstudien',
       heading_accent: 'ekte',
-      description: 'Drei Projekte, die ich vollständig selbst gebaut habe. Das erste ist Auftragsarbeit und täglich im Einsatz; die anderen beiden entstehen noch.',
+      description: 'Drei Projekte, die ich vollständig selbst gebaut habe. Das erste ist Auftragsarbeit und täglich im Einsatz; das zweite entsteht noch; das dritte lief für eine kleine Gruppe von Menschen und ist inzwischen archiviert.',
       built_with: 'Technologien',
       locked: 'Gesperrt',
       in_development: 'In Entwicklung',
+      archived: 'Archiviert',
       system_id: 'System ID',
       items: [
         {
@@ -408,7 +410,7 @@ export const translations = {
         },
         {
           title: 'Fortochka — Private VPN',
-          description: 'Ein privater VPN-Dienst, gebaut als verteiltes System statt als Kiste mit WireGuard darauf. Auf jedem Knoten läuft ein Agent mit einem Vertrag aus sechs Operationen, der nur innerhalb eines Management-Tunnels lauscht — von außen existiert sein Port nicht. Eine separate Steuerungsebene hält die Datenbank, fragt die Agenten ab und betreibt den Telegram-Bot. Sie liegt bewusst außerhalb des Datenpfads: Nimmt man sie offline, läuft das VPN weiter. 260 Tests über beide Hälften.',
+          description: 'Ein privater VPN-Dienst, der bis September 2026 für eine kleine Gruppe von Menschen lief und inzwischen archiviert ist. Gebaut als verteiltes System statt als Kiste mit WireGuard darauf. Auf jedem Knoten lief ein Agent mit einem Vertrag aus sechs Operationen, der nur innerhalb eines Management-Tunnels lauschte — von außen existierte sein Port nicht. Eine separate Steuerungsebene hielt die Datenbank, fragte die Agenten ab und betrieb den Telegram-Bot. Sie lag bewusst außerhalb des Datenpfads: Nahm man sie offline, lief das VPN weiter. 260 Tests über beide Hälften.',
         },
       ],
     },
@@ -599,7 +601,7 @@ export const translations = {
     fortochka: {
       back: 'Назад к проектам',
       discuss: 'Написать мне',
-      view_live: 'Открыть сайт',
+      view_live: 'Открыть архивный сайт',
       badge: 'Кейс // Своя VPN-инфраструктура',
       s1_label: '01 // Резюме',
       challenge_label: 'Задача',
@@ -622,8 +624,8 @@ export const translations = {
         { title: 'Учёт, переживающий перезапуск', description: 'Счётчики WireGuard обнуляются при каждом перезапуске интерфейса, и это читалось бы как внезапно потраченный отрицательный трафик. Поэтому расход накапливается относительно сохранённого базового значения, а не читается напрямую, и счётчик, уехавший назад, распознаётся как перезапуск, а не как аномалия.' },
       ],
       s4_label: '04 // Разбор проекта',
-      coming_soon: 'Работает',
-      coming_soon_sub: 'Сервис работает для небольшой группы живых людей на двух узлах. Сайт открыт всем; сам сервис регистрацию не принимает, а код остаётся приватным, потому что описывает работающее развёртывание.',
+      coming_soon: 'Архив // 2026',
+      coming_soon_sub: 'Сервис работал для небольшой группы живых людей на двух узлах и был выключен в сентябре 2026 года: платить за два сервера и следить за ними ради нескольких друзей перестало иметь смысл. Сайт оставлен как демо лендинга; купить на нём ничего нельзя.',
       cta_label: 'Об этом проекте',
       cta_title_1: 'Вопросы',
       cta_title_2: 'об',
@@ -669,10 +671,11 @@ export const translations = {
     projects: {
       section_label: 'Избранные кейсы',
       heading_accent: 'екты',
-      description: 'Три проекта, сделанных целиком мной. Первый — коммерческий заказ, работает в проде каждый день; два других ещё в работе.',
+      description: 'Три проекта, сделанных целиком мной. Первый — коммерческий заказ, работает в проде каждый день; второй ещё в работе; третий работал для небольшой группы людей и теперь в архиве.',
       built_with: 'Технологии',
       locked: 'Закрыто',
       in_development: 'В разработке',
+      archived: 'Архив',
       system_id: 'ID системы',
       items: [
         {
@@ -685,7 +688,7 @@ export const translations = {
         },
         {
           title: 'Fortochka — свой VPN',
-          description: 'Личный VPN-сервис, собранный как распределённая система, а не как коробка с установленным WireGuard. На каждом узле работает агент с контрактом из шести операций, слушающий только внутри служебного туннеля — снаружи его порта не существует. Отдельно живёт управляющий слой: база, опрос агентов и телеграм-бот, которым пользуются люди. Он намеренно вне пути трафика: выключи его — VPN продолжит работать. 260 тестов на обе половины.',
+          description: 'Личный VPN-сервис, который работал для небольшой группы людей до сентября 2026 года; сейчас в архиве. Собран как распределённая система, а не как коробка с установленным WireGuard. На каждом узле работал агент с контрактом из шести операций, слушавший только внутри служебного туннеля — снаружи его порта не существовало. Отдельно жил управляющий слой: база, опрос агентов и телеграм-бот, которым пользовались люди. Он намеренно был вне пути трафика: выключи его — VPN продолжал работать. 260 тестов на обе половины.',
         },
       ],
     },

@@ -59,6 +59,7 @@ export const Projects = () => {
             builtWith={t('projects.built_with')}
             locked={t('projects.locked')}
             inDevelopment={t('projects.in_development')}
+            archived={t('projects.archived')}
             systemId={t('projects.system_id')}
           />
         ))}

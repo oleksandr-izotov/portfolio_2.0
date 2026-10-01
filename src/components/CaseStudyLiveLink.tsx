@@ -10,6 +10,9 @@ import { useLanguage } from '../i18n';
  * so the card on the home page and this button can never disagree. A project
  * still in development shows a badge instead of a link: the demo URL used to be
  * hard-coded here and kept pointing at a hostname that no longer resolved.
+ *
+ * An archived project keeps its link, but the dot stops pulsing green: the site
+ * is still up, the service behind it is not.
  */
 export const CaseStudyLiveLink = ({ caseStudyId }: { caseStudyId: NonNullable<Project['caseStudyId']> }) => {
   const { t } = useLanguage();
@@ -40,7 +43,7 @@ export const CaseStudyLiveLink = ({ caseStudyId }: { caseStudyId: NonNullable<Pr
       transition={{ delay: 0.55 }}
       className="inline-flex items-center gap-3 mt-8 px-6 py-2.5 bg-blue-500/10 border border-blue-500/30 hover:bg-blue-500/20 hover:border-blue-500/60 rounded-full text-[10px] font-mono font-bold uppercase tracking-[0.3em] text-blue-400 hover:text-white transition-all duration-300"
     >
-      <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
+      <span className={`w-1.5 h-1.5 rounded-full ${project.status === 'archived' ? 'bg-zinc-500' : 'bg-green-500 animate-pulse'}`} />
       {label}
       <ExternalLink size={11} />
     </motion.a>

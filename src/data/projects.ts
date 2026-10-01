@@ -9,7 +9,8 @@ export interface Project {
   description: string;
   image: string;
   stack: string[];
-  status?: 'active' | 'development';
+  /** 'archived': the project is finished and shut down; its site may still be up as a demo. */
+  status?: 'active' | 'development' | 'archived';
   /** Public demo. Absent while a project is in development. */
   liveUrl?: string;
   href: string;
@@ -48,10 +49,10 @@ export const projects: Project[] = [
     title: 'Fortochka — Private VPN',
     category: 'Python // Distributed',
     year: '2026',
-    description: 'A private VPN service built as a distributed system rather than a box with WireGuard on it.',
+    description: 'A private VPN service built as a distributed system rather than a box with WireGuard on it. Ran until September 2026, now archived.',
     image: fortochkaImg,
     stack: ["Python 3.12", "FastAPI", "aiogram 3", "AmneziaWG", "Next.js 16"],
-    status: 'active',
+    status: 'archived',
     liveUrl: 'https://fortochka.me',
     href: '/fortochka-case-study',
     caseStudy: true,
