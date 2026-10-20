@@ -1,15 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-
-const TILE_W = 280;
-
-// ECG tile: 280px wide, Y-center = 36 (in 72px SVG). Starts/ends at y=36 → tiles seamlessly.
-const ECG_TILE =
-  'M0,36 L44,36 L48,33 L51,40 L53,8 L55,62 L57,40 L60,36 ' +
-  'L95,36 L99,28 L103,36 ' +
-  'L138,36 L142,33 L145,40 L147,8 L149,62 L151,40 L154,36 ' +
-  'L190,36 L194,28 L198,36 ' +
-  'L240,36 L244,33 L247,40 L249,8 L251,62 L253,40 L256,36 ' +
-  'L280,36';
+import { PulseTrace, type PulseState } from './PulseTrace';
+import { bpmFromCpu, latencyColor } from './pulseSignal';
 
 interface ServerStatus {
   memoryUsedPct: number;
@@ -42,6 +33,8 @@ export const SystemPulse: React.FC = () => {
   const [status, setStatus] = useState<ServerStatus | null>(null);
   const [latencyMs, setLatencyMs] = useState<number | null>(null);
   const [failed, setFailed] = useState(false);
+  const [pingSeq, setPingSeq] = useState(0);
+  const [visible, setVisible] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   // Read after mount, not during render: the prerendered HTML has no build
   // metadata to read, so pulling it in the first client render would disagree
@@ -68,6 +61,7 @@ export const SystemPulse: React.FC = () => {
         setLatencyMs(Math.round(performance.now() - startedAt));
         setStatus(data);
         setFailed(false);
+        setPingSeq(n => n + 1);
       } catch {
         if (cancelled) return;
         // Show dashes rather than stale or invented values.
@@ -81,11 +75,14 @@ export const SystemPulse: React.FC = () => {
     // a long page, and most visitors never scroll to it.
     const observer = new IntersectionObserver(
       entries => {
-        const visible = entries[0]?.isIntersecting;
-        if (visible && !timer) {
+        const onScreen = entries[0]?.isIntersecting ?? false;
+        setVisible(onScreen);
+        // Every 3 s: often enough that real responses show up on the trace as
+        // beats, and well inside nginx's 30 requests a minute per address.
+        if (onScreen && !timer) {
           poll();
-          timer = setInterval(poll, 10_000);
-        } else if (!visible && timer) {
+          timer = setInterval(poll, 3_000);
+        } else if (!onScreen && timer) {
           clearInterval(timer);
           timer = null;
         }
@@ -107,7 +104,7 @@ export const SystemPulse: React.FC = () => {
     {
       label: 'API_LATENCY',
       value: latencyMs === null ? dash : `${latencyMs}ms`,
-      color: latencyMs === null ? '#a1a1aa' : latencyMs < 150 ? '#22c55e' : latencyMs < 400 ? '#facc15' : '#f87171',
+      color: latencyMs === null ? '#a1a1aa' : latencyColor(latencyMs),
     },
     {
       label: 'BUILD_TIME',
@@ -127,6 +124,7 @@ export const SystemPulse: React.FC = () => {
   ];
 
   const live = status !== null && !failed;
+  const pulseState: PulseState = live ? 'live' : failed ? 'offline' : 'connecting';
 
   return (
     <div ref={containerRef} className="border border-white/[0.08] rounded-2xl bg-white/[0.02] overflow-hidden">
@@ -148,90 +146,31 @@ export const SystemPulse: React.FC = () => {
         </span>
       </div>
 
-      {/* ECG Display — SVG pattern tiles infinitely, no clipping */}
-      <div className="relative" style={{ height: '80px', background: 'rgba(0,0,0,0.25)' }}>
-        <svg
-          width="100%"
-          height="80"
-          xmlns="http://www.w3.org/2000/svg"
-          style={{ display: 'block' }}
-          aria-hidden="true"
-        >
-          <defs>
-            {/* Oscilloscope grid */}
-            <pattern id="sp-grid" width="40" height="20" patternUnits="userSpaceOnUse">
-              <path d="M40,0 L0,0 0,20" fill="none" stroke="rgba(59,130,246,0.07)" strokeWidth="0.5" />
-            </pattern>
-
-            {/* Glow layer — same animation, thick+transparent */}
-            <pattern id="sp-glow" width={TILE_W} height="80" patternUnits="userSpaceOnUse">
-              <animateTransform
-                attributeName="patternTransform"
-                type="translate"
-                from={`0,0`}
-                to={`-${TILE_W},0`}
-                dur="5s"
-                repeatCount="indefinite"
-              />
-              <path
-                d={ECG_TILE}
-                stroke="#3b82f6"
-                strokeWidth="8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                fill="none"
-                opacity="0.18"
-              />
-            </pattern>
-
-            {/* Main line */}
-            <pattern id="sp-line" width={TILE_W} height="80" patternUnits="userSpaceOnUse">
-              <animateTransform
-                attributeName="patternTransform"
-                type="translate"
-                from={`0,0`}
-                to={`-${TILE_W},0`}
-                dur="5s"
-                repeatCount="indefinite"
-              />
-              <path
-                d={ECG_TILE}
-                stroke="#60a5fa"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                fill="none"
-              />
-            </pattern>
-          </defs>
-
-          {/* Grid background */}
-          <rect width="100%" height="80" fill="url(#sp-grid)" />
-
-          {/* Center baseline */}
-          <line
-            x1="0" y1="40" x2="100%" y2="40"
-            stroke="rgba(59,130,246,0.1)"
-            strokeWidth="0.5"
-            strokeDasharray="3 5"
-          />
-
-          {/* ECG glow */}
-          <rect width="100%" height="80" fill="url(#sp-glow)" />
-
-          {/* ECG line */}
-          <rect width="100%" height="80" fill="url(#sp-line)" />
-        </svg>
-
-        {/* Edge fades so line appears/disappears smoothly */}
-        <div
-          className="absolute inset-y-0 left-0 w-10 pointer-events-none"
-          style={{ background: 'linear-gradient(to right, rgba(10,10,12,0.9), transparent)' }}
+      {/* Monitor trace: rate from the server's CPU load, beat height from the
+          latency measured in this browser, a tick on every real response. */}
+      <div className="relative" style={{ background: 'rgba(0,0,0,0.25)' }}>
+        <PulseTrace
+          state={pulseState}
+          latencyMs={latencyMs}
+          cpuLoadPct={status?.cpuLoadPct ?? null}
+          pingSeq={pingSeq}
+          active={visible}
         />
-        <div
-          className="absolute inset-y-0 right-0 w-10 pointer-events-none"
-          style={{ background: 'linear-gradient(to left, rgba(10,10,12,0.9), transparent)' }}
-        />
+        <div className="absolute top-1.5 right-3 text-right pointer-events-none font-mono leading-none">
+          {live && status ? (
+            <>
+              <span className="text-[13px] font-bold tabular-nums text-blue-300">{bpmFromCpu(status.cpuLoadPct)}</span>
+              <span className="ml-1 text-[7px] uppercase tracking-widest text-zinc-500">bpm</span>
+            </>
+          ) : (
+            <span className={`text-[8px] uppercase tracking-widest ${failed ? 'text-red-400' : 'text-zinc-500'}`}>
+              {failed ? 'No signal' : 'Waiting for signal'}
+            </span>
+          )}
+        </div>
+        <span className="absolute bottom-1 right-3 pointer-events-none text-[7px] font-mono uppercase tracking-[0.2em] text-zinc-500">
+          rate ← cpu {status ? `${status.cpuLoadPct}%` : ''} · height ← latency
+        </span>
       </div>
 
       {/* Metrics */}
