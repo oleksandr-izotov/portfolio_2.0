@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { motion, AnimatePresence, useInView } from 'motion/react';
+import { m, AnimatePresence, useInView } from 'motion/react';
 import { Sparkles, ArrowRight, ChevronDown } from 'lucide-react';
 import { HeroBackground } from './HeroBackground';
 import { useLanguage } from '../i18n';
@@ -59,18 +59,18 @@ export const Hero = () => {
     <section className="relative min-h-[100dvh] w-full flex flex-col items-center justify-center md:justify-between bg-transparent overflow-hidden pt-24 pb-12 md:pt-32 md:pb-0 px-0">
       
       {/* Dynamic Background Element */}
-      <motion.div
+      <m.div
         animate={{ scale: isHovered ? 1.05 : 1 }}
         transition={{ duration: 3, ease: "easeOut" }}
         className="absolute inset-0 z-0 opacity-10 dark:opacity-30"
       >
         <HeroBackground />
-      </motion.div>
+      </m.div>
 
       <div className="relative z-10 w-full max-w-7xl px-6 flex-1 flex flex-col justify-center">
         
         {/* Top Tagline */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
@@ -80,7 +80,7 @@ export const Hero = () => {
             <div className="w-1.5 h-1.5 bg-blue-600 rounded-full animate-pulse" />
             <span className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-gray-600 dark:text-zinc-300">{t('hero.badge')}</span>
           </div>
-        </motion.div>
+        </m.div>
 
         {/* Name and role. The whole block reacts to hover: the name blurs back
             and the role rises through it. */}
@@ -89,7 +89,7 @@ export const Hero = () => {
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
@@ -99,20 +99,20 @@ export const Hero = () => {
               OLEKSANDR<br />IZOTOV
             </h1>
 
-            <motion.p
+            <m.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.9, duration: 1.2 }}
               className="text-[11px] md:text-xs font-mono uppercase tracking-[0.35em] text-zinc-500 dark:text-zinc-400 transition-all duration-700 group-hover:opacity-0 select-none"
             >
               {t('hero.subtitle')}
-            </motion.p>
+            </m.p>
 
             {/* Hover Content */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <AnimatePresence>
                 {isHovered && (
-                  <motion.div
+                  <m.div
                     initial={{ opacity: 0, scale: 0.9, y: 10 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 1.1 }}
@@ -122,7 +122,7 @@ export const Hero = () => {
                       <h2 className="text-4xl md:text-6xl lg:text-8xl font-black tracking-tighter italic dark:text-blue-500">
                         SOFTWARE<br />ENGINEER
                       </h2>
-                      <motion.div
+                      <m.div
                         initial={{ width: 0 }}
                         animate={{ width: '100%' }}
                         className="h-1 bg-blue-600 mt-2 rounded-full"
@@ -131,15 +131,15 @@ export const Hero = () => {
                     <p className="mt-8 text-[11px] font-mono uppercase tracking-[0.6em] text-gray-400">
                       {t('hero.hover_sub')}
                     </p>
-                  </motion.div>
+                  </m.div>
                 )}
               </AnimatePresence>
             </div>
-          </motion.div>
+          </m.div>
         </div>
 
         {/* Action Buttons */}
-        <motion.div 
+        <m.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1, duration: 1 }}
@@ -189,7 +189,7 @@ export const Hero = () => {
                 <ChevronDown size={14} className="text-zinc-400 dark:text-zinc-500 group-hover:text-blue-500 transition-colors" />
              </div>
           </a>
-        </motion.div>
+        </m.div>
       </div>
 
       {/* INFINITE MARQUEE CAROUSEL */}

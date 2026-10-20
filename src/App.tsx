@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
+import { Fragment, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
-import { AnimatePresence, motion } from 'motion/react';
+import { AnimatePresence, LazyMotion, domAnimation, m } from 'motion/react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { BentoGrid } from './components/BentoGrid';
@@ -10,6 +10,7 @@ import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { GrainTexture } from './components/GrainTexture';
 import { LanguageProvider } from './i18n';
+import { stripLang } from './i18n/paths';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { useRouteSeo } from './useRouteSeo';
 
@@ -84,24 +85,30 @@ const AnimatedRoutes = () => {
 
   return (
     <AnimatePresence mode="wait">
-      <motion.div
-        key={location.pathname}
+      <m.div
+        // Keyed by the language-neutral path: switching language re-renders
+        // the text in place instead of fading the whole page out and back in.
+        key={stripLang(location.pathname)}
         variants={pageVariants}
         initial="initial"
         animate="animate"
         exit="exit"
       >
         <Routes location={location}>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/lms-case-study" element={<LmsPage />} />
-          <Route path="/fortochka-case-study" element={<FortochkaPage />} />
-          <Route path="/medtech-case-study" element={<CaseStudyPage />} />
-          <Route path="/impressum" element={<ImpressumPage />} />
-          <Route path="/datenschutz" element={<DatenschutzPage />} />
+          {['', '/de', '/ru'].map(prefix => (
+            <Fragment key={prefix || '/'}>
+              <Route path={prefix || '/'} element={<HomePage />} />
+              <Route path={`${prefix}/lms-case-study`} element={<LmsPage />} />
+              <Route path={`${prefix}/fortochka-case-study`} element={<FortochkaPage />} />
+              <Route path={`${prefix}/medtech-case-study`} element={<CaseStudyPage />} />
+              <Route path={`${prefix}/impressum`} element={<ImpressumPage />} />
+              <Route path={`${prefix}/datenschutz`} element={<DatenschutzPage />} />
+            </Fragment>
+          ))}
           <Route path="/404" element={<NotFoundPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
-      </motion.div>
+      </m.div>
     </AnimatePresence>
   );
 };
@@ -109,9 +116,14 @@ const AnimatedRoutes = () => {
 export default function App() {
   return (
     <ErrorBoundary>
-      <LanguageProvider>
-        <AnimatedRoutes />
-      </LanguageProvider>
+      {/* `m` components plus the domAnimation feature set instead of the full
+          `motion` bundle: nothing here uses drag or layout animations, and
+          `strict` turns an accidental `motion.*` import back into an error. */}
+      <LazyMotion features={domAnimation} strict>
+        <LanguageProvider>
+          <AnimatedRoutes />
+        </LanguageProvider>
+      </LazyMotion>
     </ErrorBoundary>
   );
 }

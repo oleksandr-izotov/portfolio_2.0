@@ -6,7 +6,12 @@ const browser = await puppeteer.launch({
   args: ['--no-sandbox', '--disable-dev-shm-usage'],
 });
 
-const paths = ['/', '/impressum', '/lms-case-study', '/ai-saas-case-study', '/medtech-case-study', '/datenschutz', '/does-not-exist'];
+const pages = ['/', '/lms-case-study', '/fortochka-case-study', '/medtech-case-study', '/impressum', '/datenschutz'];
+// Every page exists three times: English at the root, German and Russian under a prefix.
+const paths = [
+  ...['', '/de', '/ru'].flatMap(prefix => pages.map(p => (p === '/' ? prefix || '/' : prefix + p))),
+  '/does-not-exist',
+];
 let bad = 0;
 
 for (const p of paths) {

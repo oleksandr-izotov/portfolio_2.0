@@ -1,9 +1,10 @@
-import { motion } from 'motion/react';
+import { m } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, Terminal, Lock } from 'lucide-react';
 import { ImageWithFallback } from './ui/ImageWithFallback';
+import { useLanguage } from '../i18n';
 
-const MotionLink = motion.create(Link);
+const MotionLink = m.create(Link);
 
 interface Project {
   title: string;
@@ -18,12 +19,13 @@ interface Project {
 }
 
 export const ProjectCard = ({ project, index, builtWith = 'Built With', locked = 'Locked', inDevelopment = 'In Development', archived = 'Archived', systemId = 'System ID' }: { project: Project, index: number, builtWith?: string, locked?: string, inDevelopment?: string, archived?: string, systemId?: string }) => {
+  const { localize } = useLanguage();
   const isLocked = project.status === 'development';
   const isArchived = project.status === 'archived';
 
   return (
     <MotionLink
-      to={isLocked ? '/' : project.href}
+      to={localize(isLocked ? '/' : project.href)}
       onClick={isLocked ? (e) => e.preventDefault() : undefined}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -74,21 +76,21 @@ export const ProjectCard = ({ project, index, builtWith = 'Built With', locked =
                 </div>
               ) : (
                 <>
-                  <motion.h3
+                  <m.h3
                     initial={{ opacity: 0, x: -10 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     className="text-2xl font-black uppercase tracking-tighter dark:text-white mb-3"
                   >
                     {project.title}
-                  </motion.h3>
-                  <motion.p
+                  </m.h3>
+                  <m.p
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ delay: 0.2 }}
                     className="text-[13px] leading-relaxed text-gray-600 dark:text-zinc-400 font-medium mb-6"
                   >
                     {project.description}
-                  </motion.p>
+                  </m.p>
                 </>
               )}
             </div>

@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { m } from 'motion/react';
 import { ExternalLink, Lock } from 'lucide-react';
 import { projects, type Project } from '../data/projects';
 import { useLanguage } from '../i18n';
@@ -21,7 +21,7 @@ export const CaseStudyLiveLink = ({ caseStudyId }: { caseStudyId: NonNullable<Pr
 
   if (!project?.liveUrl) {
     return (
-      <motion.div
+      <m.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.55 }}
@@ -29,12 +29,12 @@ export const CaseStudyLiveLink = ({ caseStudyId }: { caseStudyId: NonNullable<Pr
       >
         <Lock size={11} />
         {t('projects.in_development')}
-      </motion.div>
+      </m.div>
     );
   }
 
   return (
-    <motion.a
+    <m.a
       href={project.liveUrl}
       target="_blank"
       rel="noopener noreferrer"
@@ -46,6 +46,6 @@ export const CaseStudyLiveLink = ({ caseStudyId }: { caseStudyId: NonNullable<Pr
       <span className={`w-1.5 h-1.5 rounded-full ${project.status === 'archived' ? 'bg-zinc-500' : 'bg-green-500 animate-pulse'}`} />
       {label}
       <ExternalLink size={11} />
-    </motion.a>
+    </m.a>
   );
 };

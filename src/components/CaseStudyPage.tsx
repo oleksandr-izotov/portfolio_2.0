@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'motion/react';
+import { m } from 'motion/react';
 import { ArrowLeft, Send, Database, GitBranch, RefreshCcw, ShieldCheck, ExternalLink, Terminal } from 'lucide-react';
 import { GrainTexture } from './GrainTexture';
 import { CaseStudyLiveLink } from './CaseStudyLiveLink';
@@ -17,7 +17,7 @@ const featureIcons = [Database, GitBranch, RefreshCcw, ShieldCheck];
 
 export const CaseStudyPage = () => {
   const navigate = useNavigate();
-  const { lang } = useLanguage();
+  const { lang, localize } = useLanguage();
   const med = translations[lang].medtech;
 
   return (
@@ -28,7 +28,7 @@ export const CaseStudyPage = () => {
       <nav className="absolute top-0 left-0 right-0 z-50">
         <div className="max-w-7xl mx-auto h-14 flex items-center justify-between px-6">
           <button
-            onClick={() => navigate('/', { state: { scrollToProjects: true } })}
+            onClick={() => navigate(localize('/'), { state: { scrollToProjects: true } })}
             className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors group"
           >
             <ArrowLeft size={14} className="group-hover:-translate-x-0.5 transition-transform duration-200" />
@@ -36,7 +36,7 @@ export const CaseStudyPage = () => {
           </button>
 
           <button
-            onClick={() => navigate('/', { state: { scrollToContact: true } })}
+            onClick={() => navigate(localize('/'), { state: { scrollToContact: true } })}
             className="flex items-center gap-2 px-5 py-1.5 bg-blue-600 hover:bg-blue-500 rounded-full text-white text-[10px] font-bold uppercase tracking-[0.15em] transition-colors"
           >
             {med.discuss}
@@ -73,7 +73,7 @@ export const CaseStudyPage = () => {
           {/* Radial shadow mask behind text content for readability */}
           <div className="absolute inset-0 -m-24 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.55)_0%,rgba(0,0,0,0.25)_55%,transparent_80%)] pointer-events-none -z-[1]" />
 
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -84,9 +84,9 @@ export const CaseStudyPage = () => {
               {med.badge}
             </span>
             <div className="h-[1px] w-12 bg-blue-500/40" />
-          </motion.div>
+          </m.div>
 
-          <motion.h1
+          <m.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
@@ -97,9 +97,9 @@ export const CaseStudyPage = () => {
             <span className="text-transparent bg-clip-text bg-gradient-to-br from-white via-zinc-300 to-zinc-700">
               Surgical Scheduling
             </span>
-          </motion.h1>
+          </m.h1>
 
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.35 }}
@@ -113,7 +113,7 @@ export const CaseStudyPage = () => {
                 {tag}
               </span>
             ))}
-          </motion.div>
+          </m.div>
 
           <CaseStudyLiveLink caseStudyId="medtech" />
         </div>
@@ -181,7 +181,7 @@ export const CaseStudyPage = () => {
           </div>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/[0.04] border border-white/[0.04] rounded-sm overflow-hidden">
             {med.outcomes.map(({ value, unit, label, sub }) => (
-              <motion.div
+              <m.div
                 key={label}
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -195,7 +195,7 @@ export const CaseStudyPage = () => {
                 </div>
                 <p className="text-[11px] font-bold text-white/70 uppercase tracking-wider">{label}</p>
                 <p className="text-[10px] font-mono text-zinc-600">{sub}</p>
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>
@@ -293,13 +293,13 @@ export const CaseStudyPage = () => {
             <div className="relative z-10 flex flex-col items-center gap-8">
               <div className="relative w-24 h-24">
                 <div className="absolute inset-0 rounded-full border border-white/5" />
-                <motion.div
+                <m.div
                   animate={{ rotate: 360 }}
                   transition={{ duration: 2.5, repeat: Infinity, ease: 'linear' }}
                   className="absolute inset-0 rounded-full border-2 border-transparent"
                   style={{ borderTopColor: '#3b82f6', borderRightColor: 'rgba(59,130,246,0.1)' }}
                 />
-                <motion.div
+                <m.div
                   animate={{ rotate: -360 }}
                   transition={{ duration: 5, repeat: Infinity, ease: 'linear' }}
                   className="absolute inset-[7px] rounded-full border border-transparent"
@@ -321,7 +321,7 @@ export const CaseStudyPage = () => {
             </div>
 
             {/* Scan line */}
-            <motion.div
+            <m.div
               animate={{ y: ['0%', '2000%'] }}
               transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
               className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-blue-500/15 to-transparent pointer-events-none"
@@ -380,7 +380,7 @@ export const CaseStudyPage = () => {
             </p>
 
             <button
-              onClick={() => navigate('/', { state: { scrollToContact: true } })}
+              onClick={() => navigate(localize('/'), { state: { scrollToContact: true } })}
               className="group inline-flex items-center gap-4 px-8 py-4 bg-white text-black rounded-full font-black text-[11px] uppercase tracking-[0.2em] hover:bg-blue-600 hover:text-white transition-all duration-300 hover:scale-[1.02]"
             >
               {med.cta_btn}

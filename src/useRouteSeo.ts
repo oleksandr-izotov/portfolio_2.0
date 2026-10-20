@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { seoForPath, OG_IMAGE } from './seo';
 
+const OG_LOCALE = { en: 'en_US', de: 'de_DE', ru: 'ru_RU' } as const;
+
 function setMeta(selector: string, attr: 'name' | 'property', key: string, content: string) {
   let el = document.head.querySelector<HTMLMetaElement>(selector);
   if (!el) {
@@ -41,5 +43,18 @@ export function useRouteSeo() {
       document.head.appendChild(link);
     }
     link.href = seo.canonical;
+
+    setMeta('meta[property="og:locale"]', 'property', 'og:locale', OG_LOCALE[seo.lang]);
+    document.head.querySelectorAll('link[rel="alternate"][hreflang]').forEach(el => el.remove());
+    if (seo.alternates) {
+      const entries = [...Object.entries(seo.alternates), ['x-default', seo.alternates.en]];
+      for (const [hreflang, href] of entries) {
+        const alt = document.createElement('link');
+        alt.rel = 'alternate';
+        alt.hreflang = hreflang;
+        alt.href = href;
+        document.head.appendChild(alt);
+      }
+    }
   }, [pathname]);
 }

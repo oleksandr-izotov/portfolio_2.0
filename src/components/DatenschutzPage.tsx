@@ -6,7 +6,7 @@ import { translations } from '../i18n/translations';
 
 export const DatenschutzPage = () => {
   const navigate = useNavigate();
-  const { lang } = useLanguage();
+  const { lang, localize } = useLanguage();
   const t = translations[lang].datenschutz;
   const imp = translations[lang].impressum;
 
@@ -18,7 +18,7 @@ export const DatenschutzPage = () => {
       <nav className="absolute top-0 left-0 right-0 z-50">
         <div className="max-w-7xl mx-auto h-14 flex items-center justify-between px-6">
           <button
-            onClick={() => navigate('/')}
+            onClick={() => navigate(localize('/'))}
             className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors group"
           >
             <ArrowLeft size={14} className="group-hover:-translate-x-0.5 transition-transform duration-200" />

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { m, AnimatePresence } from 'motion/react';
 import { AlertTriangle, ArrowRight, CheckCircle, Loader, Send } from 'lucide-react';
 import { useLanguage } from '../i18n';
 
@@ -60,24 +60,24 @@ export const ContactForm = () => {
 
   if (status === 'success') {
     return (
-      <motion.div
+      <m.div
         initial={{ opacity: 0, scale: 0.97 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.35, ease: 'easeOut' }}
         className={`${panelClass} flex flex-col items-center justify-center gap-6 py-16 px-8 text-center`}
       >
         {/* Icon */}
-        <motion.div
+        <m.div
           initial={{ scale: 0, rotate: -20 }}
           animate={{ scale: 1, rotate: 0 }}
           transition={{ type: 'spring', stiffness: 220, damping: 16, delay: 0.1 }}
           className="w-20 h-20 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center"
         >
           <Send size={32} className="text-blue-400" strokeWidth={1.5} />
-        </motion.div>
+        </m.div>
 
         {/* Heading */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
@@ -90,10 +90,10 @@ export const ContactForm = () => {
             {form.name ? `${t('form.thanks')}, ${form.name}! ` : ''}{t('form.success_sub')}{' '}
             <span className="text-white font-bold">{t('form.success_hours')}</span>.
           </p>
-        </motion.div>
+        </m.div>
 
         {/* Reset button */}
-        <motion.button
+        <m.button
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.35 }}
@@ -104,10 +104,10 @@ export const ContactForm = () => {
           className="mt-2 px-6 py-2.5 border border-white/10 rounded-xl text-[10px] font-mono font-bold uppercase tracking-[0.25em] text-zinc-400 hover:border-blue-500/40 hover:text-white hover:bg-blue-500/5 transition-all duration-200"
         >
           {t('form.success_another')}
-        </motion.button>
+        </m.button>
 
         {/* Checkmark badge */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.45 }}
@@ -115,13 +115,13 @@ export const ContactForm = () => {
         >
           <CheckCircle size={10} className="text-green-500" />
           {t('form.success_secure')}
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
     );
   }
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       className={panelClass}
@@ -139,7 +139,7 @@ export const ContactForm = () => {
         </span>
       </div>
 
-      <motion.form
+      <m.form
         onSubmit={handleSubmit}
         className="flex flex-col gap-5 p-5"
       >
@@ -208,7 +208,7 @@ export const ContactForm = () => {
           the button and the visitor had no idea the message never arrived. */}
       <AnimatePresence>
         {status === 'error' && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: -6 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
@@ -225,7 +225,7 @@ export const ContactForm = () => {
                 {t(`form.${errorKey}`)}
               </span>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
 
@@ -234,7 +234,7 @@ export const ContactForm = () => {
         <span className="text-[8px] font-mono text-zinc-400 uppercase tracking-widest">
           {t('form.required')}
         </span>
-        <motion.button
+        <m.button
           type="submit"
           disabled={status === 'submitting'}
           whileHover={{ scale: 1.02 }}
@@ -243,7 +243,7 @@ export const ContactForm = () => {
         >
           <AnimatePresence mode="wait">
             {status === 'submitting' ? (
-              <motion.span
+              <m.span
                 key="loading"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -252,9 +252,9 @@ export const ContactForm = () => {
               >
                 <Loader size={12} className="animate-spin" />
                 {t('form.sending')}
-              </motion.span>
+              </m.span>
             ) : (
-              <motion.span
+              <m.span
                 key="idle"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -263,12 +263,12 @@ export const ContactForm = () => {
               >
                 {status === 'error' ? t('form.error_retry') : t('form.send')}
                 <ArrowRight size={12} />
-              </motion.span>
+              </m.span>
             )}
           </AnimatePresence>
-        </motion.button>
+        </m.button>
       </div>
-    </motion.form>
-    </motion.div>
+    </m.form>
+    </m.div>
   );
 };

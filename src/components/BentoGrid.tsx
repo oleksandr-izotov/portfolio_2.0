@@ -1,15 +1,15 @@
 import React from 'react';
-import { motion } from 'motion/react';
+import { m } from 'motion/react';
 import { Activity, GraduationCap, Briefcase, Code2 } from 'lucide-react';
 import { useLanguage } from '../i18n';
 
 const BentoBox = ({ children, className = '', noPadding = false }: { children: React.ReactNode, className?: string, noPadding?: boolean }) => (
-  <motion.div
+  <m.div
     initial={{ opacity: 1, y: 0 }}
     className={`bg-white dark:bg-[#0D0D0D] border border-gray-100 dark:border-white/5 ${noPadding ? '' : 'p-5 md:p-8'} hover:border-black dark:hover:border-blue-500/50 transition-all duration-500 group relative overflow-hidden rounded-sm ${className}`}
   >
     {children}
-  </motion.div>
+  </m.div>
 );
 
 const TimelineItem = ({ title, subtitle, date, type, current = false }: { title: string, subtitle: string, date: string, type: 'edu' | 'work', current?: boolean }) => (

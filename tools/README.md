@@ -25,7 +25,7 @@ npx serve dist -l 4173      # NOT `serve -s`: the -s flag rewrites every path to
 node tools/check-hydration.mjs
 ```
 
-Expected: `200` on all six routes, `404` on an unknown path, no console output
+Expected: `200` on all eighteen routes (six pages × en/de/ru), `404` on an unknown path, no console output
 beyond that 404.
 
 ## check-navigation.mjs

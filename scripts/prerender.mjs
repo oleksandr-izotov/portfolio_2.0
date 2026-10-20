@@ -54,6 +54,8 @@ function setMeta(html, attr, key, value) {
   return html.replace('</head>', `    <meta ${attr}="${key}" content="${escapeAttr(value)}" />\n  </head>`);
 }
 
+const OG_LOCALE = { en: 'en_US', de: 'de_DE', ru: 'ru_RU' };
+
 function escapeAttr(value) {
   return String(value).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 }
@@ -73,6 +75,19 @@ function applySeo(html, seo) {
     /<link rel="canonical" href="[^"]*" \/>/i,
     `<link rel="canonical" href="${escapeAttr(seo.canonical)}" />`,
   );
+
+  html = html.replace(/<html lang="[^"]*"/i, `<html lang="${seo.lang}"`);
+  html = setMeta(html, 'property', 'og:locale', OG_LOCALE[seo.lang]);
+
+  // Every language version names all of them, itself included; x-default is
+  // what a searcher with none of the three languages gets.
+  if (seo.alternates) {
+    const links = Object.entries(seo.alternates)
+      .map(([lang, href]) => `    <link rel="alternate" hreflang="${lang}" href="${escapeAttr(href)}" />`)
+      .concat(`    <link rel="alternate" hreflang="x-default" href="${escapeAttr(seo.alternates.en)}" />`)
+      .join('\n');
+    html = html.replace('</head>', `${links}\n  </head>`);
+  }
 
   if (seo.jsonLd?.length) {
     const blocks = seo.jsonLd
@@ -108,7 +123,7 @@ for (const seo of routes) {
   const out = outPathFor(seo.path);
   mkdirSync(dirname(out), { recursive: true });
   writeFileSync(out, html, 'utf8');
-  console.log(`prerender: ${seo.path.padEnd(22)} → ${out.replace(root + '/', '')} (${Math.round(html.length / 1024)} kB)`);
+  console.log(`prerender: ${seo.path.padEnd(25)} → ${out.replace(root + '/', '')} (${Math.round(html.length / 1024)} kB)`);
 }
 
 // nginx serves this for unknown paths with a real 404 status.
@@ -118,13 +133,18 @@ writeFileSync(join(distDir, '404.html'), notFound, 'utf8');
 // Sitemap: generated from the same table, so a new route can never be forgotten.
 const today = new Date().toISOString().slice(0, 10);
 const priority = p => (p === '/' ? '1.0' : p.includes('case-study') ? '0.8' : '0.5');
+const alternateLinks = r =>
+  Object.entries(r.alternates ?? {})
+    .map(([lang, href]) => `\n    <xhtml:link rel="alternate" hreflang="${lang}" href="${href}" />`)
+    .join('');
+const neutral = p => p.replace(/^\/(de|ru)(?=\/|$)/, '') || '/';
 const urls = routes
   .filter(r => r.indexable !== false)
-  .map(r => `  <url>\n    <loc>${r.canonical}</loc>\n    <lastmod>${today}</lastmod>\n    <priority>${priority(r.path)}</priority>\n  </url>`)
+  .map(r => `  <url>\n    <loc>${r.canonical}</loc>${alternateLinks(r)}\n    <lastmod>${today}</lastmod>\n    <priority>${priority(neutral(r.path))}</priority>\n  </url>`)
   .join('\n');
 writeFileSync(
   join(distDir, 'sitemap.xml'),
-  `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`,
+  `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${urls}\n</urlset>\n`,
   'utf8',
 );
 console.log(`prerender: sitemap.xml with ${routes.filter(r => r.indexable !== false).length} URLs (lastmod ${today})`);

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { m, AnimatePresence } from 'motion/react';
 import { useLanguage, type Language } from '../i18n';
 
 const LANGS: { code: Language; label: string }[] = [
@@ -156,15 +156,15 @@ export const Header = () => {
             aria-label="Toggle menu"
           >
             <div className="w-5 h-4 flex flex-col justify-between">
-              <motion.span
+              <m.span
                 animate={isMobileMenuOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
                 className="w-full h-0.5 bg-white origin-center transition-all"
               />
-              <motion.span
+              <m.span
                 animate={isMobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
                 className="w-full h-0.5 bg-white transition-all"
               />
-              <motion.span
+              <m.span
                 animate={isMobileMenuOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
                 className="w-full h-0.5 bg-white origin-center transition-all"
               />
@@ -177,7 +177,7 @@ export const Header = () => {
       {/* Mobile Fullscreen Menu — OUTSIDE header to avoid backdrop-filter containing block */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -204,7 +204,7 @@ export const Header = () => {
                 { key: 'nav.cases', id: 'projects' },
                 { key: 'nav.contact', id: 'contact' },
               ] as const).map((item, i) => (
-                <motion.a
+                <m.a
                   key={item.id}
                   href={`#${item.id}`}
                   initial={{ opacity: 0, y: 20 }}
@@ -214,12 +214,12 @@ export const Header = () => {
                   className="text-2xl font-black uppercase tracking-tighter text-white hover:text-blue-500 transition-colors"
                 >
                   {t(item.key)}
-                </motion.a>
+                </m.a>
               ))}
             </nav>
 
             {/* Mobile Language Switcher */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
@@ -240,9 +240,9 @@ export const Header = () => {
                   )}
                 </React.Fragment>
               ))}
-            </motion.div>
+            </m.div>
 
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </>

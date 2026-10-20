@@ -5,7 +5,7 @@ import { GrainTexture } from './GrainTexture';
 
 export const NotFoundPage = () => {
   const navigate = useNavigate();
-  const { t } = useLanguage();
+  const { t, localize } = useLanguage();
 
   return (
     <div className="min-h-screen bg-black text-white relative flex flex-col items-center justify-center overflow-hidden">
@@ -29,7 +29,7 @@ export const NotFoundPage = () => {
         </p>
 
         <button
-          onClick={() => navigate('/')}
+          onClick={() => navigate(localize('/'))}
           className="inline-flex items-center gap-2 px-6 py-3 border border-white/10 text-[11px] font-mono font-bold uppercase tracking-widest text-white hover:bg-blue-600 hover:border-blue-600 transition-all duration-300 group"
         >
           <ArrowLeft size={13} className="group-hover:-translate-x-0.5 transition-transform duration-200" />

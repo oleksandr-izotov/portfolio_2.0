@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { motion, useInView } from 'motion/react';
+import { m, useInView } from 'motion/react';
 import { ImageWithFallback } from './ui/ImageWithFallback';
 import liquidBackground from "../assets/liquid-bg.webp";
 import { useLanguage } from '../i18n';
@@ -37,7 +37,7 @@ const TechDrum = ({ label, items, duration, reverse = false }: { label: string, 
         </div>
 
         {/* Rolling Container — only animate when in view */}
-        <motion.div
+        <m.div
           animate={isInView ? {
             y: reverse ? [0, -items.length * 64] : [-items.length * 64, 0]
           } : undefined}
@@ -59,7 +59,7 @@ const TechDrum = ({ label, items, duration, reverse = false }: { label: string, 
               </span>
             </div>
           ))}
-        </motion.div>
+        </m.div>
 
         {/* Side Shadows for Depth */}
         <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-white dark:from-black via-transparent to-white dark:to-black" />

@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../i18n';
 
 export const Footer = () => {
+  const { localize } = useLanguage();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -27,10 +29,10 @@ export const Footer = () => {
           </span>
           <span className="mx-2 text-gray-300 dark:text-zinc-800 hidden md:inline">/</span>
           <div className="flex items-center gap-4">
-            <Link to="/impressum" className="text-[9px] font-mono text-gray-400 dark:text-zinc-400 uppercase tracking-widest hover:text-blue-500 transition-colors">
+            <Link to={localize('/impressum')} className="text-[9px] font-mono text-gray-400 dark:text-zinc-400 uppercase tracking-widest hover:text-blue-500 transition-colors">
               Impressum
             </Link>
-            <Link to="/datenschutz" className="text-[9px] font-mono text-gray-400 dark:text-zinc-400 uppercase tracking-widest hover:text-blue-500 transition-colors">
+            <Link to={localize('/datenschutz')} className="text-[9px] font-mono text-gray-400 dark:text-zinc-400 uppercase tracking-widest hover:text-blue-500 transition-colors">
               Datenschutz
             </Link>
           </div>
