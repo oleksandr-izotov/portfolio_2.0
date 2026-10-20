@@ -58,7 +58,7 @@ export const routes: RouteSeo[] = [
     path: '/',
     title: 'Oleksandr Izotov — Software Engineer in Stuttgart',
     description:
-      'Oleksandr Izotov, Software Engineering student at the University of Stuttgart. Full-stack work in Java, Kotlin, TypeScript and Python — EdTech platforms, an AI SaaS and clinical scheduling software, each documented as a case study.',
+      'Oleksandr Izotov, mathematics student at the University of Stuttgart and Werkstudent in software engineering at RECARO Aircraft Seating. Full-stack work in Java, Kotlin, TypeScript and Python — an EdTech platform, a private VPN service and clinical scheduling software, each documented as a case study.',
     canonical: `${SITE_URL}/`,
   },
   {

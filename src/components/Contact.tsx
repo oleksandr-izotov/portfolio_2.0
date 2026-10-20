@@ -23,7 +23,7 @@ export const Contact = () => {
       <div className="absolute top-0 right-0 w-1/2 h-full opacity-[0.03] dark:opacity-[0.05] pointer-events-none">
         <div className="absolute inset-0 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] bg-[size:30px_30px]" />
         <div className="absolute top-10 right-10 text-[60px] font-black uppercase tracking-tighter text-blue-500 rotate-90 origin-top-right opacity-20">
-          STUTTGART_SE
+          STUTTGART_DE
         </div>
       </div>
 
