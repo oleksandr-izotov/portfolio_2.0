@@ -98,23 +98,23 @@ const pages: Page[] = [
       en: {
         title: 'cp-binom — EdTech Platform | Case Study',
         description:
-          'Case study: a full-stack learning platform for a tutoring centre — Java 21 and Spring Boot, PostgreSQL, self-hosted MinIO, JWT role-based access and hybrid server-side rendering for SEO.',
+          'Case study: a full-stack learning platform for a tutoring centre — Java 21 and Spring Boot, PostgreSQL, self-hosted S3 storage on RustFS, JWT role-based access and hybrid server-side rendering for SEO.',
       },
       de: {
         title: 'cp-binom — EdTech-Plattform | Fallstudie',
         description:
-          'Fallstudie: eine Full-Stack-Lernplattform für ein Nachhilfezentrum — Java 21 und Spring Boot, PostgreSQL, selbst gehostetes MinIO, rollenbasierte Zugriffe per JWT und hybrides Server-Side-Rendering für SEO.',
+          'Fallstudie: eine Full-Stack-Lernplattform für ein Nachhilfezentrum — Java 21 und Spring Boot, PostgreSQL, selbst gehosteter S3-Speicher auf RustFS, rollenbasierte Zugriffe per JWT und hybrides Server-Side-Rendering für SEO.',
       },
       ru: {
         title: 'cp-binom — образовательная платформа | Разбор проекта',
         description:
-          'Разбор проекта: full-stack платформа для учебного центра — Java 21 и Spring Boot, PostgreSQL, собственный MinIO, доступ по ролям через JWT и гибридный серверный рендеринг для SEO.',
+          'Разбор проекта: full-stack платформа для учебного центра — Java 21 и Spring Boot, PostgreSQL, собственное S3-хранилище на RustFS, доступ по ролям через JWT и гибридный серверный рендеринг для SEO.',
       },
     },
     caseStudy: {
       name: 'cp-binom — EdTech Platform',
-      summary: 'Full-stack educational platform: Java 21, Spring Boot, PostgreSQL, MinIO, React.',
-      keywords: ['Java', 'Spring Boot', 'PostgreSQL', 'MinIO', 'React', 'EdTech'],
+      summary: 'Full-stack educational platform: Java 21, Spring Boot, PostgreSQL, RustFS, React.',
+      keywords: ['Java', 'Spring Boot', 'PostgreSQL', 'RustFS', 'React', 'EdTech'],
     },
   },
   {

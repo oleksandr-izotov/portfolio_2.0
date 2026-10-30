@@ -88,18 +88,18 @@ export const translations = {
       challenge_text: 'A tutoring center serving 200+ students operated through messaging apps, spreadsheets, and email — fragmented across teachers, students, and parents. Course materials lived in chat threads. Test results were tracked manually. Schedules were a moving target. The school needed a single source of truth — but no off-the-shelf system covered the unique workflows of a tutoring business.',
       solution_label: 'The Solution',
       solution_title: 'Self-Hosted EdTech\nBuilt From Scratch',
-      solution_text: 'A full-stack platform built end to end. Java 21 and Spring Boot 3.5 on the backend: JWT authentication, PostgreSQL 16 under Flyway, MinIO for files, jsoup sanitising every piece of user-submitted HTML. React 18 with Vite and Tailwind 4 on the front, TipTap for content editing, FullCalendar and drag-and-drop for the timetable. It runs on one VPS behind nginx — Docker Compose, TLS from certbot, rate limits, security headers, Prometheus for monitoring, and nightly database backups.',
+      solution_text: 'A full-stack platform built end to end. Java 21 and Spring Boot 3.5 on the backend: JWT authentication, PostgreSQL 16 under Flyway, S3-compatible RustFS for files, jsoup sanitising every piece of user-submitted HTML. React 18 with Vite and Tailwind 4 on the front, TipTap for content editing, FullCalendar and drag-and-drop for the timetable. It runs on one VPS behind nginx — Docker Compose, TLS from certbot, rate limits, security headers, Prometheus for monitoring, and nightly database backups.',
       s2_label: '02 // Key Outcomes',
       outcomes: [
-        { value: '35k', unit: '', label: 'Lines of code', sub: 'Java backend, React frontend' },
-        { value: '25', unit: '', label: 'Database tables', sub: '18 Flyway migrations' },
-        { value: '19', unit: '', label: 'REST controllers', sub: 'Auth, courses, quizzes, chat' },
+        { value: '37k', unit: '', label: 'Lines of code', sub: 'Java backend, React frontend' },
+        { value: '27', unit: '', label: 'Database tables', sub: '20 Flyway migrations' },
+        { value: '20', unit: '', label: 'REST controllers', sub: 'Auth, courses, quizzes, chat' },
         { value: 'Apr', unit: ' 2026', label: 'In production', sub: 'Commissioned, in daily use' },
       ],
       s3_label: '03 // Technical Highlights',
       features: [
-        { title: 'Auth written from scratch', description: 'JWT with refresh-token rotation, email verification and password-setup links, and three roles — student, teacher, admin — enforced across 19 REST controllers. No third-party identity provider.' },
-        { title: 'Self-hosted object storage', description: 'MinIO keeps course materials, quiz images, chat attachments and news media in four separate buckets. Files never leave the customer\'s own server, and there is no storage bill.' },
+        { title: 'Auth written from scratch', description: 'JWT with refresh-token rotation, email verification and password-setup links, and three roles — student, teacher, admin — enforced across 20 REST controllers. No third-party identity provider.' },
+        { title: 'Self-hosted object storage', description: 'An S3-compatible RustFS instance keeps course materials, quiz images, chat attachments, news media and programme PDFs in four separate buckets. It replaced MinIO in October 2026 without a single change to the backend code. Files never leave the customer\'s own server, and there is no storage bill.' },
         { title: 'Two paths to indexable HTML', description: 'After every build a Playwright job crawls each public route and stores a static snapshot that nginx serves first — to everyone, so content is painted before any JavaScript runs. Search bots additionally get pages rendered straight from the database, split by User-Agent inside nginx.' },
       ],
       s4_label: '04 // Project Walkthrough',
@@ -124,7 +124,7 @@ export const translations = {
       items: [
         {
           title: 'cp-binom — EdTech Platform',
-          description: 'Commissioned work, in production since April 2026 and used daily. A full-stack educational platform built from scratch for a tutoring centre serving 200+ students. Java 21 and Spring Boot 3.5 behind JWT auth, PostgreSQL 16 under Flyway, self-hosted MinIO for files, and two separate rendering paths so the public pages are indexable. Replaces fragmented manual coordination with a unified system for scheduling, materials, testing, and communication.',
+          description: 'Commissioned work, in production since April 2026 and used daily. A full-stack educational platform built from scratch for a tutoring centre serving 200+ students. Java 21 and Spring Boot 3.5 behind JWT auth, PostgreSQL 16 under Flyway, self-hosted S3 storage on RustFS for files, and two separate rendering paths so the public pages are indexable. Replaces fragmented manual coordination with a unified system for scheduling, materials, testing, and communication.',
         },
         {
           title: 'Kliniq — OR Scheduling',
@@ -366,18 +366,18 @@ export const translations = {
       challenge_text: 'Ein Nachhilfezentrum mit über 200 Schülern arbeitete mit Messenger-Apps, Tabellen und E-Mail — fragmentiert zwischen Lehrern, Schülern und Eltern. Lernmaterialien lagen in Chat-Verläufen. Testergebnisse wurden manuell erfasst. Stundenpläne änderten sich ständig. Die Schule brauchte eine zentrale Wahrheitsquelle — aber kein Standardsystem deckte die spezifischen Abläufe eines Nachhilfegeschäfts ab.',
       solution_label: 'Die Lösung',
       solution_title: 'Selbst gehostete EdTech\nvon Grund auf entwickelt',
-      solution_text: 'Eine Full-Stack-Plattform, vollständig selbst gebaut. Backend: Java 21 und Spring Boot 3.5, JWT-Authentifizierung, PostgreSQL 16 mit Flyway, MinIO für Dateien, jsoup zur Bereinigung jeglichen nutzergenerierten HTMLs. Frontend: React 18 mit Vite und Tailwind 4, TipTap als Editor, FullCalendar und Drag-and-drop für den Stundenplan. Läuft auf einem einzigen VPS hinter nginx — Docker Compose, TLS via certbot, Rate Limits, Security-Header, Prometheus als Monitoring und nächtliche Datenbank-Backups.',
+      solution_text: 'Eine Full-Stack-Plattform, vollständig selbst gebaut. Backend: Java 21 und Spring Boot 3.5, JWT-Authentifizierung, PostgreSQL 16 mit Flyway, S3-kompatibles RustFS für Dateien, jsoup zur Bereinigung jeglichen nutzergenerierten HTMLs. Frontend: React 18 mit Vite und Tailwind 4, TipTap als Editor, FullCalendar und Drag-and-drop für den Stundenplan. Läuft auf einem einzigen VPS hinter nginx — Docker Compose, TLS via certbot, Rate Limits, Security-Header, Prometheus als Monitoring und nächtliche Datenbank-Backups.',
       s2_label: '02 // Wichtige Ergebnisse',
       outcomes: [
-        { value: '35k', unit: '', label: 'Codezeilen', sub: 'Java-Backend, React-Frontend' },
-        { value: '25', unit: '', label: 'Datenbanktabellen', sub: '18 Flyway-Migrationen' },
-        { value: '19', unit: '', label: 'REST-Controller', sub: 'Auth, Kurse, Tests, Chat' },
+        { value: '37k', unit: '', label: 'Codezeilen', sub: 'Java-Backend, React-Frontend' },
+        { value: '27', unit: '', label: 'Datenbanktabellen', sub: '20 Flyway-Migrationen' },
+        { value: '20', unit: '', label: 'REST-Controller', sub: 'Auth, Kurse, Tests, Chat' },
         { value: 'Apr', unit: ' 2026', label: 'Im Produktivbetrieb', sub: 'Auftragsarbeit, täglich genutzt' },
       ],
       s3_label: '03 // Technische Highlights',
       features: [
-        { title: 'Selbst geschriebene Authentifizierung', description: 'JWT mit Refresh-Token-Rotation, E-Mail-Verifikation und Passwort-Setup-Links, dazu drei Rollen — Schüler, Lehrer, Admin — durchgesetzt über 19 REST-Controller. Kein externer Identity-Provider.' },
-        { title: 'Selbst gehosteter Objektspeicher', description: 'MinIO verwahrt Lernmaterialien, Testbilder, Chat-Anhänge und News-Medien in vier getrennten Buckets. Die Dateien verlassen den Server des Kunden nie, und es fallen keine Speicherkosten an.' },
+        { title: 'Selbst geschriebene Authentifizierung', description: 'JWT mit Refresh-Token-Rotation, E-Mail-Verifikation und Passwort-Setup-Links, dazu drei Rollen — Schüler, Lehrer, Admin — durchgesetzt über 20 REST-Controller. Kein externer Identity-Provider.' },
+        { title: 'Selbst gehosteter Objektspeicher', description: 'Ein S3-kompatibles RustFS verwahrt Lernmaterialien, Testbilder, Chat-Anhänge, News-Medien und Programm-PDFs in vier getrennten Buckets. Es hat im Oktober 2026 MinIO abgelöst, ohne eine einzige Änderung am Backend-Code. Die Dateien verlassen den Server des Kunden nie, und es fallen keine Speicherkosten an.' },
         { title: 'Zwei Wege zu indexierbarem HTML', description: 'Nach jedem Build fährt ein Playwright-Job jede öffentliche Route ab und legt einen statischen Schnappschuss ab, den nginx zuerst ausliefert — an alle, sodass Inhalt schon vor jedem JavaScript sichtbar ist. Suchbots bekommen zusätzlich direkt aus der Datenbank gerenderte Seiten, aufgeteilt per User-Agent in nginx.' },
       ],
       s4_label: '04 // Projekt-Walkthrough',
@@ -402,7 +402,7 @@ export const translations = {
       items: [
         {
           title: 'cp-binom — EdTech-Plattform',
-          description: 'Auftragsarbeit, seit April 2026 im Produktivbetrieb und täglich im Einsatz. Eine maßgeschneiderte Bildungsplattform, von Grund auf entwickelt für ein Nachhilfezentrum mit über 200 Schülern. Java 21 und Spring Boot 3.5 mit JWT-Auth, PostgreSQL 16 unter Flyway, selbst gehostetes MinIO für Dateien und zwei getrennte Render-Wege, damit die öffentlichen Seiten indexierbar sind. Ersetzt fragmentierte manuelle Koordination durch ein zentralisiertes System für Stundenpläne, Materialien, Tests und Kommunikation.',
+          description: 'Auftragsarbeit, seit April 2026 im Produktivbetrieb und täglich im Einsatz. Eine maßgeschneiderte Bildungsplattform, von Grund auf entwickelt für ein Nachhilfezentrum mit über 200 Schülern. Java 21 und Spring Boot 3.5 mit JWT-Auth, PostgreSQL 16 unter Flyway, selbst gehosteter S3-Speicher auf RustFS für Dateien und zwei getrennte Render-Wege, damit die öffentlichen Seiten indexierbar sind. Ersetzt fragmentierte manuelle Koordination durch ein zentralisiertes System für Stundenpläne, Materialien, Tests und Kommunikation.',
         },
         {
           title: 'Kliniq — OP-Planung',
@@ -644,18 +644,18 @@ export const translations = {
       challenge_text: 'Образовательный центр с 200+ учениками работал через мессенджеры, таблицы и почту — процессы были разрознены между преподавателями, учениками и родителями. Учебные материалы жили в чатах, результаты тестов вели вручную, расписание постоянно менялось. Школе была нужна единая точка правды — но ни одна готовая система не покрывала специфику работы репетиторского центра.',
       solution_label: 'Решение',
       solution_title: 'Своя EdTech-платформа\nс нуля под клиента',
-      solution_text: 'Платформа, собранная целиком с нуля. Бэкенд: Java 21 и Spring Boot 3.5, аутентификация на JWT, PostgreSQL 16 под управлением Flyway, MinIO для файлов, jsoup чистит любой пользовательский HTML. Фронтенд: React 18 на Vite и Tailwind 4, редактор TipTap, FullCalendar и drag-and-drop для расписания. Всё работает на одной VPS за nginx — Docker Compose, TLS от certbot, рейт-лимиты, заголовки безопасности, Prometheus для мониторинга и ночные бэкапы базы.',
+      solution_text: 'Платформа, собранная целиком с нуля. Бэкенд: Java 21 и Spring Boot 3.5, аутентификация на JWT, PostgreSQL 16 под управлением Flyway, S3-совместимый RustFS для файлов, jsoup чистит любой пользовательский HTML. Фронтенд: React 18 на Vite и Tailwind 4, редактор TipTap, FullCalendar и drag-and-drop для расписания. Всё работает на одной VPS за nginx — Docker Compose, TLS от certbot, рейт-лимиты, заголовки безопасности, Prometheus для мониторинга и ночные бэкапы базы.',
       s2_label: '02 // Ключевые результаты',
       outcomes: [
-        { value: '35k', unit: '', label: 'Строк кода', sub: 'Java-бэкенд, React-фронтенд' },
-        { value: '25', unit: '', label: 'Таблиц в базе', sub: '18 миграций Flyway' },
-        { value: '19', unit: '', label: 'REST-контроллеров', sub: 'Авторизация, курсы, тесты, чат' },
+        { value: '37k', unit: '', label: 'Строк кода', sub: 'Java-бэкенд, React-фронтенд' },
+        { value: '27', unit: '', label: 'Таблиц в базе', sub: '20 миграций Flyway' },
+        { value: '20', unit: '', label: 'REST-контроллеров', sub: 'Авторизация, курсы, тесты, чат' },
         { value: 'Апр', unit: ' 2026', label: 'В проде', sub: 'Коммерческий заказ, каждый день' },
       ],
       s3_label: '03 // Технические особенности',
       features: [
-        { title: 'Аутентификация написана с нуля', description: 'JWT с ротацией refresh-токенов, подтверждение почты и ссылки для установки пароля, три роли — ученик, преподаватель, админ — проверяются во всех 19 REST-контроллерах. Без стороннего провайдера входа.' },
-        { title: 'Своё объектное хранилище', description: 'MinIO держит учебные материалы, картинки тестов, вложения из чатов и медиа новостей в четырёх отдельных бакетах. Файлы не покидают сервер заказчика, и за хранение никто не платит.' },
+        { title: 'Аутентификация написана с нуля', description: 'JWT с ротацией refresh-токенов, подтверждение почты и ссылки для установки пароля, три роли — ученик, преподаватель, админ — проверяются во всех 20 REST-контроллерах. Без стороннего провайдера входа.' },
+        { title: 'Своё объектное хранилище', description: 'S3-совместимый RustFS держит учебные материалы, картинки тестов, вложения из чатов, медиа новостей и PDF образовательных программ в четырёх отдельных бакетах. В октябре 2026 он сменил MinIO без единой правки в коде бэкенда. Файлы не покидают сервер заказчика, и за хранение никто не платит.' },
         { title: 'Два пути к индексируемому HTML', description: 'После каждой сборки Playwright обходит все публичные маршруты и складывает статические снимки, которые nginx отдаёт первыми — всем подряд, так что контент виден до запуска JavaScript. Поисковым ботам вдобавок отдаются страницы, отрисованные прямо из базы: разделение по User-Agent на уровне nginx.' },
       ],
       s4_label: '04 // Демонстрация проекта',
@@ -680,7 +680,7 @@ export const translations = {
       items: [
         {
           title: 'cp-binom — EdTech-платформа',
-          description: 'Коммерческий заказ, в проде с апреля 2026 и в ежедневном использовании. Полнофункциональная образовательная платформа, построенная с нуля для репетиторского центра с 200+ учениками. Java 21 и Spring Boot 3.5 с авторизацией на JWT, PostgreSQL 16 под Flyway, своё хранилище MinIO для файлов и два отдельных пути рендеринга, чтобы публичные страницы индексировались. Заменила фрагментированную ручную координацию централизованной системой расписаний, материалов, тестов и коммуникации.',
+          description: 'Коммерческий заказ, в проде с апреля 2026 и в ежедневном использовании. Полнофункциональная образовательная платформа, построенная с нуля для репетиторского центра с 200+ учениками. Java 21 и Spring Boot 3.5 с авторизацией на JWT, PostgreSQL 16 под Flyway, своё S3-хранилище на RustFS для файлов и два отдельных пути рендеринга, чтобы публичные страницы индексировались. Заменила фрагментированную ручную координацию централизованной системой расписаний, материалов, тестов и коммуникации.',
         },
         {
           title: 'Kliniq — Планирование ОР',

@@ -10,7 +10,7 @@ import finalCtaImg from '../assets/lms1.webp';
 import { useLanguage } from '../i18n';
 import { translations } from '../i18n/translations';
 
-const techTags = ['Java 21', 'Spring Boot 3.5', 'PostgreSQL 16', 'Flyway', 'MinIO', 'React 18', 'Vite', 'Tailwind 4', 'Playwright'];
+const techTags = ['Java 21', 'Spring Boot 3.5', 'PostgreSQL 16', 'Flyway', 'RustFS', 'React 18', 'Vite', 'Tailwind 4', 'Playwright'];
 
 
 const featureIcons = [ShieldCheck, Database, Workflow];
