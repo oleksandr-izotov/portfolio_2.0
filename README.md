@@ -52,11 +52,13 @@ after touching routing, SEO metadata or the contact form.
 
 ## Deployment
 
-Everything lives in `deploy/`, and the scripts take the SSH target from the
-environment so they work both from a workstation and from a server with a host
-alias:
+Everything lives in `deploy/`. The scripts take the SSH target from the
+environment and refuse to run without it, so a forgotten variable cannot send a
+build to the wrong machine:
 
 ```bash
+export IZOTOV_SSH_TARGET=deploy@<host>   # optionally IZOTOV_SSH_KEY=~/.ssh/id_rsa
+
 # static site: build, upload dist/, atomic swap (keeps the previous build)
 ./deploy/deploy-static.sh
 
@@ -65,9 +67,6 @@ alias:
 
 # contact-form relay container
 ./deploy/deploy-contact-api.sh
-
-# override the target if the default host alias does not apply
-IZOTOV_SSH_TARGET=user@host IZOTOV_SSH_KEY=~/.ssh/id_rsa ./deploy/deploy-static.sh
 ```
 
 `deploy/nginx-host/izotov.dev.security-headers.conf` is included by **every**

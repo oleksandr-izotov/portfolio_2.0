@@ -9,8 +9,10 @@ set -euo pipefail
 # SSH target is configurable so this runs both from a workstation (key file,
 # direct login) and from a server that already has a host alias with ProxyJump
 # in ~/.ssh/config. Override with:
-#   IZOTOV_SSH_TARGET=admin-binom@95.174.92.126 IZOTOV_SSH_KEY=~/.ssh/id_rsa ./script.sh
-SSH_TARGET="${IZOTOV_SSH_TARGET:-cp-binom}"
+#   IZOTOV_SSH_TARGET=deploy@<host> IZOTOV_SSH_KEY=~/.ssh/id_rsa ./script.sh
+# There is deliberately no default: the old one pointed at a server the site
+# no longer lives on, and a forgotten variable would have deployed there.
+SSH_TARGET="${IZOTOV_SSH_TARGET:?set IZOTOV_SSH_TARGET, e.g. deploy@<host>}"
 SSH_KEY="${IZOTOV_SSH_KEY:-}"
 SSH_OPTS=(-o StrictHostKeyChecking=accept-new)
 if [ -n "$SSH_KEY" ]; then SSH_OPTS+=(-i "$SSH_KEY"); fi

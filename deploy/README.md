@@ -1,6 +1,7 @@
 # izotov.dev deploy
 
-Static SPA hosted on the cp-binom VPS (95.174.92.126) behind Cloudflare proxy.
+Static SPA hosted on a VPS of its own behind Cloudflare proxy. Every script
+needs `IZOTOV_SSH_TARGET` (e.g. `deploy@<host>`); there is no default host.
 
 ## Files
 - `nginx-host/izotov.dev.bootstrap.conf` — HTTP-only, used once to obtain the cert
