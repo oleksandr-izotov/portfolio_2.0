@@ -76,17 +76,17 @@ const pages: Page[] = [
     path: '/',
     text: {
       en: {
-        title: 'Oleksandr Izotov — Software Engineer in Stuttgart',
+        title: 'Oleksandr Izotov — Software Engineering & Data, Stuttgart',
         description:
           'Oleksandr Izotov, mathematics student at the University of Stuttgart and Werkstudent in software engineering at RECARO Aircraft Seating. Full-stack work in Java, Kotlin, TypeScript and Python — an EdTech platform, a private VPN service and clinical scheduling software, each documented as a case study.',
       },
       de: {
-        title: 'Oleksandr Izotov — Software Engineer in Stuttgart',
+        title: 'Oleksandr Izotov — Software Engineering & Daten, Stuttgart',
         description:
           'Oleksandr Izotov, Mathematikstudent an der Universität Stuttgart und Werkstudent in der Softwareentwicklung bei RECARO Aircraft Seating. Full-Stack-Projekte in Java, Kotlin, TypeScript und Python — eine EdTech-Plattform, ein privater VPN-Dienst und OP-Planungssoftware, jeweils als Fallstudie dokumentiert.',
       },
       ru: {
-        title: 'Oleksandr Izotov — Software Engineer в Штутгарте',
+        title: 'Oleksandr Izotov — разработка и данные, Штутгарт',
         description:
           'Oleksandr Izotov, студент математики в Университете Штутгарта и Werkstudent по разработке ПО в RECARO Aircraft Seating. Full-stack проекты на Java, Kotlin, TypeScript и Python — образовательная платформа, частный VPN-сервис и планирование операционных, каждый с разбором.',
       },

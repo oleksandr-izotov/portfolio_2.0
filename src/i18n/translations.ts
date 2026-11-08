@@ -17,13 +17,13 @@ export const translations = {
       challenge_text: 'Operating-room time is a clinic\'s scarcest resource, yet most of it is scheduled through shared spreadsheets and phone calls. Overlapping bookings slip through, nobody has a live view of the day, and every change triggers another round of manual coordination — the kind of friction that quietly compounds as a clinic grows.',
       solution_label: 'The Solution',
       solution_title: 'Conflict-Free\nby Construction',
-      solution_text: 'Kliniq is a from-scratch scheduling platform — a Kotlin / Spring Boot 3 backend with jOOQ over PostgreSQL and a SvelteKit frontend. Overlapping bookings aren\'t merely validated away in application code; a Postgres EXCLUDE constraint makes them impossible to insert at all. Server-Sent Events keep every open schedule live, drag-and-drop reschedules a booking in place, and a self-hosted auth stack (Argon2id + WebAuthn passkeys) runs the whole thing with no third-party identity provider. Built and shipped solo, end to end — and running: the demo at kliniq.izotov.dev is this codebase with a seeded clinic.',
+      solution_text: 'Kliniq is a from-scratch scheduling platform — a Kotlin / Spring Boot 3 backend with jOOQ over PostgreSQL and a SvelteKit frontend. Overlapping bookings aren\'t merely validated away in application code; a Postgres EXCLUDE constraint makes them impossible to insert at all. Server-Sent Events keep every open schedule live, drag-and-drop reschedules a booking in place, and a self-hosted auth stack (Argon2id + WebAuthn passkeys) runs the whole thing with no third-party identity provider. Designed by me, implemented AI-first with coding agents, shipped end to end — and running: the demo at kliniq.izotov.dev is this codebase with a seeded clinic.',
       s2_label: '02 // Key Outcomes',
       outcomes: [
         { value: '0', unit: '', label: 'Double-Bookings Possible', sub: 'Postgres EXCLUDE constraint' },
         { value: '3', unit: '', label: 'RBAC Roles', sub: 'Admin · Manager · Staff' },
         { value: 'Live', unit: '', label: 'Real-Time Schedule', sub: 'Server-Sent Events push' },
-        { value: '187', unit: '', label: 'Backend tests', sub: 'plus 8 Playwright e2e' },
+        { value: '187', unit: '', label: 'Backend tests', sub: 'plus 6 Playwright e2e flows' },
       ],
       s3_label: '03 // Technical Highlights',
       features: [
@@ -115,11 +115,13 @@ export const translations = {
     projects: {
       section_label: 'Featured Case Studies',
       heading_accent: 'ects',
-      description: 'Three projects I built end to end. The first is commissioned work, in production and in daily use; the second is still being built; the third ran for a small group of people and is now archived.',
+      description: 'Three projects I took from idea to production. I work AI-first: requirements, architecture and review are mine, coding agents write most of the code, and tests keep it honest. The first is commissioned work in daily use; the second runs as a public demo; the third ran for a small group of people and is now archived.',
       built_with: 'Built With',
       locked: 'Locked',
       in_development: 'In Development',
       archived: 'Archived',
+      view_source: 'Source on GitHub',
+      view_source_agent: 'Agent source on GitHub',
       system_id: 'System ID',
       items: [
         {
@@ -128,7 +130,7 @@ export const translations = {
         },
         {
           title: 'Kliniq — OR Scheduling',
-          description: 'Operating-room scheduling, built solo from scratch and running live — sign in with a demo account and move a booking. A Postgres EXCLUDE constraint makes overlapping bookings impossible to insert at all, so the guarantee survives two people clicking at once; Server-Sent Events push every change to open dashboards. Auth is self-hosted end to end: Argon2id, WebAuthn passkeys, Redis sessions, no external provider. 29k lines of Kotlin and SvelteKit under 187 tests.',
+          description: 'Operating-room scheduling, built end to end and running live — sign in with a demo account and move a booking. A Postgres EXCLUDE constraint makes overlapping bookings impossible to insert at all, so the guarantee survives two people clicking at once; Server-Sent Events push every change to open dashboards. Auth is self-hosted end to end: Argon2id, WebAuthn passkeys, Redis sessions, no external provider. 29k lines of Kotlin and SvelteKit under 187 tests.',
         },
         {
           title: 'Fortochka — Private VPN',
@@ -145,11 +147,11 @@ export const translations = {
       categories: [
         {
           label: 'Languages',
-          items: ['Java', 'Python', 'TypeScript', 'Kotlin', 'Rust', 'SQL'],
+          items: ['TypeScript', 'Rust', 'Python', 'SQL', 'Kotlin', 'Java'],
         },
         {
           label: 'Backend & Data',
-          items: ['Spring Boot', 'Django', 'PostgreSQL', 'Redis', 'Celery', 'MinIO'],
+          items: ['Spring Boot', 'FastAPI', 'PostgreSQL', 'SQL Server', 'Redis', 'RustFS'],
         },
         {
           label: 'Frontend & Infra',
@@ -159,7 +161,7 @@ export const translations = {
     },
     hero: {
       badge: 'B.Sc. Mathematics // Uni Stuttgart',
-      subtitle: 'Mathematics Student — Stuttgart, DE',
+      subtitle: 'Software Engineering & Data · Applied AI',
       hover_sub: 'Stuttgart // Building things end to end',
       btn_primary_top: 'Contact',
       btn_primary: 'Get in Touch',
@@ -168,7 +170,7 @@ export const translations = {
       marquee_location: 'Stuttgart, Germany',
       marquee_engineering: 'B.Sc. Mathematics',
       marquee_available: 'Werkstudent at RECARO Aircraft Seating',
-      marquee_architecture: 'Java · Python · TypeScript',
+      marquee_architecture: 'TypeScript · Rust · Python · SQL',
     },
     bento: {
       section_label: 'About',
@@ -186,12 +188,12 @@ export const translations = {
       about_label: 'Status // Stuttgart',
       about_title: 'About Me',
       about_quote: 'I build things end to end — database, backend, interface, deployment.',
-      about_text: 'Mathematics student at the University of Stuttgart, working part-time at RECARO Aircraft Seating on software, data analysis and testing. Mostly Java and Python on the backend, TypeScript on the front. Everything here I built and run myself, including the server this page is served from.',
+      about_text: 'Mathematics student at the University of Stuttgart, working part-time at RECARO Aircraft Seating on software, data analysis and testing. TypeScript, Rust and Python day to day, Kotlin and Java on the backend. I work AI-first: requirements, architecture and review are mine, coding agents write most of the code. Everything here I deploy and run myself, including the server this page is served from.',
       about_role: 'Mathematics Student',
       method_label: 'Focus',
       method_title: 'Backend, data and internal tooling',
       delivery_label: 'Languages I work in',
-      delivery_title: 'Java, Python, TypeScript, Kotlin, Rust',
+      delivery_title: 'TypeScript, Rust, Python, Kotlin, Java',
     },
     contact: {
       section_label: '04 // CONTACTS',
@@ -295,13 +297,13 @@ export const translations = {
       challenge_text: 'OP-Zeit ist die knappste Ressource einer Klinik — und wird trotzdem meist über geteilte Tabellen und Telefonate geplant. Überlappende Buchungen rutschen durch, niemand hat eine Live-Sicht auf den Tag, und jede Änderung löst eine weitere Runde manueller Koordination aus — eine Reibung, die mit wachsender Klinik leise immer größer wird.',
       solution_label: 'Die Lösung',
       solution_title: 'Konfliktfrei\nper Konstruktion',
-      solution_text: 'Kliniq ist eine von Grund auf gebaute Planungsplattform — ein Kotlin / Spring Boot 3 Backend mit jOOQ über PostgreSQL und ein SvelteKit-Frontend. Überlappende Buchungen werden nicht bloß im Anwendungscode wegvalidiert; ein Postgres-EXCLUDE-Constraint macht sie schlicht unmöglich einzufügen. Server-Sent Events halten jeden offenen Plan live, Drag-and-Drop verschiebt eine Buchung direkt, und ein selbst gehosteter Auth-Stack (Argon2id + WebAuthn-Passkeys) trägt das Ganze ohne externen Identity-Provider. Solo gebaut und ausgeliefert, von Anfang bis Ende.',
+      solution_text: 'Kliniq ist eine von Grund auf gebaute Planungsplattform — ein Kotlin / Spring Boot 3 Backend mit jOOQ über PostgreSQL und ein SvelteKit-Frontend. Überlappende Buchungen werden nicht bloß im Anwendungscode wegvalidiert; ein Postgres-EXCLUDE-Constraint macht sie schlicht unmöglich einzufügen. Server-Sent Events halten jeden offenen Plan live, Drag-and-Drop verschiebt eine Buchung direkt, und ein selbst gehosteter Auth-Stack (Argon2id + WebAuthn-Passkeys) trägt das Ganze ohne externen Identity-Provider. Von mir konzipiert, AI-first mit Coding-Agenten umgesetzt und von Anfang bis Ende ausgeliefert.',
       s2_label: '02 // Wichtige Ergebnisse',
       outcomes: [
         { value: '0', unit: '', label: 'Doppelbuchungen möglich', sub: 'Postgres-EXCLUDE-Constraint' },
         { value: '3', unit: '', label: 'RBAC-Rollen', sub: 'Admin · Manager · Personal' },
         { value: 'Live', unit: '', label: 'Echtzeit-Plan', sub: 'Server-Sent Events' },
-        { value: '187', unit: '', label: 'Backend-Tests', sub: 'dazu 8 Playwright-E2E' },
+        { value: '187', unit: '', label: 'Backend-Tests', sub: 'dazu 6 Playwright-E2E-Abläufe' },
       ],
       s3_label: '03 // Technische Highlights',
       features: [
@@ -393,11 +395,13 @@ export const translations = {
     projects: {
       section_label: 'Ausgewählte Fallstudien',
       heading_accent: 'ekte',
-      description: 'Drei Projekte, die ich vollständig selbst gebaut habe. Das erste ist Auftragsarbeit und täglich im Einsatz; das zweite entsteht noch; das dritte lief für eine kleine Gruppe von Menschen und ist inzwischen archiviert.',
+      description: 'Drei Projekte, die ich von der Idee bis in den Betrieb gebracht habe. Ich arbeite AI-first: Anforderungen, Architektur und Review liegen bei mir, Coding-Agenten schreiben den Großteil des Codes, Tests sichern die Qualität. Das erste ist Auftragsarbeit im täglichen Einsatz; das zweite läuft als öffentliche Demo; das dritte lief für eine kleine Gruppe von Menschen und ist inzwischen archiviert.',
       built_with: 'Technologien',
       locked: 'Gesperrt',
       in_development: 'In Entwicklung',
       archived: 'Archiviert',
+      view_source: 'Quellcode auf GitHub',
+      view_source_agent: 'Agent-Quellcode auf GitHub',
       system_id: 'System ID',
       items: [
         {
@@ -406,7 +410,7 @@ export const translations = {
         },
         {
           title: 'Kliniq — OP-Planung',
-          description: 'OP-Planung, solo von Grund auf gebaut und live erreichbar — mit einem Demo-Konto anmelden und eine Buchung verschieben. Ein EXCLUDE-Constraint in Postgres macht überlappende Buchungen schon beim Einfügen unmöglich, die Garantie hält also auch, wenn zwei Personen gleichzeitig klicken; Server-Sent Events schieben jede Änderung an alle offenen Dashboards. Auth komplett selbst gebaut: Argon2id, WebAuthn-Passkeys, Redis-Sessions, kein externer Anbieter. 29k Zeilen Kotlin und SvelteKit, abgedeckt von 187 Tests.',
+          description: 'OP-Planung, von Anfang bis Ende gebaut und live erreichbar — mit einem Demo-Konto anmelden und eine Buchung verschieben. Ein EXCLUDE-Constraint in Postgres macht überlappende Buchungen schon beim Einfügen unmöglich, die Garantie hält also auch, wenn zwei Personen gleichzeitig klicken; Server-Sent Events schieben jede Änderung an alle offenen Dashboards. Auth komplett selbst gebaut: Argon2id, WebAuthn-Passkeys, Redis-Sessions, kein externer Anbieter. 29k Zeilen Kotlin und SvelteKit, abgedeckt von 187 Tests.',
         },
         {
           title: 'Fortochka — Private VPN',
@@ -423,11 +427,11 @@ export const translations = {
       categories: [
         {
           label: 'Sprachen',
-          items: ['Java', 'Python', 'TypeScript', 'Kotlin', 'Rust', 'SQL'],
+          items: ['TypeScript', 'Rust', 'Python', 'SQL', 'Kotlin', 'Java'],
         },
         {
           label: 'Backend & Daten',
-          items: ['Spring Boot', 'Django', 'PostgreSQL', 'Redis', 'Celery', 'MinIO'],
+          items: ['Spring Boot', 'FastAPI', 'PostgreSQL', 'SQL Server', 'Redis', 'RustFS'],
         },
         {
           label: 'Frontend & Infra',
@@ -437,7 +441,7 @@ export const translations = {
     },
     hero: {
       badge: 'B.Sc. Mathematik // Uni Stuttgart',
-      subtitle: 'Student der Mathematik — Stuttgart, DE',
+      subtitle: 'Software Engineering & Daten · Angewandte KI',
       hover_sub: 'Stuttgart // Von der Datenbank bis zum Deployment',
       btn_primary_top: 'Kontakt',
       btn_primary: 'Kontakt aufnehmen',
@@ -446,7 +450,7 @@ export const translations = {
       marquee_location: 'Stuttgart, Deutschland',
       marquee_engineering: 'B.Sc. Mathematik',
       marquee_available: 'Werkstudent bei RECARO Aircraft Seating',
-      marquee_architecture: 'Java · Python · TypeScript',
+      marquee_architecture: 'TypeScript · Rust · Python · SQL',
     },
     bento: {
       section_label: 'Über mich',
@@ -464,12 +468,12 @@ export const translations = {
       about_label: 'Status // Stuttgart',
       about_title: 'Über mich',
       about_quote: 'Ich baue Dinge von Anfang bis Ende — Datenbank, Backend, Oberfläche, Deployment.',
-      about_text: 'Student der Mathematik an der Universität Stuttgart, nebenbei Werkstudent bei RECARO Aircraft Seating in Softwareentwicklung, Datenanalyse und Testing. Backend überwiegend Java und Python, Frontend TypeScript. Alles hier habe ich selbst gebaut und betreibe es selbst — auch den Server, von dem diese Seite kommt.',
+      about_text: 'Student der Mathematik an der Universität Stuttgart, nebenbei Werkstudent bei RECARO Aircraft Seating in Softwareentwicklung, Datenanalyse und Testing. Im Alltag TypeScript, Rust und Python, im Backend Kotlin und Java. Ich arbeite AI-first: Anforderungen, Architektur und Review liegen bei mir, Coding-Agenten schreiben den Großteil des Codes. Alles hier deploye und betreibe ich selbst — auch den Server, von dem diese Seite kommt.',
       about_role: 'Student der Mathematik',
       method_label: 'Schwerpunkt',
       method_title: 'Backend, Daten und interne Tools',
       delivery_label: 'Sprachen, mit denen ich arbeite',
-      delivery_title: 'Java, Python, TypeScript, Kotlin, Rust',
+      delivery_title: 'TypeScript, Rust, Python, Kotlin, Java',
     },
     contact: {
       section_label: '04 // KONTAKT',
@@ -573,13 +577,13 @@ export const translations = {
       challenge_text: 'Время операционной — самый дефицитный ресурс клиники, но планируется оно чаще всего через общие таблицы и звонки. Пересекающиеся брони проскакивают, ни у кого нет живой картины дня, а каждое изменение запускает новый круг ручной координации — трение, которое тихо растёт по мере роста клиники.',
       solution_label: 'Решение',
       solution_title: 'Без конфликтов\nпо построению',
-      solution_text: 'Kliniq — платформа планирования, написанная с нуля: бэкенд на Kotlin / Spring Boot 3 с jOOQ поверх PostgreSQL и фронтенд на SvelteKit. Пересекающиеся брони не просто отсекаются в коде приложения — ограничение Postgres EXCLUDE делает их физически невозможными для вставки. Server-Sent Events держат каждое открытое расписание живым, drag-and-drop переносит бронь на месте, а самостоятельно развёрнутый стек аутентификации (Argon2id + WebAuthn passkeys) тянет всё это без сторонних провайдеров. Построено и выпущено в одиночку, от и до.',
+      solution_text: 'Kliniq — платформа планирования, написанная с нуля: бэкенд на Kotlin / Spring Boot 3 с jOOQ поверх PostgreSQL и фронтенд на SvelteKit. Пересекающиеся брони не просто отсекаются в коде приложения — ограничение Postgres EXCLUDE делает их физически невозможными для вставки. Server-Sent Events держат каждое открытое расписание живым, drag-and-drop переносит бронь на месте, а самостоятельно развёрнутый стек аутентификации (Argon2id + WebAuthn passkeys) тянет всё это без сторонних провайдеров. Спроектировано мной, реализовано в режиме AI-first с агентами и доведено до продакшена от и до.',
       s2_label: '02 // Ключевые результаты',
       outcomes: [
         { value: '0', unit: '', label: 'Двойных броней возможно', sub: 'Ограничение Postgres EXCLUDE' },
         { value: '3', unit: '', label: 'Роли RBAC', sub: 'Admin · Manager · Staff' },
         { value: 'Live', unit: '', label: 'Расписание в реальном времени', sub: 'Server-Sent Events' },
-        { value: '187', unit: '', label: 'тестов бэкенда', sub: 'и ещё 8 e2e на Playwright' },
+        { value: '187', unit: '', label: 'тестов бэкенда', sub: 'и ещё 6 e2e-сценариев на Playwright' },
       ],
       s3_label: '03 // Технические особенности',
       features: [
@@ -671,11 +675,13 @@ export const translations = {
     projects: {
       section_label: 'Избранные кейсы',
       heading_accent: 'екты',
-      description: 'Три проекта, сделанных целиком мной. Первый — коммерческий заказ, работает в проде каждый день; второй ещё в работе; третий работал для небольшой группы людей и теперь в архиве.',
+      description: 'Три проекта, которые я довёл от идеи до работы в проде. Работаю AI-first: требования, архитектура и ревью — мои, большую часть кода пишут агенты, качество держат тесты. Первый — коммерческий заказ в ежедневном использовании; второй работает как публичное демо; третий работал для небольшой группы людей и теперь в архиве.',
       built_with: 'Технологии',
       locked: 'Закрыто',
       in_development: 'В разработке',
       archived: 'Архив',
+      view_source: 'Код на GitHub',
+      view_source_agent: 'Код агента на GitHub',
       system_id: 'ID системы',
       items: [
         {
@@ -684,7 +690,7 @@ export const translations = {
         },
         {
           title: 'Kliniq — Планирование ОР',
-          description: 'Планирование операционных, написанное в одиночку с нуля и работающее вживую — зайди под демо-аккаунтом и подвинь бронь. Ограничение EXCLUDE в Postgres не даёт вставить пересекающиеся брони вообще, поэтому гарантия держится, даже когда двое нажимают одновременно; Server-Sent Events отправляют каждое изменение во все открытые панели. Аутентификация своя целиком: Argon2id, WebAuthn passkeys, сессии в Redis, без сторонних провайдеров. 29 тысяч строк Kotlin и SvelteKit под 187 тестами.',
+          description: 'Планирование операционных, сделанное от и до и работающее вживую — зайди под демо-аккаунтом и подвинь бронь. Ограничение EXCLUDE в Postgres не даёт вставить пересекающиеся брони вообще, поэтому гарантия держится, даже когда двое нажимают одновременно; Server-Sent Events отправляют каждое изменение во все открытые панели. Аутентификация своя целиком: Argon2id, WebAuthn passkeys, сессии в Redis, без сторонних провайдеров. 29 тысяч строк Kotlin и SvelteKit под 187 тестами.',
         },
         {
           title: 'Fortochka — свой VPN',
@@ -701,11 +707,11 @@ export const translations = {
       categories: [
         {
           label: 'Языки',
-          items: ['Java', 'Python', 'TypeScript', 'Kotlin', 'Rust', 'SQL'],
+          items: ['TypeScript', 'Rust', 'Python', 'SQL', 'Kotlin', 'Java'],
         },
         {
           label: 'Бэкенд и данные',
-          items: ['Spring Boot', 'Django', 'PostgreSQL', 'Redis', 'Celery', 'MinIO'],
+          items: ['Spring Boot', 'FastAPI', 'PostgreSQL', 'SQL Server', 'Redis', 'RustFS'],
         },
         {
           label: 'Фронтенд и инфра',
@@ -715,7 +721,7 @@ export const translations = {
     },
     hero: {
       badge: 'B.Sc. Mathematics // Uni Stuttgart',
-      subtitle: 'Студент математики — Штутгарт, DE',
+      subtitle: 'Разработка и данные · прикладной ИИ',
       hover_sub: 'Штутгарт // От базы до деплоя',
       btn_primary_top: 'Контакт',
       btn_primary: 'Связаться',
@@ -724,7 +730,7 @@ export const translations = {
       marquee_location: 'Штутгарт, Германия',
       marquee_engineering: 'B.Sc. Mathematics',
       marquee_available: 'Werkstudent в RECARO Aircraft Seating',
-      marquee_architecture: 'Java · Python · TypeScript',
+      marquee_architecture: 'TypeScript · Rust · Python · SQL',
     },
     bento: {
       section_label: 'Обо мне',
@@ -742,12 +748,12 @@ export const translations = {
       about_label: 'Статус // Штутгарт',
       about_title: 'Обо мне',
       about_quote: 'Делаю проекты целиком — база, бэкенд, интерфейс, деплой.',
-      about_text: 'Студент математики в Университете Штутгарта, параллельно Werkstudent в RECARO Aircraft Seating: разработка, анализ данных и тестирование. На бэкенде в основном Java и Python, на фронте TypeScript. Всё, что здесь показано, я собрал и держу сам — включая сервер, с которого отдаётся эта страница.',
+      about_text: 'Студент математики в Университете Штутгарта, параллельно Werkstudent в RECARO Aircraft Seating: разработка, анализ данных и тестирование. Каждый день TypeScript, Rust и Python, на бэкенде Kotlin и Java. Работаю AI-first: требования, архитектура и ревью — мои, большую часть кода пишут агенты. Всё, что здесь показано, я разворачиваю и держу сам — включая сервер, с которого отдаётся эта страница.',
       about_role: 'Студент математики',
       method_label: 'Направление',
       method_title: 'Бэкенд, данные и внутренние инструменты',
       delivery_label: 'Языки, на которых пишу',
-      delivery_title: 'Java, Python, TypeScript, Kotlin, Rust',
+      delivery_title: 'TypeScript, Rust, Python, Kotlin, Java',
     },
     contact: {
       section_label: '04 // КОНТАКТЫ',

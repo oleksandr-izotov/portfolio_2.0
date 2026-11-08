@@ -1,15 +1,16 @@
 import { m } from 'motion/react';
-import { ExternalLink, Lock } from 'lucide-react';
+import { ExternalLink, Github, Lock } from 'lucide-react';
 import { projects, type Project } from '../data/projects';
 import { useLanguage } from '../i18n';
 
 /**
- * The "view live" control on a case-study page.
+ * The "view live" and "view source" controls on a case-study page.
  *
- * Whether a project has a public demo lives in one place — data/projects.ts —
- * so the card on the home page and this button can never disagree. A project
- * still in development shows a badge instead of a link: the demo URL used to be
- * hard-coded here and kept pointing at a hostname that no longer resolved.
+ * Whether a project has a public demo or a public repository lives in one
+ * place — data/projects.ts — so the card on the home page and these buttons can
+ * never disagree. A project still in development shows a badge instead of a
+ * link: the demo URL used to be hard-coded here and kept pointing at a hostname
+ * that no longer resolved.
  *
  * An archived project keeps its link, but the dot stops pulsing green: the site
  * is still up, the service behind it is not.
@@ -19,33 +20,43 @@ export const CaseStudyLiveLink = ({ caseStudyId }: { caseStudyId: NonNullable<Pr
   const project = projects.find(p => p.caseStudyId === caseStudyId);
   const label = t(`${caseStudyId}.view_live`);
 
-  if (!project?.liveUrl) {
-    return (
-      <m.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.55 }}
-        className="inline-flex items-center gap-3 mt-8 px-6 py-2.5 bg-white/[0.03] border border-white/10 rounded-full text-[10px] font-mono font-bold uppercase tracking-[0.3em] text-zinc-400"
-      >
-        <Lock size={11} />
-        {t('projects.in_development')}
-      </m.div>
-    );
-  }
-
-  return (
-    <m.a
+  const live = project?.liveUrl ? (
+    <a
       href={project.liveUrl}
       target="_blank"
       rel="noopener noreferrer"
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.55 }}
-      className="inline-flex items-center gap-3 mt-8 px-6 py-2.5 bg-blue-500/10 border border-blue-500/30 hover:bg-blue-500/20 hover:border-blue-500/60 rounded-full text-[10px] font-mono font-bold uppercase tracking-[0.3em] text-blue-400 hover:text-white transition-all duration-300"
+      className="inline-flex items-center gap-3 px-6 py-2.5 bg-blue-500/10 border border-blue-500/30 hover:bg-blue-500/20 hover:border-blue-500/60 rounded-full text-[10px] font-mono font-bold uppercase tracking-[0.3em] text-blue-400 hover:text-white transition-all duration-300"
     >
       <span className={`w-1.5 h-1.5 rounded-full ${project.status === 'archived' ? 'bg-zinc-500' : 'bg-green-500 animate-pulse'}`} />
       {label}
       <ExternalLink size={11} />
-    </m.a>
+    </a>
+  ) : (
+    <div className="inline-flex items-center gap-3 px-6 py-2.5 bg-white/[0.03] border border-white/10 rounded-full text-[10px] font-mono font-bold uppercase tracking-[0.3em] text-zinc-400">
+      <Lock size={11} />
+      {t('projects.in_development')}
+    </div>
+  );
+
+  return (
+    <m.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.55 }}
+      className="flex flex-wrap items-center justify-center gap-3 mt-8"
+    >
+      {live}
+      {project?.repoUrl && (
+        <a
+          href={project.repoUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-3 px-6 py-2.5 bg-white/[0.03] border border-white/15 hover:bg-white/10 hover:border-white/40 rounded-full text-[10px] font-mono font-bold uppercase tracking-[0.3em] text-zinc-300 hover:text-white transition-all duration-300"
+        >
+          <Github size={11} />
+          {t(project.repoLabelKey ?? 'projects.view_source')}
+        </a>
+      )}
+    </m.div>
   );
 };

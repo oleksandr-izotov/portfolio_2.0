@@ -33,11 +33,13 @@ console.log('\nКнопка живого демо на кейс-страница
 for (const path of ['/lms-case-study', '/medtech-case-study', '/fortochka-case-study']) {
   await page.goto(base + path, { waitUntil: 'networkidle0', timeout: 45000 });
   const state = await page.evaluate(() => {
-    const link = [...document.querySelectorAll('a')].find(a => /view live|open the site|zur website|открыть сайт|открыть платформу/i.test(a.textContent || ''));
+    const link = [...document.querySelectorAll('a')].find(a => /view live|open the site|archived site|zur website|открыть сайт|открыть платформу/i.test(a.textContent || ''));
+    const source = [...document.querySelectorAll('a')].find(a => /on github/i.test(a.textContent || ''));
     const badge = [...document.querySelectorAll('div')].find(d => (d.textContent || '').trim() === 'In Development');
-    return { live: link?.href ?? null, badge: !!badge };
+    return { live: link?.href ?? null, source: source?.href ?? null, badge: !!badge };
   });
-  console.log(`  ${path.padEnd(24)} ${state.live ? 'ссылка → ' + state.live : state.badge ? 'бейдж «In Development»' : 'НИЧЕГО'}`);
+  const live = state.live ? 'ссылка → ' + state.live : state.badge ? 'бейдж «In Development»' : 'НИЧЕГО';
+  console.log(`  ${path.padEnd(24)} ${live}${state.source ? '  · код → ' + state.source : ''}`);
 }
 
 await browser.close();

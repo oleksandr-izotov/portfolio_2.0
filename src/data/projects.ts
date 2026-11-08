@@ -13,6 +13,10 @@ export interface Project {
   status?: 'active' | 'development' | 'archived';
   /** Public demo. Absent while a project is in development. */
   liveUrl?: string;
+  /** Public source repository, if there is one. */
+  repoUrl?: string;
+  /** Translation key for the source button when the repo covers only part of the project. */
+  repoLabelKey?: string;
   href: string;
   caseStudy?: boolean;
   caseStudyId?: 'medtech' | 'fortochka' | 'lms';
@@ -36,11 +40,12 @@ export const projects: Project[] = [
     title: 'Kliniq — OR Scheduling',
     category: 'Kotlin // Spring Boot 3',
     year: '2026',
-    description: 'A surgical operating-room scheduling platform, built solo from scratch. A Kotlin/Spring Boot 3 backend with jOOQ over PostgreSQL makes double-bookings impossible at the database via an EXCLUDE constraint, with real-time updates over Server-Sent Events, drag-and-drop reschedule, and self-hosted auth using WebAuthn passkeys. SvelteKit frontend, deployed on Hetzner.',
+    description: 'A surgical operating-room scheduling platform, built end to end. A Kotlin/Spring Boot 3 backend with jOOQ over PostgreSQL makes double-bookings impossible at the database via an EXCLUDE constraint, with real-time updates over Server-Sent Events, drag-and-drop reschedule, and self-hosted auth using WebAuthn passkeys. SvelteKit frontend, running as a public demo on my own server.',
     image: kliniqImg,
     stack: ["Kotlin 2.1", "Spring Boot 3.5", "SvelteKit 2", "PostgreSQL 16", "Passkeys"],
     status: 'active',
     liveUrl: 'https://kliniq.izotov.dev',
+    repoUrl: 'https://github.com/oleksandr-izotov/kliniq',
     href: '/medtech-case-study',
     caseStudy: true,
     caseStudyId: 'medtech',
@@ -54,6 +59,8 @@ export const projects: Project[] = [
     stack: ["Python 3.12", "FastAPI", "aiogram 3", "AmneziaWG", "Next.js 16"],
     status: 'archived',
     liveUrl: 'https://fortochka.me',
+    repoUrl: 'https://github.com/oleksandr-izotov/amneziawg-agent',
+    repoLabelKey: 'projects.view_source_agent',
     href: '/fortochka-case-study',
     caseStudy: true,
     caseStudyId: 'fortochka',
