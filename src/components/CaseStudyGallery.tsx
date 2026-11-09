@@ -117,7 +117,7 @@ export const CaseStudyGallery = ({ slides, tag, systemId, status, note, labels, 
 
         {/* Screenshot */}
         <div
-          className="relative w-full aspect-video overflow-hidden bg-white/[0.015]"
+          className="relative w-full aspect-[16/10] overflow-hidden bg-white/[0.015]"
           onTouchStart={(e) => { touchX.current = e.touches[0].clientX; }}
           onTouchEnd={(e) => {
             if (touchX.current === null) return;

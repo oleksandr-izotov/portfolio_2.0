@@ -14,11 +14,12 @@ import cpBinomShot4 from '../assets/walkthrough/cp-binom-4.webp';
 import cpBinomShot5 from '../assets/walkthrough/cp-binom-5.webp';
 import cpBinomShot6 from '../assets/walkthrough/cp-binom-6.webp';
 import cpBinomShot7 from '../assets/walkthrough/cp-binom-7.webp';
+import cpBinomShot8 from '../assets/walkthrough/cp-binom-8.webp';
 import { CaseStudyGallery } from './CaseStudyGallery';
 import { useLanguage } from '../i18n';
 import { translations } from '../i18n/translations';
 
-const cpBinomShots = [cpBinomShot1, cpBinomShot2, cpBinomShot3, cpBinomShot4, cpBinomShot5, cpBinomShot6, cpBinomShot7];
+const cpBinomShots = [cpBinomShot1, cpBinomShot2, cpBinomShot3, cpBinomShot4, cpBinomShot5, cpBinomShot6, cpBinomShot7, cpBinomShot8];
 
 
 const techTags = ['Java 21', 'Spring Boot 3.5', 'PostgreSQL 16', 'Flyway', 'RustFS', 'React 18', 'Vite', 'Tailwind 4', 'Playwright'];

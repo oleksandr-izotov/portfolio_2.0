@@ -14,11 +14,12 @@ import kliniqShot4 from '../assets/walkthrough/kliniq-4.webp';
 import kliniqShot5 from '../assets/walkthrough/kliniq-5.webp';
 import kliniqShot6 from '../assets/walkthrough/kliniq-6.webp';
 import kliniqShot7 from '../assets/walkthrough/kliniq-7.webp';
+import kliniqShot8 from '../assets/walkthrough/kliniq-8.webp';
 import { CaseStudyGallery } from './CaseStudyGallery';
 import { useLanguage } from '../i18n';
 import { translations } from '../i18n/translations';
 
-const kliniqShots = [kliniqShot1, kliniqShot2, kliniqShot3, kliniqShot4, kliniqShot5, kliniqShot6, kliniqShot7];
+const kliniqShots = [kliniqShot1, kliniqShot2, kliniqShot3, kliniqShot4, kliniqShot5, kliniqShot6, kliniqShot7, kliniqShot8];
 
 
 const techTags = ['Kotlin 2.1', 'Spring Boot 3.5', 'jOOQ', 'PostgreSQL 16', 'Redis', 'SvelteKit 2', 'WebAuthn', 'Playwright'];
