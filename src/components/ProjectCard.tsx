@@ -65,7 +65,10 @@ export const ProjectCard = ({ project, index, builtWith = 'Built With', locked =
               </div>
             </div>
 
-            <div className="flex-1 overflow-hidden flex flex-col justify-center">
+            {/* The title is already printed under the card, so the overlay holds only
+                the description. It is clamped so it never runs past the card edges;
+                the full text is on the case-study page. */}
+            <div className="flex-1 min-h-0 overflow-hidden flex flex-col justify-center">
               {isLocked ? (
                 <div className="flex flex-col items-center justify-center h-full space-y-2">
                   <Lock size={32} className="text-zinc-700 dark:text-zinc-600 mb-2" />
@@ -75,23 +78,14 @@ export const ProjectCard = ({ project, index, builtWith = 'Built With', locked =
                   </span>
                 </div>
               ) : (
-                <>
-                  <m.h3
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    className="text-2xl font-black uppercase tracking-tighter dark:text-white mb-3"
-                  >
-                    {project.title}
-                  </m.h3>
-                  <m.p
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ delay: 0.2 }}
-                    className="text-[13px] leading-relaxed text-gray-600 dark:text-zinc-400 font-medium mb-6"
-                  >
-                    {project.description}
-                  </m.p>
-                </>
+                <m.p
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ delay: 0.2 }}
+                  className="text-[13px] leading-relaxed text-gray-600 dark:text-zinc-400 font-medium mb-6 md:line-clamp-[9] lg:line-clamp-5 xl:line-clamp-[11]"
+                >
+                  {project.description}
+                </m.p>
               )}
             </div>
 
@@ -150,7 +144,7 @@ export const ProjectCard = ({ project, index, builtWith = 'Built With', locked =
       )}
 
       {/* Footer Info */}
-      <div className="mt-6 flex justify-between items-end">
+      <div className="mt-6 flex justify-between items-end gap-4">
         <div>
           <p className={`text-[10px] font-mono font-bold uppercase tracking-[0.2em] mb-1 ${isLocked ? 'text-zinc-600' : 'text-blue-500'}`}>{project.category}</p>
           <h3 className={`text-xl font-black uppercase tracking-tighter transition-colors duration-300 ${isLocked ? 'text-zinc-600' : 'dark:text-white group-hover:text-blue-500'}`}>
@@ -159,7 +153,7 @@ export const ProjectCard = ({ project, index, builtWith = 'Built With', locked =
         </div>
 
         {/* Arrow indicator — always visible, inherits click from parent <a> */}
-        <div className={`w-10 h-10 border flex items-center justify-center transition-all duration-300 ${
+        <div className={`shrink-0 w-10 h-10 border flex items-center justify-center transition-all duration-300 ${
           isLocked
             ? 'border-zinc-800 bg-zinc-900/50 cursor-not-allowed'
             : 'border-gray-200 dark:border-white/10 group-hover:bg-blue-600 group-hover:border-blue-600 group-hover:rotate-45'

@@ -168,12 +168,14 @@ export const Hero = () => {
              </div>
           </a>
 
-          {/* Secondary Action: Explore Services */}
+          {/* Secondary Action: jump to the projects */}
           <a
-            href="#about"
+            href="#projects"
             onClick={(e) => {
               e.preventDefault();
-              document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+              const el = document.getElementById('projects');
+              // 80px: the fixed header, same offset as the nav links use.
+              if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
             }}
             className="group relative flex items-center justify-center w-full md:w-auto gap-6 px-10 py-4 bg-white/50 dark:bg-transparent border border-zinc-200 dark:border-white/10 rounded-full transition-all duration-500 hover:scale-[1.02] hover:border-blue-500/30 overflow-hidden backdrop-blur-sm"
           >
