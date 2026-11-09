@@ -1,14 +1,25 @@
 import { useNavigate } from 'react-router-dom';
 import { m } from 'motion/react';
-import { ArrowLeft, Send, ShieldCheck, Database, Workflow, ExternalLink, Terminal } from 'lucide-react';
+import { ArrowLeft, Send, ShieldCheck, Database, Workflow, ExternalLink } from 'lucide-react';
 import { GrainTexture } from './GrainTexture';
 import { CaseStudyLiveLink } from './CaseStudyLiveLink';
 import { ImageWithFallback } from './ui/ImageWithFallback';
 import heroImg from '../assets/lms-hero.webp';
 import abstractImg from '../assets/lms-tech.webp';
 import finalCtaImg from '../assets/lms1.webp';
+import cpBinomShot1 from '../assets/walkthrough/cp-binom-1.webp';
+import cpBinomShot2 from '../assets/walkthrough/cp-binom-2.webp';
+import cpBinomShot3 from '../assets/walkthrough/cp-binom-3.webp';
+import cpBinomShot4 from '../assets/walkthrough/cp-binom-4.webp';
+import cpBinomShot5 from '../assets/walkthrough/cp-binom-5.webp';
+import cpBinomShot6 from '../assets/walkthrough/cp-binom-6.webp';
+import cpBinomShot7 from '../assets/walkthrough/cp-binom-7.webp';
+import { CaseStudyGallery } from './CaseStudyGallery';
 import { useLanguage } from '../i18n';
 import { translations } from '../i18n/translations';
+
+const cpBinomShots = [cpBinomShot1, cpBinomShot2, cpBinomShot3, cpBinomShot4, cpBinomShot5, cpBinomShot6, cpBinomShot7];
+
 
 const techTags = ['Java 21', 'Spring Boot 3.5', 'PostgreSQL 16', 'Flyway', 'RustFS', 'React 18', 'Vite', 'Tailwind 4', 'Playwright'];
 
@@ -19,6 +30,7 @@ export const LmsPage = () => {
   const navigate = useNavigate();
   const { lang, localize } = useLanguage();
   const lms = translations[lang].lms;
+  const projectsT = translations[lang].projects;
 
   return (
     <div className="min-h-screen bg-black text-white relative overflow-x-hidden">
@@ -254,71 +266,20 @@ export const LmsPage = () => {
             </span>
           </div>
 
-          <div className="relative w-full aspect-video bg-white/[0.015] border border-white/5 rounded-sm overflow-hidden flex flex-col items-center justify-center">
-            {/* Inner grid */}
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:40px_40px]" />
-
-            {/* Blueprint corners */}
-            {[
-              'top-4 left-4 border-l-2 border-t-2',
-              'top-4 right-4 border-r-2 border-t-2',
-              'bottom-4 left-4 border-l-2 border-b-2',
-              'bottom-4 right-4 border-r-2 border-b-2',
-            ].map((cls, i) => (
-              <div key={i} className={`absolute w-5 h-5 ${cls} border-blue-500/25`} />
-            ))}
-
-            {/* Top status tag */}
-            <div className="absolute top-5 left-1/2 -translate-x-1/2 flex items-center gap-2">
-              <div className="w-1.5 h-1.5 bg-blue-500/50 rounded-full animate-pulse" />
-              <span className="text-[8px] font-mono text-zinc-700 uppercase tracking-widest">
-                LIVE // CP-BINOM.RU
-              </span>
-            </div>
-
-            {/* System ID */}
-            <div className="absolute top-5 right-8 text-[8px] font-mono text-zinc-800 uppercase tracking-widest">
-              PRJ-001
-            </div>
-
-            {/* Spinning ring + icon */}
-            <div className="relative z-10 flex flex-col items-center gap-8">
-              <div className="relative w-24 h-24">
-                <div className="absolute inset-0 rounded-full border border-white/5" />
-                <m.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 2.5, repeat: Infinity, ease: 'linear' }}
-                  className="absolute inset-0 rounded-full border-2 border-transparent"
-                  style={{ borderTopColor: '#3b82f6', borderRightColor: 'rgba(59,130,246,0.1)' }}
-                />
-                <m.div
-                  animate={{ rotate: -360 }}
-                  transition={{ duration: 5, repeat: Infinity, ease: 'linear' }}
-                  className="absolute inset-[7px] rounded-full border border-transparent"
-                  style={{ borderBottomColor: 'rgba(96,165,250,0.4)', borderLeftColor: 'rgba(96,165,250,0.1)' }}
-                />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <Terminal size={18} className="text-blue-500/70" />
-                </div>
-              </div>
-
-              <div className="text-center space-y-2">
-                <p className="text-[10px] font-mono font-bold uppercase tracking-[0.4em] text-blue-500">
-                  {lms.coming_soon}
-                </p>
-                <p className="text-[11px] text-zinc-600 font-medium max-w-xs leading-relaxed">
-                  {lms.coming_soon_sub}
-                </p>
-              </div>
-            </div>
-
-            {/* Scan line */}
-            <m.div
-              animate={{ y: ['0%', '2000%'] }}
-              transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
-              className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-blue-500/15 to-transparent pointer-events-none"
-            />
-          </div>
+          <CaseStudyGallery
+            slides={cpBinomShots.map((src, i) => ({ src, caption: lms.gallery[i] }))}
+            tag="LIVE // CP-BINOM.RU"
+            systemId="PRJ-001"
+            status={lms.coming_soon}
+            note={lms.coming_soon_sub}
+            labels={{
+              prev: projectsT.gallery_prev,
+              next: projectsT.gallery_next,
+              pause: projectsT.gallery_pause,
+              play: projectsT.gallery_play,
+              slide: projectsT.gallery_slide,
+            }}
+          />
         </div>
       </section>
 
